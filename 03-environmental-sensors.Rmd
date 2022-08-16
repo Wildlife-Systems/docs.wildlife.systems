@@ -1,0 +1,13 @@
+# Environmental Sensors
+
+## How sensors work
+
+### Temperature
+
+### Humidity
+
+### Air Pressure
+
+### Gases
+
+#### Heated Gas Resistance
