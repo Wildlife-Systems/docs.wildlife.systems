@@ -17,5 +17,9 @@ installing-sensor-support
 reading-data-from-a-sensor
 the-sensor-reading-process
 installing-new-sensors
+power-management
+installation-of-power-management-tools
+turning-funtionality-on-and-off
+considerations
 developer-guidelines
 documentation

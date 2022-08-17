@@ -237,6 +237,34 @@ The sensor reading process in WildlifeSystems has five steps.
 \hypertarget{installing-new-sensors}{%
 \section{Installing new sensors}\label{installing-new-sensors}}
 
+\hypertarget{power-management}{%
+\chapter{Power Management}\label{power-management}}
+
+Power management on the Raspberry Pi is useful when deployments are made that are powered by batteries and/or renewable sources such as solar power that are intermittent.
+
+In addition, there are small environmental benefits on consuming less power on systems which have continual grid power.
+
+The \texttt{pi-pwr} script can be used to turn off unused functionality, either always or just when it is not required.
+
+\hypertarget{installation-of-power-management-tools}{%
+\section{Installation of power management tools}\label{installation-of-power-management-tools}}
+
+The power management tools are installed as part of the node installation process, however they can be easily installed independently on any Raspberry Pi system.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{wget} \AttributeTok{{-}O} \AttributeTok{{-}}\NormalTok{ https://github.com/wildlife{-}systems/pi{-}pwr/raw/master/install }\KeywordTok{|} \FunctionTok{sudo}\NormalTok{ bash}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{turning-funtionality-on-and-off}{%
+\section{Turning funtionality on and off}\label{turning-funtionality-on-and-off}}
+
+\hypertarget{considerations}{%
+\section{Considerations}\label{considerations}}
+
+Disabling network functionality (WiFI / Ethernet) will prevent the node from communicating until either the functionality is turned back on or the Raspberry Pi is restarted. If disabling all connectivity is desired periodically then the functionality to turn these systems back on must be scripted.
+
 \hypertarget{developer-guidelines}{%
 \chapter{Developer Guidelines}\label{developer-guidelines}}
 
