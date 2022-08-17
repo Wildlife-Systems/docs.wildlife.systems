@@ -22,6 +22,7 @@ in-bash
 in-python
 setting-the-environment
 install
+submitting-packages-to-wildlifesystems
 power-management
 installation-of-power-management-tools
 turning-funtionality-on-and-off

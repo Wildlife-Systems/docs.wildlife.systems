@@ -173,6 +173,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="5.2" data-path="implementing-new-sensors.html"><a href="implementing-new-sensors.html#setting-the-environment"><i class="fa fa-check"></i><b>5.2</b> Setting the environment</a></li>
 <li class="chapter" data-level="5.3" data-path="implementing-new-sensors.html"><a href="implementing-new-sensors.html#install"><i class="fa fa-check"></i><b>5.3</b> Install</a></li>
+<li class="chapter" data-level="5.4" data-path="implementing-new-sensors.html"><a href="implementing-new-sensors.html#submitting-packages-to-wildlifesystems"><i class="fa fa-check"></i><b>5.4</b> Submitting packages to WildlifeSystems</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="power-management.html"><a href="power-management.html"><i class="fa fa-check"></i><b>6</b> Power Management</a>
 <ul>
@@ -207,48 +208,68 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="implementing-new-sensors" class="section level1 hasAnchor" number="5">
 <h1><span class="header-section-number">Chapter 5</span> Implementing new sensors<a href="implementing-new-sensors.html#implementing-new-sensors" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>New sensors should be implemented as new packages (i.e, a new GitHub repository). Packages have a standard format, and should be named <code>sensor-&lt;sensor-name&gt;</code> where <code>&lt;sensor-name&gt;</code> is short, descriptive of the sensor (e.g. model number), and unique within the WildlifeSystems ecosystem.</p>
+<p>The structure of a basic package is given below.</p>
+<pre><code>.
++-- inst
+|   +-- files that are not part of the package structure
+|       used during installation (e.g. 3rd party scripts 
+|       to be copied to /usr/bin/)
+|
++-- sensor-&lt;sensor-name&gt;
+|     Executable to read sensor and print JSON of readings
+|     (copied on install to /usr/bin/)
+|
++-- &lt;sensor-name&gt;
+|     Configuration file 
+|     (copied on install to /var/aao/sensors/)
+|
++-- install
+|     Bash file run once on install - used to install packaged
+|     dependencies, etc.</code></pre>
+<p>As many people implement various sensors on the Raspberry Pi, it is likely that some sort of solution is already available, that can be tweaked to output readings in the standard format required. However, you must ensure that any licensing conditions are met. In particular, an open license is required if submitting your sensor package to WildlifeSystems for inclusion in the ecosystem.</p>
 <div id="reading-the-sensor" class="section level2 hasAnchor" number="5.1">
 <h2><span class="header-section-number">5.1</span> Reading the sensor<a href="implementing-new-sensors.html#reading-the-sensor" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>File <code>sensor-&lt;sensor-name&gt;</code> provides the functionality to read the protoype JSON, populate the JSON with sensor readings, and print the output.</p>
 <p>The file can be written in any programming or scripting language, but to prevent overhead consideration should be given to minimising the number of new packages installed.</p>
 <div id="in-bash" class="section level3 hasAnchor" number="5.1.1">
 <h3><span class="header-section-number">5.1.1</span> In bash<a href="implementing-new-sensors.html#in-bash" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="implementing-new-sensors.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
-<span id="cb4-2"><a href="implementing-new-sensors.html#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-3"><a href="implementing-new-sensors.html#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Read the prototype JSON</span></span>
-<span id="cb4-4"><a href="implementing-new-sensors.html#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="va">JSON</span><span class="op">=</span><span class="va">$(</span><span class="ex">sc-prototype</span><span class="va">)</span></span>
-<span id="cb4-5"><a href="implementing-new-sensors.html#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-6"><a href="implementing-new-sensors.html#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="at">-n</span> <span class="st">&quot;[&quot;</span></span>
-<span id="cb4-7"><a href="implementing-new-sensors.html#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-8"><a href="implementing-new-sensors.html#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Code to read the sensor value into GPU_TEMP</span></span>
-<span id="cb4-9"><a href="implementing-new-sensors.html#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-10"><a href="implementing-new-sensors.html#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Use `jq` to modify JSON</span></span>
-<span id="cb4-11"><a href="implementing-new-sensors.html#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="va">SENSOR</span><span class="op">=</span><span class="va">$(</span><span class="bu">echo</span> <span class="va">$JSON</span> <span class="kw">|</span> <span class="ex">jq</span> <span class="st">&quot;.sensor |= </span><span class="dt">\&quot;</span><span class="st">onboard_gpu</span><span class="dt">\&quot;</span><span class="st"> | .measures |= </span><span class="dt">\&quot;</span><span class="st">temperature</span><span class="dt">\&quot;</span><span class="st"> | .unit |= </span><span class="dt">\&quot;</span><span class="st">Celsius</span><span class="dt">\&quot;</span><span class="st">| .value |= </span><span class="va">${GPU_TEMP}</span><span class="st">&quot;</span><span class="va">)</span></span>
-<span id="cb4-12"><a href="implementing-new-sensors.html#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="at">-n</span> <span class="va">$SENSOR</span></span>
-<span id="cb4-13"><a href="implementing-new-sensors.html#cb4-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-14"><a href="implementing-new-sensors.html#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">&quot;]&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="implementing-new-sensors.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
+<span id="cb5-2"><a href="implementing-new-sensors.html#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="implementing-new-sensors.html#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Read the prototype JSON</span></span>
+<span id="cb5-4"><a href="implementing-new-sensors.html#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="va">JSON</span><span class="op">=</span><span class="va">$(</span><span class="ex">sc-prototype</span><span class="va">)</span></span>
+<span id="cb5-5"><a href="implementing-new-sensors.html#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="implementing-new-sensors.html#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="at">-n</span> <span class="st">&quot;[&quot;</span></span>
+<span id="cb5-7"><a href="implementing-new-sensors.html#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="implementing-new-sensors.html#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Code to read the sensor value into GPU_TEMP</span></span>
+<span id="cb5-9"><a href="implementing-new-sensors.html#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-10"><a href="implementing-new-sensors.html#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Use `jq` to modify JSON</span></span>
+<span id="cb5-11"><a href="implementing-new-sensors.html#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="va">SENSOR</span><span class="op">=</span><span class="va">$(</span><span class="bu">echo</span> <span class="va">$JSON</span> <span class="kw">|</span> <span class="ex">jq</span> <span class="st">&quot;.sensor |= </span><span class="dt">\&quot;</span><span class="st">onboard_gpu</span><span class="dt">\&quot;</span><span class="st"> | .measures |= </span><span class="dt">\&quot;</span><span class="st">temperature</span><span class="dt">\&quot;</span><span class="st"> | .unit |= </span><span class="dt">\&quot;</span><span class="st">Celsius</span><span class="dt">\&quot;</span><span class="st">| .value |= </span><span class="va">${GPU_TEMP}</span><span class="st">&quot;</span><span class="va">)</span></span>
+<span id="cb5-12"><a href="implementing-new-sensors.html#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="at">-n</span> <span class="va">$SENSOR</span></span>
+<span id="cb5-13"><a href="implementing-new-sensors.html#cb5-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-14"><a href="implementing-new-sensors.html#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">&quot;]&quot;</span></span></code></pre></div>
 </div>
 <div id="in-python" class="section level3 hasAnchor" number="5.1.2">
 <h3><span class="header-section-number">5.1.2</span> In Python<a href="implementing-new-sensors.html#in-python" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="implementing-new-sensors.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/</span></span>
-<span id="cb5-2"><a href="implementing-new-sensors.html#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
-<span id="cb5-3"><a href="implementing-new-sensors.html#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
-<span id="cb5-4"><a href="implementing-new-sensors.html#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-5"><a href="implementing-new-sensors.html#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Read the prototype JSON</span></span>
-<span id="cb5-6"><a href="implementing-new-sensors.html#cb5-6" aria-hidden="true" tabindex="-1"></a>stream <span class="op">=</span> os.popen(<span class="st">&#39;sc-prototype&#39;</span>)</span>
-<span id="cb5-7"><a href="implementing-new-sensors.html#cb5-7" aria-hidden="true" tabindex="-1"></a>output <span class="op">=</span> stream.read()</span>
-<span id="cb5-8"><a href="implementing-new-sensors.html#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-9"><a href="implementing-new-sensors.html#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Pre-populate with sensor metadata</span></span>
-<span id="cb5-10"><a href="implementing-new-sensors.html#cb5-10" aria-hidden="true" tabindex="-1"></a>temperature <span class="op">=</span> json.loads(output)</span>
-<span id="cb5-11"><a href="implementing-new-sensors.html#cb5-11" aria-hidden="true" tabindex="-1"></a>temperature[<span class="st">&quot;sensor&quot;</span>] <span class="op">=</span> <span class="st">&quot;bme680_temperature&quot;</span></span>
-<span id="cb5-12"><a href="implementing-new-sensors.html#cb5-12" aria-hidden="true" tabindex="-1"></a>temperature[<span class="st">&quot;measures&quot;</span>] <span class="op">=</span> <span class="st">&quot;temperature&quot;</span></span>
-<span id="cb5-13"><a href="implementing-new-sensors.html#cb5-13" aria-hidden="true" tabindex="-1"></a>temperature[<span class="st">&quot;unit&quot;</span>] <span class="op">=</span> <span class="st">&quot;Celsius&quot;</span></span>
-<span id="cb5-14"><a href="implementing-new-sensors.html#cb5-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-15"><a href="implementing-new-sensors.html#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Code to read sensor and output in variable `sensor_reading`</span></span>
-<span id="cb5-16"><a href="implementing-new-sensors.html#cb5-16" aria-hidden="true" tabindex="-1"></a>temperature[<span class="st">&quot;value&quot;</span>] <span class="op">=</span> sensor_reading</span>
-<span id="cb5-17"><a href="implementing-new-sensors.html#cb5-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-18"><a href="implementing-new-sensors.html#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Output the JSON in an array</span></span>
-<span id="cb5-19"><a href="implementing-new-sensors.html#cb5-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;[&quot;</span>,json.dumps(temperature),<span class="st">&quot;]&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="implementing-new-sensors.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/</span></span>
+<span id="cb6-2"><a href="implementing-new-sensors.html#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb6-3"><a href="implementing-new-sensors.html#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
+<span id="cb6-4"><a href="implementing-new-sensors.html#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="implementing-new-sensors.html#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Read the prototype JSON</span></span>
+<span id="cb6-6"><a href="implementing-new-sensors.html#cb6-6" aria-hidden="true" tabindex="-1"></a>stream <span class="op">=</span> os.popen(<span class="st">&#39;sc-prototype&#39;</span>)</span>
+<span id="cb6-7"><a href="implementing-new-sensors.html#cb6-7" aria-hidden="true" tabindex="-1"></a>output <span class="op">=</span> stream.read()</span>
+<span id="cb6-8"><a href="implementing-new-sensors.html#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-9"><a href="implementing-new-sensors.html#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Pre-populate with sensor metadata</span></span>
+<span id="cb6-10"><a href="implementing-new-sensors.html#cb6-10" aria-hidden="true" tabindex="-1"></a>temperature <span class="op">=</span> json.loads(output)</span>
+<span id="cb6-11"><a href="implementing-new-sensors.html#cb6-11" aria-hidden="true" tabindex="-1"></a>temperature[<span class="st">&quot;sensor&quot;</span>] <span class="op">=</span> <span class="st">&quot;bme680_temperature&quot;</span></span>
+<span id="cb6-12"><a href="implementing-new-sensors.html#cb6-12" aria-hidden="true" tabindex="-1"></a>temperature[<span class="st">&quot;measures&quot;</span>] <span class="op">=</span> <span class="st">&quot;temperature&quot;</span></span>
+<span id="cb6-13"><a href="implementing-new-sensors.html#cb6-13" aria-hidden="true" tabindex="-1"></a>temperature[<span class="st">&quot;unit&quot;</span>] <span class="op">=</span> <span class="st">&quot;Celsius&quot;</span></span>
+<span id="cb6-14"><a href="implementing-new-sensors.html#cb6-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-15"><a href="implementing-new-sensors.html#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Code to read sensor and output in variable `sensor_reading`</span></span>
+<span id="cb6-16"><a href="implementing-new-sensors.html#cb6-16" aria-hidden="true" tabindex="-1"></a>temperature[<span class="st">&quot;value&quot;</span>] <span class="op">=</span> sensor_reading</span>
+<span id="cb6-17"><a href="implementing-new-sensors.html#cb6-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-18"><a href="implementing-new-sensors.html#cb6-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Output the JSON in an array</span></span>
+<span id="cb6-19"><a href="implementing-new-sensors.html#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;[&quot;</span>,json.dumps(temperature),<span class="st">&quot;]&quot;</span>)</span></code></pre></div>
 </div>
 </div>
 <div id="setting-the-environment" class="section level2 hasAnchor" number="5.2">
@@ -261,6 +282,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">5.3</span> Install<a href="implementing-new-sensors.html#install" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The file <code>install</code> in the directory is run once, when the sensor package is installed. This allows for the installation of packages and scripts necessary for the functioning of the package.</p>
 <p>The file is executed by <code>bash</code> and the use of <code>sudo</code> is allowed.</p>
+</div>
+<div id="submitting-packages-to-wildlifesystems" class="section level2 hasAnchor" number="5.4">
+<h2><span class="header-section-number">5.4</span> Submitting packages to WildlifeSystems<a href="implementing-new-sensors.html#submitting-packages-to-wildlifesystems" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Submitting packages (where licensing allows) to WildlifeSystems allows the ecosystem to be developed and sustained collaboratively by the user community.</p>
+<p>Packages can be sent to the administrators as a compressed file, or a request can be sent to fork an existing GitHub repository. Contact details can be found at <a href="https://wildlife.systems/contact.html">https://wildlife.systems/contact.html</a>.</p>
 
 </div>
 </div>

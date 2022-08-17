@@ -1,5 +1,31 @@
 # Implementing new sensors
 
+New sensors should be implemented as new packages (i.e, a new GitHub repository). Packages have a standard format, and should be named `sensor-<sensor-name>` where `<sensor-name>` is short, descriptive of the sensor (e.g. model number), and unique within the WildlifeSystems ecosystem.
+
+The structure of a basic package is given below.
+
+````
+.
++-- inst
+|   +-- files that are not part of the package structure
+|       used during installation (e.g. 3rd party scripts 
+|       to be copied to /usr/bin/)
+|
++-- sensor-<sensor-name>
+|     Executable to read sensor and print JSON of readings
+|     (copied on install to /usr/bin/)
+|
++-- <sensor-name>
+|     Configuration file 
+|     (copied on install to /var/aao/sensors/)
+|
++-- install
+|     Bash file run once on install - used to install packaged
+|     dependencies, etc.
+````
+
+As many people implement various sensors on the Raspberry Pi, it is likely that some sort of solution is already available, that can be tweaked to output readings in the standard format required. However, you must ensure that any licensing conditions are met. In particular, an open license is required if submitting your sensor package to WildlifeSystems for inclusion in the ecosystem.
+
 ## Reading the sensor
 
 File `sensor-<sensor-name>` provides the functionality to read the protoype JSON, populate the JSON with sensor readings, and print the output.
@@ -62,3 +88,9 @@ TODO: i2c
 The file `install` in the directory is run once, when the sensor package is installed. This allows for the installation of packages and scripts necessary for the functioning of the package.
 
 The file is executed by `bash` and the use of `sudo` is allowed.
+
+## Submitting packages to WildlifeSystems
+
+Submitting packages (where licensing allows) to WildlifeSystems allows the ecosystem to be developed and sustained collaboratively by the user community.
+
+Packages can be sent to the administrators as a compressed file, or a request can be sent to fork an existing GitHub repository. Contact details can be found at [https://wildlife.systems/contact.html](https://wildlife.systems/contact.html). 
