@@ -17,6 +17,6 @@ github-repo: wildlife-systems/docs.wildlife.systems
 
 This book explains the technologies developed as part of WildlifeSystems and how they can be implemented in real-world scenarios.
 
-## Support
+## Support {-}
 
 WildlifeSystems nodes were originally developed and used as part of the Leverhulme Trust funded Automated Acoustic Observatories project at the University of York. Additional development is undertaken as part of the Urban Nature Project at the Natural History Museum, London.
