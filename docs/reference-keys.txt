@@ -2,7 +2,6 @@ biodiversity-technologies
 structure-of-wildlife-systems
 overall-philosophy
 packages
-documentation-notes
 sensor-networks
 environmental-sensors
 how-sensors-work
