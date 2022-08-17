@@ -335,6 +335,25 @@ The file \texttt{install} in the directory is run once, when the sensor package 
 
 The file is executed by \texttt{bash} and the use of \texttt{sudo} is allowed.
 
+\hypertarget{the-installation-process-with-si}{%
+\section{\texorpdfstring{The installation process with \texttt{si}}{The installation process with si}}\label{the-installation-process-with-si}}
+
+The sensor install script, \texttt{si}, from \texttt{sensor-control} is used to install sensor packages. For developer reference the installation process is described below.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \texttt{si} clones the \texttt{Wildlife-Systems/sensor-\textless{}sensor-name\textgreater{}} repository from GitHub.
+\item
+  The \texttt{install} script is executed.
+\item
+  \texttt{sensor-\textless{}sensor-name} is marked as executable and move to /usr/bin/.
+\item
+  \texttt{\textless{}sensor-name\textgreater{}} is moved to /var/aao/sensors/.
+\item
+  The cloned repository is removed from the local filesystem.
+\end{enumerate}
+
 \hypertarget{submitting-packages-to-wildlifesystems}{%
 \section{Submitting packages to WildlifeSystems}\label{submitting-packages-to-wildlifesystems}}
 

@@ -173,7 +173,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="5.2" data-path="implementing-new-sensors.html"><a href="implementing-new-sensors.html#setting-the-environment"><i class="fa fa-check"></i><b>5.2</b> Setting the environment</a></li>
 <li class="chapter" data-level="5.3" data-path="implementing-new-sensors.html"><a href="implementing-new-sensors.html#install"><i class="fa fa-check"></i><b>5.3</b> Install</a></li>
-<li class="chapter" data-level="5.4" data-path="implementing-new-sensors.html"><a href="implementing-new-sensors.html#submitting-packages-to-wildlifesystems"><i class="fa fa-check"></i><b>5.4</b> Submitting packages to WildlifeSystems</a></li>
+<li class="chapter" data-level="5.4" data-path="implementing-new-sensors.html"><a href="implementing-new-sensors.html#the-installation-process-with-si"><i class="fa fa-check"></i><b>5.4</b> The installation process with <code>si</code></a></li>
+<li class="chapter" data-level="5.5" data-path="implementing-new-sensors.html"><a href="implementing-new-sensors.html#submitting-packages-to-wildlifesystems"><i class="fa fa-check"></i><b>5.5</b> Submitting packages to WildlifeSystems</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="power-management.html"><a href="power-management.html"><i class="fa fa-check"></i><b>6</b> Power Management</a>
 <ul>
@@ -283,8 +284,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>The file <code>install</code> in the directory is run once, when the sensor package is installed. This allows for the installation of packages and scripts necessary for the functioning of the package.</p>
 <p>The file is executed by <code>bash</code> and the use of <code>sudo</code> is allowed.</p>
 </div>
-<div id="submitting-packages-to-wildlifesystems" class="section level2 hasAnchor" number="5.4">
-<h2><span class="header-section-number">5.4</span> Submitting packages to WildlifeSystems<a href="implementing-new-sensors.html#submitting-packages-to-wildlifesystems" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="the-installation-process-with-si" class="section level2 hasAnchor" number="5.4">
+<h2><span class="header-section-number">5.4</span> The installation process with <code>si</code><a href="implementing-new-sensors.html#the-installation-process-with-si" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The sensor install script, <code>si</code>, from <code>sensor-control</code> is used to install sensor packages. For developer reference the installation process is described below.</p>
+<ol style="list-style-type: decimal">
+<li><p><code>si</code> clones the <code>Wildlife-Systems/sensor-&lt;sensor-name&gt;</code> repository from GitHub.</p></li>
+<li><p>The <code>install</code> script is executed.</p></li>
+<li><p><code>sensor-&lt;sensor-name</code> is marked as executable and move to /usr/bin/.</p></li>
+<li><p><code>&lt;sensor-name&gt;</code> is moved to /var/aao/sensors/.</p></li>
+<li><p>The cloned repository is removed from the local filesystem.</p></li>
+</ol>
+</div>
+<div id="submitting-packages-to-wildlifesystems" class="section level2 hasAnchor" number="5.5">
+<h2><span class="header-section-number">5.5</span> Submitting packages to WildlifeSystems<a href="implementing-new-sensors.html#submitting-packages-to-wildlifesystems" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Submitting packages (where licensing allows) to WildlifeSystems allows the ecosystem to be developed and sustained collaboratively by the user community.</p>
 <p>Packages can be sent to the administrators as a compressed file, or a request can be sent to fork an existing GitHub repository. Contact details can be found at <a href="https://wildlife.systems/contact.html">https://wildlife.systems/contact.html</a>.</p>
 

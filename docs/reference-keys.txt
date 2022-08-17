@@ -22,6 +22,7 @@ in-bash
 in-python
 setting-the-environment
 install
+the-installation-process-with-si
 submitting-packages-to-wildlifesystems
 power-management
 installation-of-power-management-tools

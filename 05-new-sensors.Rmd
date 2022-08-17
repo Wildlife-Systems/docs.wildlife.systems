@@ -89,6 +89,21 @@ The file `install` in the directory is run once, when the sensor package is inst
 
 The file is executed by `bash` and the use of `sudo` is allowed.
 
+## The installation process with `si`
+
+The sensor install script, `si`, from `sensor-control` is used to install sensor packages. For developer reference the installation process is described below.
+
+1. `si` clones the `Wildlife-Systems/sensor-<sensor-name>` repository from GitHub.
+
+2. The `install` script is executed.
+
+3. `sensor-<sensor-name` is marked as executable and move to /usr/bin/.
+
+4. `<sensor-name>` is moved to /var/aao/sensors/.
+
+5. The cloned repository is removed from the local filesystem.
+
+
 ## Submitting packages to WildlifeSystems
 
 Submitting packages (where licensing allows) to WildlifeSystems allows the ecosystem to be developed and sustained collaboratively by the user community.
