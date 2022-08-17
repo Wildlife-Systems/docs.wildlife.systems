@@ -16,6 +16,12 @@ installing-sensor-support
 reading-data-from-a-sensor
 the-sensor-reading-process
 installing-new-sensors
+implementing-new-sensors
+reading-the-sensor
+in-bash
+in-python
+setting-the-environment
+install
 power-management
 installation-of-power-management-tools
 turning-funtionality-on-and-off

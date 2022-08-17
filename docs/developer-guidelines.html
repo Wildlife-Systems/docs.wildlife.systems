@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 6 Developer Guidelines | WildlifeSystems - biodiversity technologies</title>
+  <title>Chapter 7 Developer Guidelines | WildlifeSystems - biodiversity technologies</title>
   <meta name="description" content="Manual for using WildlifeSystems technologies for monitoring biodiversity." />
   <meta name="generator" content="bookdown 0.28 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 6 Developer Guidelines | WildlifeSystems - biodiversity technologies" />
+  <meta property="og:title" content="Chapter 7 Developer Guidelines | WildlifeSystems - biodiversity technologies" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="Manual for using WildlifeSystems technologies for monitoring biodiversity." />
   <meta name="github-repo" content="wildlife-systems/docs.wildlife.systems" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 6 Developer Guidelines | WildlifeSystems - biodiversity technologies" />
+  <meta name="twitter:title" content="Chapter 7 Developer Guidelines | WildlifeSystems - biodiversity technologies" />
   
   <meta name="twitter:description" content="Manual for using WildlifeSystems technologies for monitoring biodiversity." />
   
@@ -164,15 +164,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.4" data-path="sensors-in-wildlifesystems.html"><a href="sensors-in-wildlifesystems.html#the-sensor-reading-process"><i class="fa fa-check"></i><b>4.4</b> The sensor reading process</a></li>
 <li class="chapter" data-level="4.5" data-path="sensors-in-wildlifesystems.html"><a href="sensors-in-wildlifesystems.html#installing-new-sensors"><i class="fa fa-check"></i><b>4.5</b> Installing new sensors</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="power-management.html"><a href="power-management.html"><i class="fa fa-check"></i><b>5</b> Power Management</a>
+<li class="chapter" data-level="5" data-path="implementing-new-sensors.html"><a href="implementing-new-sensors.html"><i class="fa fa-check"></i><b>5</b> Implementing new sensors</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="power-management.html"><a href="power-management.html#installation-of-power-management-tools"><i class="fa fa-check"></i><b>5.1</b> Installation of power management tools</a></li>
-<li class="chapter" data-level="5.2" data-path="power-management.html"><a href="power-management.html#turning-funtionality-on-and-off"><i class="fa fa-check"></i><b>5.2</b> Turning funtionality on and off</a></li>
-<li class="chapter" data-level="5.3" data-path="power-management.html"><a href="power-management.html#considerations"><i class="fa fa-check"></i><b>5.3</b> Considerations</a></li>
+<li class="chapter" data-level="5.1" data-path="implementing-new-sensors.html"><a href="implementing-new-sensors.html#reading-the-sensor"><i class="fa fa-check"></i><b>5.1</b> Reading the sensor</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="implementing-new-sensors.html"><a href="implementing-new-sensors.html#in-bash"><i class="fa fa-check"></i><b>5.1.1</b> In bash</a></li>
+<li class="chapter" data-level="5.1.2" data-path="implementing-new-sensors.html"><a href="implementing-new-sensors.html#in-python"><i class="fa fa-check"></i><b>5.1.2</b> In Python</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="developer-guidelines.html"><a href="developer-guidelines.html"><i class="fa fa-check"></i><b>6</b> Developer Guidelines</a>
+<li class="chapter" data-level="5.2" data-path="implementing-new-sensors.html"><a href="implementing-new-sensors.html#setting-the-environment"><i class="fa fa-check"></i><b>5.2</b> Setting the environment</a></li>
+<li class="chapter" data-level="5.3" data-path="implementing-new-sensors.html"><a href="implementing-new-sensors.html#install"><i class="fa fa-check"></i><b>5.3</b> Install</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="power-management.html"><a href="power-management.html"><i class="fa fa-check"></i><b>6</b> Power Management</a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="developer-guidelines.html"><a href="developer-guidelines.html#documentation"><i class="fa fa-check"></i><b>6.1</b> Documentation</a></li>
+<li class="chapter" data-level="6.1" data-path="power-management.html"><a href="power-management.html#installation-of-power-management-tools"><i class="fa fa-check"></i><b>6.1</b> Installation of power management tools</a></li>
+<li class="chapter" data-level="6.2" data-path="power-management.html"><a href="power-management.html#turning-funtionality-on-and-off"><i class="fa fa-check"></i><b>6.2</b> Turning funtionality on and off</a></li>
+<li class="chapter" data-level="6.3" data-path="power-management.html"><a href="power-management.html#considerations"><i class="fa fa-check"></i><b>6.3</b> Considerations</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="developer-guidelines.html"><a href="developer-guidelines.html"><i class="fa fa-check"></i><b>7</b> Developer Guidelines</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="developer-guidelines.html"><a href="developer-guidelines.html#documentation"><i class="fa fa-check"></i><b>7.1</b> Documentation</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
@@ -195,10 +205,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="developer-guidelines" class="section level1 hasAnchor" number="6">
-<h1><span class="header-section-number">Chapter 6</span> Developer Guidelines<a href="developer-guidelines.html#developer-guidelines" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div id="documentation" class="section level2 hasAnchor" number="6.1">
-<h2><span class="header-section-number">6.1</span> Documentation<a href="developer-guidelines.html#documentation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="developer-guidelines" class="section level1 hasAnchor" number="7">
+<h1><span class="header-section-number">Chapter 7</span> Developer Guidelines<a href="developer-guidelines.html#developer-guidelines" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="documentation" class="section level2 hasAnchor" number="7.1">
+<h2><span class="header-section-number">7.1</span> Documentation<a href="developer-guidelines.html#documentation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>There are three main kinds of documentation in the WildlifeSystems project.</p>
 <ol style="list-style-type: decimal">
 <li><p><strong>Code comments</strong>: Primarily for future you (or someone similar) to get to grips with your code. <em>Why does this code do this?</em>.</p></li>
