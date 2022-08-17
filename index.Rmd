@@ -19,4 +19,4 @@ This book explains the technologies developed as part of WildlifeSystems and how
 
 ## Support
 
-WildlifeSystems nodes were originally developed and used as part of the Leverhulme Trust funded Automated Acoustic Observatories project at the University of York. Additional development is undertaken as part of the Urban Nature Project at the Natural History Msueum, London.
+WildlifeSystems nodes were originally developed and used as part of the Leverhulme Trust funded Automated Acoustic Observatories project at the University of York. Additional development is undertaken as part of the Urban Nature Project at the Natural History Museum, London.
