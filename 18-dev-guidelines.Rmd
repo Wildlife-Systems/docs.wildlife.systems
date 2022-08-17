@@ -1,0 +1,11 @@
+# Developer Guidelines
+
+## Documentation
+
+There are three main kinds of documentation in the WildlifeSystems project.
+
+1. __Code comments__: Primarily for future you (or someone similar) to get to grips with your code. _Why does this code do this?_.
+
+2. __Package documentation__: Describes what your package does, how it interacts with the larger system. _What will this package do for me?_
+
+3. __Overall project documentation__: This manual. _How do I use the entire system for my research?_

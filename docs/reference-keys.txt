@@ -17,3 +17,5 @@ installing-sensor-support
 reading-data-from-a-sensor
 the-sensor-reading-process
 installing-new-sensors
+developer-guidelines
+documentation
