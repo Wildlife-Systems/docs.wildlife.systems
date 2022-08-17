@@ -1,6 +1,6 @@
 # Biodiversity Technologies 
 
-What are _Biodiversity Technologies_.
+What are _Biodiversity Technologies_?
 
 ## Structure of Wildlife Systems
 
@@ -8,12 +8,4 @@ What are _Biodiversity Technologies_.
 
 ### Packages
 
-## Documentation notes { #documentation-notes }
-
-There are various types of documentation throughout the WildlifeSystems project, each intended for a different audience.
-
-* __Code Comments__ are throughout the source code for the project. These explain how the underlying computer code works for programmers.
-
-* __Package Documentation__ explains the functionality for each individual package. The intended audience for these is those implementing sensor networks, and end users wishing to develop a deeper technological understanding of the system.
-
-* __Manuals__ such as this which provide a high level overview suitable for end users.
+### Documentation Notes

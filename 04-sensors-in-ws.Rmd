@@ -1,0 +1,48 @@
+# Sensors in WildlifeSystems
+
+The WildlifeSystems platform comes with support for some popular existing environmental sensors, although there are many on the market and the range available is subject to constant change. The modular nature of WildlifeSystems allows for new sensors to be easily integrated if the need arises.
+
+## Sensors included in the base system
+
+The Raspberry Pi does not come with environmental sensors, however there are several onboard sensors that are used to monitor the operation of the hardware, to prevent crucial components from overheating, including the temperature of the CPU and GPU chips. WildlifeSystems provides access to these sensors through the `sensor-onboard` package, as well as providing some _software sensors_ that report the free memory and free SD storage available. These can be useful for detecting and resolving possible issues on a sensor node before a serious problem arises.
+
+## Installing sensor support
+
+Support for sensors is installed as part of the node installation process, however it is possible to install the `sensor-control` abstraction layer onto any Raspberry Pi system using the command below.
+
+````{bash eval=FALSE}
+wget -O - https://raw.githubusercontent.com/Wildlife-Systems/sensor-control/main/install | sudo bash
+````
+
+This will install the `sensor-control` and `sensor-onboard` scripts into the system, as well as installing a small of number of supporting packages if they are not already installed.
+
+## Reading data from a sensor
+
+The sensor read command, `sr`, can be used to read sensor data.
+
+````{bash eval=FALSE}
+sr onboard
+````
+
+This will give a JSON string listing information about each sensor, and the current reading. This information can be presented in a more human readable form by piping the output to the program `jq`, a command line JSON processor.
+
+````{bash eval=FALSE}
+sr onboard | jq
+````
+
+## The sensor reading process
+
+The sensor reading process in WildlifeSystems has five steps.
+
+1. The `sr` command identifies which sensor script to route the request to.
+
+2. The sensor script calls the `sc-prototype` script to obtain a template ("prototype") of the JSON request.
+
+3. The sensor script access the relevant sensor(s) and populates the values in a template for each sensor reading, before returning a JSON array of populated readings to `sr`.
+
+4. The `sr` script populates additional information for each reading, providing the `node_id` and a `timestamp` for each.
+
+5. `sr` returns the finalised JSON array to the user.
+
+## Installing new sensors
+
