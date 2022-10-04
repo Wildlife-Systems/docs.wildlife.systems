@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 4 Sensors in WildlifeSystems | WildlifeSystems - biodiversity technologies</title>
+  <title>Chapter 6 Sound Devices | WildlifeSystems - biodiversity technologies</title>
   <meta name="description" content="Manual for using WildlifeSystems technologies for monitoring biodiversity." />
   <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 4 Sensors in WildlifeSystems | WildlifeSystems - biodiversity technologies" />
+  <meta property="og:title" content="Chapter 6 Sound Devices | WildlifeSystems - biodiversity technologies" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="Manual for using WildlifeSystems technologies for monitoring biodiversity." />
   <meta name="github-repo" content="wildlife-systems/docs.wildlife.systems" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 4 Sensors in WildlifeSystems | WildlifeSystems - biodiversity technologies" />
+  <meta name="twitter:title" content="Chapter 6 Sound Devices | WildlifeSystems - biodiversity technologies" />
   
   <meta name="twitter:description" content="Manual for using WildlifeSystems technologies for monitoring biodiversity." />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="environmental-sensors.html"/>
-<link rel="next" href="implementing-new-sensors.html"/>
+<link rel="prev" href="implementing-new-sensors.html"/>
+<link rel="next" href="sound-devices-in-wildlifesystems.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -215,39 +215,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="sensors-in-wildlifesystems" class="section level1 hasAnchor" number="4">
-<h1><span class="header-section-number">Chapter 4</span> Sensors in WildlifeSystems<a href="sensors-in-wildlifesystems.html#sensors-in-wildlifesystems" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>The WildlifeSystems platform comes with support for some popular existing environmental sensors, although there are many on the market and the range available is subject to constant change. The modular nature of WildlifeSystems allows for new sensors to be easily integrated if the need arises.</p>
-<div id="sensors-included-in-the-base-system" class="section level2 hasAnchor" number="4.1">
-<h2><span class="header-section-number">4.1</span> Sensors included in the base system<a href="sensors-in-wildlifesystems.html#sensors-included-in-the-base-system" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>The Raspberry Pi does not come with environmental sensors, however there are several onboard sensors that are used to monitor the operation of the hardware, to prevent crucial components from overheating, including the temperature of the CPU and GPU chips. WildlifeSystems provides access to these sensors through the <code>sensor-onboard</code> package, as well as providing some <em>software sensors</em> that report the free memory and free SD storage available. These can be useful for detecting and resolving possible issues on a sensor node before a serious problem arises.</p>
-</div>
-<div id="installing-sensor-support" class="section level2 hasAnchor" number="4.2">
-<h2><span class="header-section-number">4.2</span> Installing sensor support<a href="sensors-in-wildlifesystems.html#installing-sensor-support" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Support for sensors is installed as part of the node installation process, however it is possible to install the <code>sensor-control</code> abstraction layer onto any Raspberry Pi system using the command below.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="sensors-in-wildlifesystems.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-O</span> <span class="at">-</span> https://raw.githubusercontent.com/Wildlife-Systems/sensor-control/main/install <span class="kw">|</span> <span class="fu">sudo</span> bash</span></code></pre></div>
-<p>This will install the <code>sensor-control</code> and <code>sensor-onboard</code> scripts into the system, as well as installing a small of number of supporting packages if they are not already installed.</p>
-</div>
-<div id="reading-data-from-a-sensor" class="section level2 hasAnchor" number="4.3">
-<h2><span class="header-section-number">4.3</span> Reading data from a sensor<a href="sensors-in-wildlifesystems.html#reading-data-from-a-sensor" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>The sensor read command, <code>sr</code>, can be used to read sensor data.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="sensors-in-wildlifesystems.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">sr</span> onboard</span></code></pre></div>
-<p>This will give a JSON string listing information about each sensor, and the current reading. This information can be presented in a more human readable form by piping the output to the program <code>jq</code>, a command line JSON processor.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="sensors-in-wildlifesystems.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">sr</span> onboard <span class="kw">|</span> <span class="ex">jq</span></span></code></pre></div>
-</div>
-<div id="the-sensor-reading-process" class="section level2 hasAnchor" number="4.4">
-<h2><span class="header-section-number">4.4</span> The sensor reading process<a href="sensors-in-wildlifesystems.html#the-sensor-reading-process" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>The sensor reading process in WildlifeSystems has five steps.</p>
-<ol style="list-style-type: decimal">
-<li><p>The <code>sr</code> command identifies which sensor script to route the request to.</p></li>
-<li><p>The sensor script calls the <code>sc-prototype</code> script to obtain a template (“prototype”) of the JSON request.</p></li>
-<li><p>The sensor script access the relevant sensor(s) and populates the values in a template for each sensor reading, before returning a JSON array of populated readings to <code>sr</code>.</p></li>
-<li><p>The <code>sr</code> script populates additional information for each reading, providing the <code>node_id</code> and a <code>timestamp</code> for each.</p></li>
-<li><p><code>sr</code> returns the finalised JSON array to the user.</p></li>
-</ol>
-</div>
-<div id="installing-new-sensors" class="section level2 hasAnchor" number="4.5">
-<h2><span class="header-section-number">4.5</span> Installing new sensors<a href="sensors-in-wildlifesystems.html#installing-new-sensors" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="sound-devices" class="section level1 hasAnchor" number="6">
+<h1><span class="header-section-number">Chapter 6</span> Sound Devices<a href="sound-devices.html#sound-devices" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="how-sound-devices-work" class="section level2 hasAnchor" number="6.1">
+<h2><span class="header-section-number">6.1</span> How sound devices work<a href="sound-devices.html#how-sound-devices-work" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 
 </div>
 </div>
@@ -256,8 +227,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="environmental-sensors.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="implementing-new-sensors.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="implementing-new-sensors.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="sound-devices-in-wildlifesystems.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -288,7 +259,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/Wildlife-Systems/docs.wildlife.systems/edit/master/04-sensors-in-ws.Rmd",
+"link": "https://github.com/Wildlife-Systems/docs.wildlife.systems/edit/master/10-sound-devices.Rmd",
 "text": "Edit"
 },
 "history": {
