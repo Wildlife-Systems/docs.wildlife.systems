@@ -1,0 +1,3 @@
+# Imaging Devices
+
+## How imaging devices work
