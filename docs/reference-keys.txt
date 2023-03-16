@@ -31,5 +31,8 @@ power-management
 installation-of-power-management-tools
 turning-funtionality-on-and-off
 considerations
+indicators-and-heartbeats
+installation-of-ws-indcate-and-ws-heartbeat
+indicators
 developer-guidelines
 documentation

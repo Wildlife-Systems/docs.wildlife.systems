@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>References | WildlifeSystems - biodiversity technologies</title>
+  <title>Chapter 9 Indicators and heartbeats | WildlifeSystems - biodiversity technologies</title>
   <meta name="description" content="Manual for using WildlifeSystems technologies for monitoring biodiversity." />
   <meta name="generator" content="bookdown 0.32 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="References | WildlifeSystems - biodiversity technologies" />
+  <meta property="og:title" content="Chapter 9 Indicators and heartbeats | WildlifeSystems - biodiversity technologies" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="Manual for using WildlifeSystems technologies for monitoring biodiversity." />
   <meta name="github-repo" content="wildlife-systems/docs.wildlife.systems" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="References | WildlifeSystems - biodiversity technologies" />
+  <meta name="twitter:title" content="Chapter 9 Indicators and heartbeats | WildlifeSystems - biodiversity technologies" />
   
   <meta name="twitter:description" content="Manual for using WildlifeSystems technologies for monitoring biodiversity." />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="developer-guidelines.html"/>
-
+<link rel="prev" href="power-management.html"/>
+<link rel="next" href="developer-guidelines.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -220,17 +220,29 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="references" class="section level1 unnumbered hasAnchor">
-<h1>References<a href="references.html#references" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="indicators-and-heartbeats" class="section level1 hasAnchor" number="9">
+<h1><span class="header-section-number">Chapter 9</span> Indicators and heartbeats<a href="indicators-and-heartbeats.html#indicators-and-heartbeats" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>The script <code>ws-indicate</code> is used to indicate the device’s status using the LED(s) on board the Raspberry Pi. The script <code>ws-heartbeat</code> can be used to transmit the device’s status to a user-defined script that could provide logging, or submit the status to an online dashboard.</p>
+<div id="installation-of-ws-indcate-and-ws-heartbeat" class="section level2 hasAnchor" number="9.1">
+<h2><span class="header-section-number">9.1</span> Installation of <code>ws-indcate</code> and <code>ws-heartbeat</code><a href="indicators-and-heartbeats.html#installation-of-ws-indcate-and-ws-heartbeat" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>These tools are installed as part of the node installation process.</p>
+</div>
+<div id="indicators" class="section level2 hasAnchor" number="9.2">
+<h2><span class="header-section-number">9.2</span> Indicators<a href="indicators-and-heartbeats.html#indicators" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Internally <code>ws-inidicate</code> makes repeated calls to <code>pi-pwr</code> to control the LED(s). There are three indicator routines, heartbeat (quick flash of LEDs in order to show device is functioning), countdown (flashes power LED), and record (power LED on, action LED off).</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="indicators-and-heartbeats.html#cb8-1" tabindex="-1"></a><span class="ex">ws-heartbeat</span></span>
+<span id="cb8-2"><a href="indicators-and-heartbeats.html#cb8-2" tabindex="-1"></a><span class="ex">ws-heartbeat</span> countdown 5   <span class="co"># counts down from 5</span></span>
+<span id="cb8-3"><a href="indicators-and-heartbeats.html#cb8-3" tabindex="-1"></a><span class="ex">ws-heratbeat</span> record action <span class="co"># record light is on while action is executed</span></span></code></pre></div>
 
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="developer-guidelines.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="power-management.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="developer-guidelines.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -261,7 +273,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/Wildlife-Systems/docs.wildlife.systems/edit/master/20-references.Rmd",
+"link": "https://github.com/Wildlife-Systems/docs.wildlife.systems/edit/master/16-ws-indicate.Rmd",
 "text": "Edit"
 },
 "history": {
