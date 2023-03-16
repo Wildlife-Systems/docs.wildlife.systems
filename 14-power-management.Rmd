@@ -18,4 +18,6 @@ wget -O - https://github.com/wildlife-systems/pi-pwr/raw/master/install | sudo b
 
 ## Considerations
 
-Disabling network functionality (WiFI / Ethernet) will prevent the node from communicating until either the functionality is turned back on or the Raspberry Pi is restarted. If disabling all connectivity is desired periodically then the functionality to turn these systems back on must be scripted.
+Disabling all network functionality will prevent the node from communicating until either the functionality is turned back on or the Raspberry Pi is restarted.
+
+If disabling all connectivity is desired periodically then the functionality to turn these systems back on must be scripted.
