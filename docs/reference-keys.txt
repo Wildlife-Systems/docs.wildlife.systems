@@ -27,6 +27,9 @@ submitting-packages-to-wildlifesystems
 sound-devices
 how-sound-devices-work
 sound-devices-in-wildlifesystems
+imaging-devices
+how-imaging-devices-work
+imaging-devices-in-wildlifesystems
 power-management
 installation-of-power-management-tools
 turning-funtionality-on-and-off

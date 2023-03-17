@@ -13,6 +13,6 @@ Internally `ws-inidicate` makes repeated calls to `pi-pwr` to control the LED(s)
 ````{bash eval=FALSE}
 ws-heartbeat
 ws-heartbeat countdown 5   # counts down from 5
-ws-heratbeat record action # record light is on while action is executed
+ws-heartbeat record action # record light is on while action is executed
 ````
 
