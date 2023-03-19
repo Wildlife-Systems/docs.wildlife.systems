@@ -435,11 +435,16 @@ Internally \texttt{ws-inidicate} makes repeated calls to \texttt{pi-pwr} to cont
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\ExtensionTok{ws{-}heartbeat}
-\ExtensionTok{ws{-}heartbeat}\NormalTok{ countdown 5   }\CommentTok{\# counts down from 5}
-\ExtensionTok{ws{-}heartbeat}\NormalTok{ record action }\CommentTok{\# record light is on while action is executed}
+\FunctionTok{sudo}\NormalTok{ ws{-}indicate}
+\FunctionTok{sudo}\NormalTok{ ws{-}indicate countdown 5   }\CommentTok{\# counts down from 5}
+\FunctionTok{sudo}\NormalTok{ ws{-}indicate record action }\CommentTok{\# record light is on while action is executed}
 \end{Highlighting}
 \end{Shaded}
+
+\hypertarget{a-note-on-sudo}{%
+\subsection{\texorpdfstring{A note on \texttt{sudo}}{A note on sudo}}\label{a-note-on-sudo}}
+
+Raspbian allows the defaut user to run sudo without a password. This is not true for other Linux distributions, such as Ubuntu. This could lead to a password prompt when using \texttt{ws-indicate}. As nodes are designed to run autonomously, the installation process for \texttt{ws-node} will configure \texttt{ws-indicate} to not require a \texttt{sudo} password.
 
 \hypertarget{developer-guidelines}{%
 \chapter{Developer Guidelines}\label{developer-guidelines}}

@@ -37,5 +37,6 @@ considerations
 indicators-and-heartbeats
 installation-of-ws-indcate-and-ws-heartbeat
 indicators
+a-note-on-sudo
 developer-guidelines
 documentation

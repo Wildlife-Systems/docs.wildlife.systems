@@ -11,8 +11,11 @@ These tools are installed as part of the node installation process.
 Internally `ws-inidicate` makes repeated calls to `pi-pwr` to control the LED(s). There are three indicator routines, heartbeat (quick flash of LEDs in order to show device is functioning), countdown (flashes power LED), and record (power LED on, action LED off).
 
 ````{bash eval=FALSE}
-ws-heartbeat
-ws-heartbeat countdown 5   # counts down from 5
-ws-heartbeat record action # record light is on while action is executed
+sudo ws-indicate
+sudo ws-indicate countdown 5   # counts down from 5
+sudo ws-indicate record action # record light is on while action is executed
 ````
 
+### A note on `sudo`
+
+Raspberry Pi OS (and previously Raspbian) allows the default user to run sudo without a password. This is not true for other Linux distributions, such as Ubuntu. This could lead to a password prompt when using `ws-indicate`. As nodes are designed to run autonomously, the installation process for `ws-node` will configure `ws-indicate` to not require a `sudo` password.
