@@ -120,7 +120,7 @@
 
 \title{WildlifeSystems - biodiversity technologies}
 \author{Ed Baker}
-\date{2023-03-17}
+\date{2023-03-20}
 
 \begin{document}
 \maketitle
@@ -418,6 +418,11 @@ Disabling all network functionality will prevent the node from communicating unt
 
 If disabling all connectivity is desired periodically then the functionality to turn these systems back on must be scripted.
 
+\hypertarget{a-note-on-sudo}{%
+\subsection{\texorpdfstring{A note on \texttt{sudo}}{A note on sudo}}\label{a-note-on-sudo}}
+
+Raspberry Pi OS (and previously Raspbian) allows the default user to run sudo without a password. This is not true for other Linux distributions, such as Ubuntu. This could lead to a password prompt when using \texttt{pi-pwr}. As nodes are designed to run autonomously, the installation process for \texttt{ws-node} will configure \texttt{pi-pwr} to not require a \texttt{sudo} password.
+
 \hypertarget{indicators-and-heartbeats}{%
 \chapter{Indicators and heartbeats}\label{indicators-and-heartbeats}}
 
@@ -441,10 +446,10 @@ Internally \texttt{ws-inidicate} makes repeated calls to \texttt{pi-pwr} to cont
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{a-note-on-sudo}{%
-\subsection{\texorpdfstring{A note on \texttt{sudo}}{A note on sudo}}\label{a-note-on-sudo}}
+\hypertarget{a-note-on-sudo-1}{%
+\subsection{\texorpdfstring{A note on \texttt{sudo}}{A note on sudo}}\label{a-note-on-sudo-1}}
 
-Raspbian allows the defaut user to run sudo without a password. This is not true for other Linux distributions, such as Ubuntu. This could lead to a password prompt when using \texttt{ws-indicate}. As nodes are designed to run autonomously, the installation process for \texttt{ws-node} will configure \texttt{ws-indicate} to not require a \texttt{sudo} password.
+Raspberry Pi OS (and previously Raspbian) allows the default user to run sudo without a password. This is not true for other Linux distributions, such as Ubuntu. This could lead to a password prompt when using \texttt{ws-indicate}. As nodes are designed to run autonomously, the installation process for \texttt{ws-node} will configure \texttt{ws-indicate} to not require a \texttt{sudo} password.
 
 \hypertarget{developer-guidelines}{%
 \chapter{Developer Guidelines}\label{developer-guidelines}}

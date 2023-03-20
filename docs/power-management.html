@@ -23,7 +23,7 @@
 <meta name="author" content="Ed Baker" />
 
 
-<meta name="date" content="2023-03-17" />
+<meta name="date" content="2023-03-20" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -193,14 +193,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="10.1" data-path="power-management.html"><a href="power-management.html#installation-of-power-management-tools"><i class="fa fa-check"></i><b>10.1</b> Installation of power management tools</a></li>
 <li class="chapter" data-level="10.2" data-path="power-management.html"><a href="power-management.html#turning-funtionality-on-and-off"><i class="fa fa-check"></i><b>10.2</b> Turning funtionality on and off</a></li>
-<li class="chapter" data-level="10.3" data-path="power-management.html"><a href="power-management.html#considerations"><i class="fa fa-check"></i><b>10.3</b> Considerations</a></li>
+<li class="chapter" data-level="10.3" data-path="power-management.html"><a href="power-management.html#considerations"><i class="fa fa-check"></i><b>10.3</b> Considerations</a>
+<ul>
+<li class="chapter" data-level="10.3.1" data-path="power-management.html"><a href="power-management.html#a-note-on-sudo"><i class="fa fa-check"></i><b>10.3.1</b> A note on <code>sudo</code></a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="11" data-path="indicators-and-heartbeats.html"><a href="indicators-and-heartbeats.html"><i class="fa fa-check"></i><b>11</b> Indicators and heartbeats</a>
 <ul>
 <li class="chapter" data-level="11.1" data-path="indicators-and-heartbeats.html"><a href="indicators-and-heartbeats.html#installation-of-ws-indcate-and-ws-heartbeat"><i class="fa fa-check"></i><b>11.1</b> Installation of <code>ws-indcate</code> and <code>ws-heartbeat</code></a></li>
 <li class="chapter" data-level="11.2" data-path="indicators-and-heartbeats.html"><a href="indicators-and-heartbeats.html#indicators"><i class="fa fa-check"></i><b>11.2</b> Indicators</a>
 <ul>
-<li class="chapter" data-level="11.2.1" data-path="indicators-and-heartbeats.html"><a href="indicators-and-heartbeats.html#a-note-on-sudo"><i class="fa fa-check"></i><b>11.2.1</b> A note on <code>sudo</code></a></li>
+<li class="chapter" data-level="11.2.1" data-path="indicators-and-heartbeats.html"><a href="indicators-and-heartbeats.html#a-note-on-sudo-1"><i class="fa fa-check"></i><b>11.2.1</b> A note on <code>sudo</code></a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="developer-guidelines.html"><a href="developer-guidelines.html"><i class="fa fa-check"></i><b>12</b> Developer Guidelines</a>
@@ -245,7 +248,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">10.3</span> Considerations<a href="power-management.html#considerations" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Disabling all network functionality will prevent the node from communicating until either the functionality is turned back on or the Raspberry Pi is restarted.</p>
 <p>If disabling all connectivity is desired periodically then the functionality to turn these systems back on must be scripted.</p>
+<div id="a-note-on-sudo" class="section level3 hasAnchor" number="10.3.1">
+<h3><span class="header-section-number">10.3.1</span> A note on <code>sudo</code><a href="power-management.html#a-note-on-sudo" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Raspberry Pi OS (and previously Raspbian) allows the default user to run sudo without a password. This is not true for other Linux distributions, such as Ubuntu. This could lead to a password prompt when using <code>pi-pwr</code>. As nodes are designed to run autonomously, the installation process for <code>ws-node</code> will configure <code>pi-pwr</code> to not require a <code>sudo</code> password.</p>
 
+</div>
 </div>
 </div>
             </section>

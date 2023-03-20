@@ -23,7 +23,7 @@
 <meta name="author" content="Ed Baker" />
 
 
-<meta name="date" content="2023-03-17" />
+<meta name="date" content="2023-03-20" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -193,14 +193,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="10.1" data-path="power-management.html"><a href="power-management.html#installation-of-power-management-tools"><i class="fa fa-check"></i><b>10.1</b> Installation of power management tools</a></li>
 <li class="chapter" data-level="10.2" data-path="power-management.html"><a href="power-management.html#turning-funtionality-on-and-off"><i class="fa fa-check"></i><b>10.2</b> Turning funtionality on and off</a></li>
-<li class="chapter" data-level="10.3" data-path="power-management.html"><a href="power-management.html#considerations"><i class="fa fa-check"></i><b>10.3</b> Considerations</a></li>
+<li class="chapter" data-level="10.3" data-path="power-management.html"><a href="power-management.html#considerations"><i class="fa fa-check"></i><b>10.3</b> Considerations</a>
+<ul>
+<li class="chapter" data-level="10.3.1" data-path="power-management.html"><a href="power-management.html#a-note-on-sudo"><i class="fa fa-check"></i><b>10.3.1</b> A note on <code>sudo</code></a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="11" data-path="indicators-and-heartbeats.html"><a href="indicators-and-heartbeats.html"><i class="fa fa-check"></i><b>11</b> Indicators and heartbeats</a>
 <ul>
 <li class="chapter" data-level="11.1" data-path="indicators-and-heartbeats.html"><a href="indicators-and-heartbeats.html#installation-of-ws-indcate-and-ws-heartbeat"><i class="fa fa-check"></i><b>11.1</b> Installation of <code>ws-indcate</code> and <code>ws-heartbeat</code></a></li>
 <li class="chapter" data-level="11.2" data-path="indicators-and-heartbeats.html"><a href="indicators-and-heartbeats.html#indicators"><i class="fa fa-check"></i><b>11.2</b> Indicators</a>
 <ul>
-<li class="chapter" data-level="11.2.1" data-path="indicators-and-heartbeats.html"><a href="indicators-and-heartbeats.html#a-note-on-sudo"><i class="fa fa-check"></i><b>11.2.1</b> A note on <code>sudo</code></a></li>
+<li class="chapter" data-level="11.2.1" data-path="indicators-and-heartbeats.html"><a href="indicators-and-heartbeats.html#a-note-on-sudo-1"><i class="fa fa-check"></i><b>11.2.1</b> A note on <code>sudo</code></a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="developer-guidelines.html"><a href="developer-guidelines.html"><i class="fa fa-check"></i><b>12</b> Developer Guidelines</a>
@@ -241,9 +244,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb8"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="indicators-and-heartbeats.html#cb8-1" tabindex="-1"></a><span class="fu">sudo</span> ws-indicate</span>
 <span id="cb8-2"><a href="indicators-and-heartbeats.html#cb8-2" tabindex="-1"></a><span class="fu">sudo</span> ws-indicate countdown 5   <span class="co"># counts down from 5</span></span>
 <span id="cb8-3"><a href="indicators-and-heartbeats.html#cb8-3" tabindex="-1"></a><span class="fu">sudo</span> ws-indicate record action <span class="co"># record light is on while action is executed</span></span></code></pre></div>
-<div id="a-note-on-sudo" class="section level3 hasAnchor" number="11.2.1">
-<h3><span class="header-section-number">11.2.1</span> A note on <code>sudo</code><a href="indicators-and-heartbeats.html#a-note-on-sudo" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Raspbian allows the defaut user to run sudo without a password. This is not true for other Linux distributions, such as Ubuntu. This could lead to a password prompt when using <code>ws-indicate</code>. As nodes are designed to run autonomously, the installation process for <code>ws-node</code> will configure <code>ws-indicate</code> to not require a <code>sudo</code> password.</p>
+<div id="a-note-on-sudo-1" class="section level3 hasAnchor" number="11.2.1">
+<h3><span class="header-section-number">11.2.1</span> A note on <code>sudo</code><a href="indicators-and-heartbeats.html#a-note-on-sudo-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Raspberry Pi OS (and previously Raspbian) allows the default user to run sudo without a password. This is not true for other Linux distributions, such as Ubuntu. This could lead to a password prompt when using <code>ws-indicate</code>. As nodes are designed to run autonomously, the installation process for <code>ws-node</code> will configure <code>ws-indicate</code> to not require a <code>sudo</code> password.</p>
 
 </div>
 </div>
