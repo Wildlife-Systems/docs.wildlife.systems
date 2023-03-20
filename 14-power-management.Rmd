@@ -21,3 +21,7 @@ wget -O - https://github.com/wildlife-systems/pi-pwr/raw/master/install | sudo b
 Disabling all network functionality will prevent the node from communicating until either the functionality is turned back on or the Raspberry Pi is restarted.
 
 If disabling all connectivity is desired periodically then the functionality to turn these systems back on must be scripted.
+
+### A note on `sudo`
+
+Raspberry Pi OS (and previously Raspbian) allows the default user to run sudo without a password. This is not true for other Linux distributions, such as Ubuntu. This could lead to a password prompt when using `pi-pwr`. As nodes are designed to run autonomously, the installation process for `ws-node` will configure `pi-pwr` to not require a `sudo` password.
