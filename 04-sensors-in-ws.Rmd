@@ -2,6 +2,8 @@
 
 The WildlifeSystems platform comes with support for some popular existing environmental sensors, although there are many on the market and the range available is subject to constant change. The modular nature of WildlifeSystems allows for new sensors to be easily integrated if the need arises.
 
+Each sensor may have a number of sensor devices that can be read, for instance many senors modules on the market currently can measure both air temperature and air humidity.
+
 ## Sensors included in the base system
 
 The Raspberry Pi does not come with environmental sensors, however there are several onboard sensors that are used to monitor the operation of the hardware, to prevent crucial components from overheating, including the temperature of the CPU and GPU chips. WildlifeSystems provides access to these sensors through the `sensor-onboard` package, as well as providing some _software sensors_ that report the free memory and free SD storage available. These can be useful for detecting and resolving possible issues on a sensor node before a serious problem arises.
@@ -18,13 +20,21 @@ This will install the `sensor-control` and `sensor-onboard` scripts into the sys
 
 ## Reading data from a sensor
 
-The sensor read command, `sr`, can be used to read sensor data.
+The sensor read command, `sr`, can be used to list the available devices on a given sensor.
+
+````{bash eval=FALSE}
+sr onboard list
+````
+
+The sensor read command, `sr`, can also be used to read data from a named sensor. Not specifying a sensor device is equivalent to reading all devices on that senors (i.e. using the wildcard"*").
 
 ````{bash eval=FALSE}
 sr onboard
+sr onboard *
+sr onboard onboard_gpu
 ````
 
-This will give a JSON string listing information about each sensor, and the current reading. This information can be presented in a more human readable form by piping the output to the program `jq`, a command line JSON processor.
+This will give a JSON string listing information about each sensor (or just the specified sensor), and the current reading. This information can be presented in a more human readable form by piping the output to the program `jq`, a command line JSON processor.
 
 ````{bash eval=FALSE}
 sr onboard | jq
@@ -38,7 +48,7 @@ The sensor reading process in WildlifeSystems has five steps.
 
 2. The sensor script calls the `sc-prototype` script to obtain a template ("prototype") of the JSON request.
 
-3. The sensor script access the relevant sensor(s) and populates the values in a template for each sensor reading, before returning a JSON array of populated readings to `sr`.
+3. The sensor script accesses the relevant sensor(s) and populates the values in a template for each sensor reading, before returning a JSON array of populated readings to `sr`.
 
 4. The `sr` script populates additional information for each reading, providing the `node_id` and a `timestamp` for each.
 

@@ -117,7 +117,7 @@
 
 \title{WildlifeSystems - biodiversity technologies}
 \author{Ed Baker}
-\date{2022-12-02}
+\date{2023-05-30}
 
 \begin{document}
 \maketitle
@@ -181,6 +181,8 @@ What are \emph{Biodiversity Technologies}?
 
 The WildlifeSystems platform comes with support for some popular existing environmental sensors, although there are many on the market and the range available is subject to constant change. The modular nature of WildlifeSystems allows for new sensors to be easily integrated if the need arises.
 
+Each sensor may have a number of sensor devices that can be read, for instance many senors modules on the market currently can measure both air temperature and air humidity.
+
 \hypertarget{sensors-included-in-the-base-system}{%
 \section{Sensors included in the base system}\label{sensors-included-in-the-base-system}}
 
@@ -202,15 +204,25 @@ This will install the \texttt{sensor-control} and \texttt{sensor-onboard} script
 \hypertarget{reading-data-from-a-sensor}{%
 \section{Reading data from a sensor}\label{reading-data-from-a-sensor}}
 
-The sensor read command, \texttt{sr}, can be used to read sensor data.
+The sensor read command, \texttt{sr}, can be used to list the available devices on a given sensor.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{sr}\NormalTok{ onboard list}
+\end{Highlighting}
+\end{Shaded}
+
+The sensor read command, \texttt{sr}, can also be used to read data from a named sensor. Not specifying a sensor device is equivalent to reading all devices on that senors (i.e.~using the wildcard''*``).
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \ExtensionTok{sr}\NormalTok{ onboard}
+\ExtensionTok{sr}\NormalTok{ onboard }\PreprocessorTok{*}
+\ExtensionTok{sr}\NormalTok{ onboard onboard\_gpu}
 \end{Highlighting}
 \end{Shaded}
 
-This will give a JSON string listing information about each sensor, and the current reading. This information can be presented in a more human readable form by piping the output to the program \texttt{jq}, a command line JSON processor.
+This will give a JSON string listing information about each sensor (or just the specified sensor), and the current reading. This information can be presented in a more human readable form by piping the output to the program \texttt{jq}, a command line JSON processor.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -230,7 +242,7 @@ The sensor reading process in WildlifeSystems has five steps.
 \item
   The sensor script calls the \texttt{sc-prototype} script to obtain a template (``prototype'') of the JSON request.
 \item
-  The sensor script access the relevant sensor(s) and populates the values in a template for each sensor reading, before returning a JSON array of populated readings to \texttt{sr}.
+  The sensor script accesses the relevant sensor(s) and populates the values in a template for each sensor reading, before returning a JSON array of populated readings to \texttt{sr}.
 \item
   The \texttt{sr} script populates additional information for each reading, providing the \texttt{node\_id} and a \texttt{timestamp} for each.
 \item

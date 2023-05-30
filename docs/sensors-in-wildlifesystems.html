@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 4 Sensors in WildlifeSystems | WildlifeSystems - biodiversity technologies</title>
   <meta name="description" content="Manual for using WildlifeSystems technologies for monitoring biodiversity." />
-  <meta name="generator" content="bookdown 0.30 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 4 Sensors in WildlifeSystems | WildlifeSystems - biodiversity technologies" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Ed Baker" />
 
 
-<meta name="date" content="2022-12-02" />
+<meta name="date" content="2023-05-30" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -92,7 +92,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -105,7 +105,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -119,6 +119,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -223,6 +227,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="sensors-in-wildlifesystems" class="section level1 hasAnchor" number="4">
 <h1><span class="header-section-number">Chapter 4</span> Sensors in WildlifeSystems<a href="sensors-in-wildlifesystems.html#sensors-in-wildlifesystems" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>The WildlifeSystems platform comes with support for some popular existing environmental sensors, although there are many on the market and the range available is subject to constant change. The modular nature of WildlifeSystems allows for new sensors to be easily integrated if the need arises.</p>
+<p>Each sensor may have a number of sensor devices that can be read, for instance many senors modules on the market currently can measure both air temperature and air humidity.</p>
 <div id="sensors-included-in-the-base-system" class="section level2 hasAnchor" number="4.1">
 <h2><span class="header-section-number">4.1</span> Sensors included in the base system<a href="sensors-in-wildlifesystems.html#sensors-included-in-the-base-system" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The Raspberry Pi does not come with environmental sensors, however there are several onboard sensors that are used to monitor the operation of the hardware, to prevent crucial components from overheating, including the temperature of the CPU and GPU chips. WildlifeSystems provides access to these sensors through the <code>sensor-onboard</code> package, as well as providing some <em>software sensors</em> that report the free memory and free SD storage available. These can be useful for detecting and resolving possible issues on a sensor node before a serious problem arises.</p>
@@ -235,10 +240,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="reading-data-from-a-sensor" class="section level2 hasAnchor" number="4.3">
 <h2><span class="header-section-number">4.3</span> Reading data from a sensor<a href="sensors-in-wildlifesystems.html#reading-data-from-a-sensor" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>The sensor read command, <code>sr</code>, can be used to read sensor data.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="sensors-in-wildlifesystems.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">sr</span> onboard</span></code></pre></div>
-<p>This will give a JSON string listing information about each sensor, and the current reading. This information can be presented in a more human readable form by piping the output to the program <code>jq</code>, a command line JSON processor.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="sensors-in-wildlifesystems.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">sr</span> onboard <span class="kw">|</span> <span class="ex">jq</span></span></code></pre></div>
+<p>The sensor read command, <code>sr</code>, can be used to list the available devices on a given sensor.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="sensors-in-wildlifesystems.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">sr</span> onboard list</span></code></pre></div>
+<p>The sensor read command, <code>sr</code>, can also be used to read data from a named sensor. Not specifying a sensor device is equivalent to reading all devices on that senors (i.e. using the wildcard”*“).</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="sensors-in-wildlifesystems.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">sr</span> onboard</span>
+<span id="cb3-2"><a href="sensors-in-wildlifesystems.html#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">sr</span> onboard <span class="pp">*</span></span>
+<span id="cb3-3"><a href="sensors-in-wildlifesystems.html#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="ex">sr</span> onboard onboard_gpu</span></code></pre></div>
+<p>This will give a JSON string listing information about each sensor (or just the specified sensor), and the current reading. This information can be presented in a more human readable form by piping the output to the program <code>jq</code>, a command line JSON processor.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="sensors-in-wildlifesystems.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">sr</span> onboard <span class="kw">|</span> <span class="ex">jq</span></span></code></pre></div>
 </div>
 <div id="the-sensor-reading-process" class="section level2 hasAnchor" number="4.4">
 <h2><span class="header-section-number">4.4</span> The sensor reading process<a href="sensors-in-wildlifesystems.html#the-sensor-reading-process" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -246,7 +255,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ol style="list-style-type: decimal">
 <li><p>The <code>sr</code> command identifies which sensor script to route the request to.</p></li>
 <li><p>The sensor script calls the <code>sc-prototype</code> script to obtain a template (“prototype”) of the JSON request.</p></li>
-<li><p>The sensor script access the relevant sensor(s) and populates the values in a template for each sensor reading, before returning a JSON array of populated readings to <code>sr</code>.</p></li>
+<li><p>The sensor script accesses the relevant sensor(s) and populates the values in a template for each sensor reading, before returning a JSON array of populated readings to <code>sr</code>.</p></li>
 <li><p>The <code>sr</code> script populates additional information for each reading, providing the <code>node_id</code> and a <code>timestamp</code> for each.</p></li>
 <li><p><code>sr</code> returns the finalised JSON array to the user.</p></li>
 </ol>
