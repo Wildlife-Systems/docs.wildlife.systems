@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 12 Developer Guidelines | WildlifeSystems - biodiversity technologies</title>
+  <title>Chapter 11 Indicators and heartbeats | WildlifeSystems - biodiversity technologies</title>
   <meta name="description" content="Manual for using WildlifeSystems technologies for monitoring biodiversity." />
-  <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.32 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 12 Developer Guidelines | WildlifeSystems - biodiversity technologies" />
+  <meta property="og:title" content="Chapter 11 Indicators and heartbeats | WildlifeSystems - biodiversity technologies" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="Manual for using WildlifeSystems technologies for monitoring biodiversity." />
   <meta name="github-repo" content="wildlife-systems/docs.wildlife.systems" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 12 Developer Guidelines | WildlifeSystems - biodiversity technologies" />
+  <meta name="twitter:title" content="Chapter 11 Indicators and heartbeats | WildlifeSystems - biodiversity technologies" />
   
   <meta name="twitter:description" content="Manual for using WildlifeSystems technologies for monitoring biodiversity." />
   
@@ -23,15 +23,15 @@
 <meta name="author" content="Ed Baker" />
 
 
-<meta name="date" content="2023-05-30" />
+<meta name="date" content="2023-03-20" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="indicators-and-heartbeats.html"/>
-<link rel="next" href="references.html"/>
+<link rel="prev" href="power-management.html"/>
+<link rel="next" href="developer-guidelines.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -119,10 +119,6 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
-<style type="text/css">
-  
-  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -235,17 +231,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="developer-guidelines" class="section level1 hasAnchor" number="12">
-<h1><span class="header-section-number">Chapter 12</span> Developer Guidelines<a href="developer-guidelines.html#developer-guidelines" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div id="documentation" class="section level2 hasAnchor" number="12.1">
-<h2><span class="header-section-number">12.1</span> Documentation<a href="developer-guidelines.html#documentation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>There are three main kinds of documentation in the WildlifeSystems project.</p>
-<ol style="list-style-type: decimal">
-<li><p><strong>Code comments</strong>: Primarily for future you (or someone similar) to get to grips with your code. <em>Why does this code do this?</em>.</p></li>
-<li><p><strong>Package documentation</strong>: Describes what your package does, how it interacts with the larger system. <em>What will this package do for me?</em></p></li>
-<li><p><strong>Overall project documentation</strong>: This manual. <em>How do I use the entire system for my research?</em></p></li>
-</ol>
+<div id="indicators-and-heartbeats" class="section level1 hasAnchor" number="11">
+<h1><span class="header-section-number">Chapter 11</span> Indicators and heartbeats<a href="indicators-and-heartbeats.html#indicators-and-heartbeats" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>The script <code>ws-indicate</code> is used to indicate the device’s status using the LED(s) on board the Raspberry Pi. The script <code>ws-heartbeat</code> can be used to transmit the device’s status to a user-defined script that could provide logging, or submit the status to an online dashboard.</p>
+<div id="installation-of-ws-indcate-and-ws-heartbeat" class="section level2 hasAnchor" number="11.1">
+<h2><span class="header-section-number">11.1</span> Installation of <code>ws-indcate</code> and <code>ws-heartbeat</code><a href="indicators-and-heartbeats.html#installation-of-ws-indcate-and-ws-heartbeat" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>These tools are installed as part of the node installation process.</p>
+</div>
+<div id="indicators" class="section level2 hasAnchor" number="11.2">
+<h2><span class="header-section-number">11.2</span> Indicators<a href="indicators-and-heartbeats.html#indicators" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Internally <code>ws-inidicate</code> makes repeated calls to <code>pi-pwr</code> to control the LED(s). There are three indicator routines, heartbeat (quick flash of LEDs in order to show device is functioning), countdown (flashes power LED), and record (power LED on, action LED off).</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="indicators-and-heartbeats.html#cb8-1" tabindex="-1"></a><span class="fu">sudo</span> ws-indicate</span>
+<span id="cb8-2"><a href="indicators-and-heartbeats.html#cb8-2" tabindex="-1"></a><span class="fu">sudo</span> ws-indicate countdown 5   <span class="co"># counts down from 5</span></span>
+<span id="cb8-3"><a href="indicators-and-heartbeats.html#cb8-3" tabindex="-1"></a><span class="fu">sudo</span> ws-indicate record action <span class="co"># record light is on while action is executed</span></span></code></pre></div>
+<div id="a-note-on-sudo-1" class="section level3 hasAnchor" number="11.2.1">
+<h3><span class="header-section-number">11.2.1</span> A note on <code>sudo</code><a href="indicators-and-heartbeats.html#a-note-on-sudo-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Raspberry Pi OS (and previously Raspbian) allows the default user to run sudo without a password. This is not true for other Linux distributions, such as Ubuntu. This could lead to a password prompt when using <code>ws-indicate</code>. As nodes are designed to run autonomously, the installation process for <code>ws-node</code> will configure <code>ws-indicate</code> to not require a <code>sudo</code> password.</p>
 
+</div>
 </div>
 </div>
             </section>
@@ -253,8 +256,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="indicators-and-heartbeats.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="power-management.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="developer-guidelines.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -285,7 +288,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/Wildlife-Systems/docs.wildlife.systems/edit/master/18-dev-guidelines.Rmd",
+"link": "https://github.com/Wildlife-Systems/docs.wildlife.systems/edit/master/16-ws-indicate.Rmd",
 "text": "Edit"
 },
 "history": {

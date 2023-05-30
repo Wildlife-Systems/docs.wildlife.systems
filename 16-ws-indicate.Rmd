@@ -1,0 +1,21 @@
+# Indicators and heartbeats
+
+The script `ws-indicate` is used to indicate the device's status using the LED(s) on board the Raspberry Pi. The script `ws-heartbeat` can be used to transmit the device's status to a user-defined script that could provide logging, or submit the status to an online dashboard.
+
+## Installation of `ws-indcate` and `ws-heartbeat`
+
+These tools are installed as part of the node installation process.
+
+## Indicators
+
+Internally `ws-inidicate` makes repeated calls to `pi-pwr` to control the LED(s). There are three indicator routines, heartbeat (quick flash of LEDs in order to show device is functioning), countdown (flashes power LED), and record (power LED on, action LED off).
+
+````{bash eval=FALSE}
+sudo ws-indicate
+sudo ws-indicate countdown 5   # counts down from 5
+sudo ws-indicate record action # record light is on while action is executed
+````
+
+### A note on `sudo`
+
+Raspberry Pi OS (and previously Raspbian) allows the default user to run sudo without a password. This is not true for other Linux distributions, such as Ubuntu. This could lead to a password prompt when using `ws-indicate`. As nodes are designed to run autonomously, the installation process for `ws-node` will configure `ws-indicate` to not require a `sudo` password.

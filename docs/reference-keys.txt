@@ -34,5 +34,10 @@ power-management
 installation-of-power-management-tools
 turning-funtionality-on-and-off
 considerations
+a-note-on-sudo
+indicators-and-heartbeats
+installation-of-ws-indcate-and-ws-heartbeat
+indicators
+a-note-on-sudo-1
 developer-guidelines
 documentation
