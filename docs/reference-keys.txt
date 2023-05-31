@@ -41,3 +41,5 @@ indicators
 a-note-on-sudo-1
 developer-guidelines
 documentation
+server-tools
+installation

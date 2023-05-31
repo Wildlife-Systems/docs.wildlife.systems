@@ -1,0 +1,14 @@
+# Server Tools
+These tools are only needed for running and maintaining the [wildlife.systems](https://wildlife.systems) webserver. 
+
+## Installation
+
+````{bash eval=FALSE}
+git clone git@github.com:Wildlife-Systems/wildlife.systems-tools.git
+cd wildlife.systems-tools
+./install
+cp .ws-db.php ~/
+
+#Edit ~/.ws-db.php to connect to the wildlife-systems database
+````
+

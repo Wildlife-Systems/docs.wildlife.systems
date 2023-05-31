@@ -117,7 +117,7 @@
 
 \title{WildlifeSystems - biodiversity technologies}
 \author{Ed Baker}
-\date{2023-05-30}
+\date{2023-05-31}
 
 \begin{document}
 \maketitle
@@ -477,6 +477,26 @@ There are three main kinds of documentation in the WildlifeSystems project.
 \item
   \textbf{Overall project documentation}: This manual. \emph{How do I use the entire system for my research?}
 \end{enumerate}
+
+\hypertarget{server-tools}{%
+\chapter{Server Tools}\label{server-tools}}
+
+These tools are only needed for running and maintaining the \href{https://wildlife.systems}{wildlife.systems} webserver.
+
+\hypertarget{installation}{%
+\section{Installation}\label{installation}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{git}\NormalTok{ clone git@github.com:Wildlife{-}Systems/wildlife.systems{-}tools.git}
+\BuiltInTok{cd}\NormalTok{ wildlife.systems{-}tools}
+\ExtensionTok{./install}
+\FunctionTok{cp}\NormalTok{ .ws{-}db.php \textasciitilde{}/}
+
+\CommentTok{\#Edit \textasciitilde{}/.ws{-}db.php to connect to the wildlife{-}systems database}
+\end{Highlighting}
+\end{Shaded}
+
 
   \bibliography{book.bib,packages.bib}
 
