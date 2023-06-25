@@ -224,6 +224,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="A.1" data-path="return-codes.html"><a href="return-codes.html#script-functionality"><i class="fa fa-check"></i><b>A.1</b> 00-09 Script functionality</a></li>
 <li class="chapter" data-level="A.2" data-path="return-codes.html"><a href="return-codes.html#parameter-problems"><i class="fa fa-check"></i><b>A.2</b> 10-19 Parameter problems</a></li>
+<li class="chapter" data-level="A.3" data-path="return-codes.html"><a href="return-codes.html#sensor-problems"><i class="fa fa-check"></i><b>A.3</b> 20-29 Sensor problems</a></li>
+<li class="chapter" data-level="A.4" data-path="return-codes.html"><a href="return-codes.html#sound-device-problems"><i class="fa fa-check"></i><b>A.4</b> 30-39 Sound device problems</a></li>
+<li class="chapter" data-level="A.5" data-path="return-codes.html"><a href="return-codes.html#image-device-problems"><i class="fa fa-check"></i><b>A.5</b> 40-49 Image device problems</a></li>
+<li class="chapter" data-level="A.6" data-path="return-codes.html"><a href="return-codes.html#power-management-problems"><i class="fa fa-check"></i><b>A.6</b> 50-59 Power management problems</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -252,9 +256,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">A.1</span> 00-09 Script functionality<a href="return-codes.html#script-functionality" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <table>
 <colgroup>
-<col width="6%" />
-<col width="19%" />
-<col width="74%" />
+<col width="5%" />
+<col width="18%" />
+<col width="76%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -273,6 +277,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <td align="left">1</td>
 <td align="left">Already running</td>
 <td align="left">The script determined it was already running and terminated.</td>
+</tr>
+<tr class="odd">
+<td align="left">2</td>
+<td align="left">No arguments</td>
+<td align="left">The script requires arguments but nine given. Will give help text.</td>
 </tr>
 </tbody>
 </table>
@@ -302,6 +311,106 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <td align="left">11</td>
 <td align="left">Incorrect filename pattern</td>
 <td align="left">A standard filename pattern was expected. Allowed values are ‘timestamp’.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="sensor-problems" class="section level2 hasAnchor" number="14.3">
+<h2><span class="header-section-number">A.3</span> 20-29 Sensor problems<a href="return-codes.html#sensor-problems" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+</div>
+<div id="sound-device-problems" class="section level2 hasAnchor" number="14.4">
+<h2><span class="header-section-number">A.4</span> 30-39 Sound device problems<a href="return-codes.html#sound-device-problems" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<table>
+<colgroup>
+<col width="6%" />
+<col width="27%" />
+<col width="66%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Code</th>
+<th align="left">Label</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">30</td>
+<td align="left">Unsupported device</td>
+<td align="left">The specified device is unsupported.</td>
+</tr>
+<tr class="even">
+<td align="left">31</td>
+<td align="left">Unsupported feature</td>
+<td align="left">This feature is not present on the sound device.</td>
+</tr>
+<tr class="odd">
+<td align="left">32</td>
+<td align="left">Unknown feature</td>
+<td align="left">The feature requested is unknown.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="image-device-problems" class="section level2 hasAnchor" number="14.5">
+<h2><span class="header-section-number">A.5</span> 40-49 Image device problems<a href="return-codes.html#image-device-problems" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<table>
+<colgroup>
+<col width="6%" />
+<col width="27%" />
+<col width="66%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Code</th>
+<th align="left">Label</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">40</td>
+<td align="left">Unsupported device</td>
+<td align="left">The specified device is unsupported.</td>
+</tr>
+<tr class="even">
+<td align="left">41</td>
+<td align="left">Unsupported feature</td>
+<td align="left">This feature is not present on the sound device.</td>
+</tr>
+<tr class="odd">
+<td align="left">42</td>
+<td align="left">Unknown feature</td>
+<td align="left">The feature requested is unknown.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="power-management-problems" class="section level2 hasAnchor" number="14.6">
+<h2><span class="header-section-number">A.6</span> 50-59 Power management problems<a href="return-codes.html#power-management-problems" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<table>
+<colgroup>
+<col width="4%" />
+<col width="47%" />
+<col width="48%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Code</th>
+<th align="left">Label</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">50</td>
+<td align="left">Disallowed value (should be on or off)</td>
+<td align="left">The specified device is unsupported.</td>
+</tr>
+<tr class="even">
+<td align="left">51</td>
+<td align="left">Disallowed value (should be on, off or default)</td>
+<td align="left">This feature is not present on the sound device.</td>
 </tr>
 </tbody>
 </table>

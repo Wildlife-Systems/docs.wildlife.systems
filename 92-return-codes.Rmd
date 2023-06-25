@@ -5,14 +5,16 @@ The various scripts that form the WildlifeSystems ecosystem use a standard set o
 ## 00-09 Script functionality
 
 ````{r, echo=FALSE}
-Code <- seq(from=0, to=1)
+Code <- seq(from=0, to=2)
 Label <- c(
   "OK",
-  "Already running"
+  "Already running",
+  "No arguments"
 )
 Description <- c(
   "Terminated normally. No error.",
-  "The script determined it was already running and terminated."
+  "The script determined it was already running and terminated.",
+  "The script requires arguments but nine given. Will give help text."
 )
 t <- cbind(Code, Label, Description)
 knitr::kable(t)
@@ -29,6 +31,60 @@ Label <- c(
 Description <- c(
   "One or more of the arguments to the script was invalid.",
   "A standard filename pattern was expected. Allowed values are 'timestamp'."
+)
+t <- cbind(Code, Label, Description)
+knitr::kable(t)
+````
+
+## 20-29 Sensor problems
+
+## 30-39 Sound device problems
+
+````{r, echo=FALSE}
+Code <- seq(from=30, to=32)
+Label <- c(
+  "Unsupported device",
+  "Unsupported feature",
+  "Unknown feature"
+)
+Description <- c(
+  "The specified device is unsupported.",
+  "This feature is not present on the sound device.",
+  "The feature requested is unknown."
+)
+t <- cbind(Code, Label, Description)
+knitr::kable(t)
+````
+
+## 40-49 Image device problems
+
+````{r, echo=FALSE}
+Code <- seq(from=40, to=42)
+Label <- c(
+  "Unsupported device",
+  "Unsupported feature",
+  "Unknown feature"
+)
+Description <- c(
+  "The specified device is unsupported.",
+  "This feature is not present on the sound device.",
+  "The feature requested is unknown."
+)
+t <- cbind(Code, Label, Description)
+knitr::kable(t)
+````
+
+## 50-59 Power management problems
+
+````{r, echo=FALSE}
+Code <- seq(from=50, to=51)
+Label <- c(
+  "Disallowed value (should be on or off)",
+  "Disallowed value (should be on, off or default)"
+)
+Description <- c(
+  "The specified device is unsupported.",
+  "This feature is not present on the sound device."
 )
 t <- cbind(Code, Label, Description)
 knitr::kable(t)

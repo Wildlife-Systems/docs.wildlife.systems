@@ -520,6 +520,8 @@ Code & Label & Description\\
 \hline
 1 & Already running & The script determined it was already running and terminated.\\
 \hline
+2 & No arguments & The script requires arguments but nine given. Will give help text.\\
+\hline
 \end{tabular}
 
 \hypertarget{parameter-problems}{%
@@ -532,6 +534,52 @@ Code & Label & Description\\
 10 & Invalid argument & One or more of the arguments to the script was invalid.\\
 \hline
 11 & Incorrect filename pattern & A standard filename pattern was expected. Allowed values are 'timestamp'.\\
+\hline
+\end{tabular}
+
+\hypertarget{sensor-problems}{%
+\section{20-29 Sensor problems}\label{sensor-problems}}
+
+\hypertarget{sound-device-problems}{%
+\section{30-39 Sound device problems}\label{sound-device-problems}}
+
+\begin{tabular}{l|l|l}
+\hline
+Code & Label & Description\\
+\hline
+30 & Unsupported device & The specified device is unsupported.\\
+\hline
+31 & Unsupported feature & This feature is not present on the sound device.\\
+\hline
+32 & Unknown feature & The feature requested is unknown.\\
+\hline
+\end{tabular}
+
+\hypertarget{image-device-problems}{%
+\section{40-49 Image device problems}\label{image-device-problems}}
+
+\begin{tabular}{l|l|l}
+\hline
+Code & Label & Description\\
+\hline
+40 & Unsupported device & The specified device is unsupported.\\
+\hline
+41 & Unsupported feature & This feature is not present on the sound device.\\
+\hline
+42 & Unknown feature & The feature requested is unknown.\\
+\hline
+\end{tabular}
+
+\hypertarget{power-management-problems}{%
+\section{50-59 Power management problems}\label{power-management-problems}}
+
+\begin{tabular}{l|l|l}
+\hline
+Code & Label & Description\\
+\hline
+50 & Disallowed value (should be on or off) & The specified device is unsupported.\\
+\hline
+51 & Disallowed value (should be on, off or default) & This feature is not present on the sound device.\\
 \hline
 \end{tabular}
 
