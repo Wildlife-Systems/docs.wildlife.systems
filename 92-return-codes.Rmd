@@ -1,0 +1,35 @@
+# Return codes
+
+The various scripts that form the WildlifeSystems ecosystem use a standard set of return codes.
+
+## 00-09 Script functionality
+
+````{r, echo=FALSE}
+Code <- seq(from=0, to=1)
+Label <- c(
+  "OK",
+  "Already running"
+)
+Description <- c(
+  "Terminated normally. No error.",
+  "The script determined it was already running and terminated."
+)
+t <- cbind(Code, Label, Description)
+knitr::kable(t)
+````
+
+## 10-19 Parameter problems
+
+````{r, echo=FALSE}
+Code <- seq(from=10, to=11)
+Label <- c(
+  "Invalid argument",
+  "Incorrect filename pattern"
+)
+Description <- c(
+  "One or more of the arguments to the script was invalid.",
+  "A standard filename pattern was expected. Allowed values are 'timestamp'."
+)
+t <- cbind(Code, Label, Description)
+knitr::kable(t)
+````

@@ -23,7 +23,7 @@
 <meta name="author" content="Ed Baker" />
 
 
-<meta name="date" content="2023-05-31" />
+<meta name="date" content="2023-06-25" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -219,6 +219,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="13.1" data-path="server-tools.html"><a href="server-tools.html#installation"><i class="fa fa-check"></i><b>13.1</b> Installation</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="appendix"><span><b>Appendix</b></span></li>
+<li class="chapter" data-level="A" data-path="return-codes.html"><a href="return-codes.html"><i class="fa fa-check"></i><b>A</b> Return codes</a>
+<ul>
+<li class="chapter" data-level="A.1" data-path="return-codes.html"><a href="return-codes.html#script-functionality"><i class="fa fa-check"></i><b>A.1</b> 00-09 Script functionality</a></li>
+<li class="chapter" data-level="A.2" data-path="return-codes.html"><a href="return-codes.html#parameter-problems"><i class="fa fa-check"></i><b>A.2</b> 10-19 Parameter problems</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -250,19 +256,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="installing-sensor-support" class="section level2 hasAnchor" number="4.2">
 <h2><span class="header-section-number">4.2</span> Installing sensor support<a href="sensors-in-wildlifesystems.html#installing-sensor-support" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Support for sensors is installed as part of the node installation process, however it is possible to install the <code>sensor-control</code> abstraction layer onto any Raspberry Pi system using the command below.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="sensors-in-wildlifesystems.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-O</span> <span class="at">-</span> https://raw.githubusercontent.com/Wildlife-Systems/sensor-control/main/install <span class="kw">|</span> <span class="fu">sudo</span> bash</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="sensors-in-wildlifesystems.html#cb1-1" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-O</span> <span class="at">-</span> https://raw.githubusercontent.com/Wildlife-Systems/sensor-control/main/install <span class="kw">|</span> <span class="fu">sudo</span> bash</span></code></pre></div>
 <p>This will install the <code>sensor-control</code> and <code>sensor-onboard</code> scripts into the system, as well as installing a small of number of supporting packages if they are not already installed.</p>
 </div>
 <div id="reading-data-from-a-sensor" class="section level2 hasAnchor" number="4.3">
 <h2><span class="header-section-number">4.3</span> Reading data from a sensor<a href="sensors-in-wildlifesystems.html#reading-data-from-a-sensor" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The sensor read command, <code>sr</code>, can be used to list the available devices on a given sensor.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="sensors-in-wildlifesystems.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">sr</span> onboard list</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="sensors-in-wildlifesystems.html#cb2-1" tabindex="-1"></a><span class="ex">sr</span> onboard list</span></code></pre></div>
 <p>The sensor read command, <code>sr</code>, can also be used to read data from a named sensor. Not specifying a sensor device is equivalent to reading all devices on that senors (i.e. using the wildcard”*“).</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="sensors-in-wildlifesystems.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">sr</span> onboard</span>
-<span id="cb3-2"><a href="sensors-in-wildlifesystems.html#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">sr</span> onboard <span class="pp">*</span></span>
-<span id="cb3-3"><a href="sensors-in-wildlifesystems.html#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="ex">sr</span> onboard onboard_gpu</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="sensors-in-wildlifesystems.html#cb3-1" tabindex="-1"></a><span class="ex">sr</span> onboard</span>
+<span id="cb3-2"><a href="sensors-in-wildlifesystems.html#cb3-2" tabindex="-1"></a><span class="ex">sr</span> onboard <span class="pp">*</span></span>
+<span id="cb3-3"><a href="sensors-in-wildlifesystems.html#cb3-3" tabindex="-1"></a><span class="ex">sr</span> onboard onboard_gpu</span></code></pre></div>
 <p>This will give a JSON string listing information about each sensor (or just the specified sensor), and the current reading. This information can be presented in a more human readable form by piping the output to the program <code>jq</code>, a command line JSON processor.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="sensors-in-wildlifesystems.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">sr</span> onboard <span class="kw">|</span> <span class="ex">jq</span></span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="sensors-in-wildlifesystems.html#cb4-1" tabindex="-1"></a><span class="ex">sr</span> onboard <span class="kw">|</span> <span class="ex">jq</span></span></code></pre></div>
 </div>
 <div id="the-sensor-reading-process" class="section level2 hasAnchor" number="4.4">
 <h2><span class="header-section-number">4.4</span> The sensor reading process<a href="sensors-in-wildlifesystems.html#the-sensor-reading-process" class="anchor-section" aria-label="Anchor link to header"></a></h2>
