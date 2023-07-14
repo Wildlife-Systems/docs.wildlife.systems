@@ -12,3 +12,16 @@ cp .ws-db.php ~/
 #Edit ~/.ws-db.php to connect to the wildlife-systems database
 ````
 
+## Adding nodes and receieving a token
+
+````{bash eval=FALSE}
+ws-node-add <node_id>
+````
+
+Adding a node by it's ID (serial number of the Raspberry Pi) will add the device to the wildlife.systems database, generate a token, and display the token (a UUID) in the console. This token is used to authenticate the device when it sends data to wildlife.systems.
+
+## Removing a node
+
+````{bash eval=FALSE}
+ws-node-remove <node_id>
+````

@@ -43,6 +43,8 @@ developer-guidelines
 documentation
 server-tools
 installation
+adding-nodes-and-receieving-a-token
+removing-a-node
 return-codes
 script-functionality
 parameter-problems

@@ -120,7 +120,7 @@
 
 \title{WildlifeSystems - biodiversity technologies}
 \author{Ed Baker}
-\date{2023-06-25}
+\date{2023-07-14}
 
 \begin{document}
 \maketitle
@@ -497,6 +497,26 @@ These tools are only needed for running and maintaining the \href{https://wildli
 \FunctionTok{cp}\NormalTok{ .ws{-}db.php \textasciitilde{}/}
 
 \CommentTok{\#Edit \textasciitilde{}/.ws{-}db.php to connect to the wildlife{-}systems database}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{adding-nodes-and-receieving-a-token}{%
+\section{Adding nodes and receieving a token}\label{adding-nodes-and-receieving-a-token}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{ws{-}node{-}add} \OperatorTok{\textless{}}\NormalTok{node\_id}\OperatorTok{\textgreater{}}
+\end{Highlighting}
+\end{Shaded}
+
+Adding a node by it's ID (serial number of the Raspberry Pi) will add the device to the wildlife.systems database, generate a token, and display the token (a UUID) in the console. This token is used to authenticate the device when it sends data to wildlife.systems.
+
+\hypertarget{removing-a-node}{%
+\section{Removing a node}\label{removing-a-node}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{ws{-}node{-}remove} \OperatorTok{\textless{}}\NormalTok{node\_id}\OperatorTok{\textgreater{}}
 \end{Highlighting}
 \end{Shaded}
 
