@@ -39,6 +39,7 @@ indicators-and-heartbeats
 installation-of-ws-indcate-and-ws-heartbeat
 indicators
 a-note-on-sudo-1
+heartbeat
 developer-guidelines
 documentation
 server-tools

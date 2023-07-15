@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 12 Developer Guidelines | WildlifeSystems - biodiversity technologies</title>
+  <title>Chapter 12 WS Nodes | WildlifeSystems - biodiversity technologies</title>
   <meta name="description" content="Manual for using WildlifeSystems technologies for monitoring biodiversity." />
   <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 12 Developer Guidelines | WildlifeSystems - biodiversity technologies" />
+  <meta property="og:title" content="Chapter 12 WS Nodes | WildlifeSystems - biodiversity technologies" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="Manual for using WildlifeSystems technologies for monitoring biodiversity." />
   <meta name="github-repo" content="wildlife-systems/docs.wildlife.systems" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 12 Developer Guidelines | WildlifeSystems - biodiversity technologies" />
+  <meta name="twitter:title" content="Chapter 12 WS Nodes | WildlifeSystems - biodiversity technologies" />
   
   <meta name="twitter:description" content="Manual for using WildlifeSystems technologies for monitoring biodiversity." />
   
@@ -23,7 +23,7 @@
 <meta name="author" content="Ed Baker" />
 
 
-<meta name="date" content="2023-07-15" />
+<meta name="date" content="2023-07-14" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="indicators-and-heartbeats.html"/>
-<link rel="next" href="server-tools.html"/>
+<link rel="next" href="developer-guidelines.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -209,17 +209,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="11.2.1" data-path="indicators-and-heartbeats.html"><a href="indicators-and-heartbeats.html#a-note-on-sudo-1"><i class="fa fa-check"></i><b>11.2.1</b> A note on <code>sudo</code></a></li>
 </ul></li>
-<li class="chapter" data-level="11.3" data-path="indicators-and-heartbeats.html"><a href="indicators-and-heartbeats.html#heartbeat"><i class="fa fa-check"></i><b>11.3</b> Heartbeat</a></li>
 </ul></li>
-<li class="chapter" data-level="12" data-path="developer-guidelines.html"><a href="developer-guidelines.html"><i class="fa fa-check"></i><b>12</b> Developer Guidelines</a>
+<li class="chapter" data-level="12" data-path="ws-nodes.html"><a href="ws-nodes.html"><i class="fa fa-check"></i><b>12</b> WS Nodes</a>
 <ul>
-<li class="chapter" data-level="12.1" data-path="developer-guidelines.html"><a href="developer-guidelines.html#documentation"><i class="fa fa-check"></i><b>12.1</b> Documentation</a></li>
+<li class="chapter" data-level="12.1" data-path="ws-nodes.html"><a href="ws-nodes.html#heartbeat"><i class="fa fa-check"></i><b>12.1</b> Heartbeat</a></li>
 </ul></li>
-<li class="chapter" data-level="13" data-path="server-tools.html"><a href="server-tools.html"><i class="fa fa-check"></i><b>13</b> Server Tools</a>
+<li class="chapter" data-level="13" data-path="developer-guidelines.html"><a href="developer-guidelines.html"><i class="fa fa-check"></i><b>13</b> Developer Guidelines</a>
 <ul>
-<li class="chapter" data-level="13.1" data-path="server-tools.html"><a href="server-tools.html#installation"><i class="fa fa-check"></i><b>13.1</b> Installation</a></li>
-<li class="chapter" data-level="13.2" data-path="server-tools.html"><a href="server-tools.html#adding-nodes-and-receieving-a-token"><i class="fa fa-check"></i><b>13.2</b> Adding nodes and receieving a token</a></li>
-<li class="chapter" data-level="13.3" data-path="server-tools.html"><a href="server-tools.html#removing-a-node"><i class="fa fa-check"></i><b>13.3</b> Removing a node</a></li>
+<li class="chapter" data-level="13.1" data-path="developer-guidelines.html"><a href="developer-guidelines.html#documentation"><i class="fa fa-check"></i><b>13.1</b> Documentation</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="server-tools.html"><a href="server-tools.html"><i class="fa fa-check"></i><b>14</b> Server Tools</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="server-tools.html"><a href="server-tools.html#installation"><i class="fa fa-check"></i><b>14.1</b> Installation</a></li>
+<li class="chapter" data-level="14.2" data-path="server-tools.html"><a href="server-tools.html#adding-nodes-and-receieving-a-token"><i class="fa fa-check"></i><b>14.2</b> Adding nodes and receieving a token</a></li>
+<li class="chapter" data-level="14.3" data-path="server-tools.html"><a href="server-tools.html#removing-a-node"><i class="fa fa-check"></i><b>14.3</b> Removing a node</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="appendix"><span><b>Appendix</b></span></li>
@@ -252,16 +255,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="developer-guidelines" class="section level1 hasAnchor" number="12">
-<h1><span class="header-section-number">Chapter 12</span> Developer Guidelines<a href="developer-guidelines.html#developer-guidelines" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div id="documentation" class="section level2 hasAnchor" number="12.1">
-<h2><span class="header-section-number">12.1</span> Documentation<a href="developer-guidelines.html#documentation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>There are three main kinds of documentation in the WildlifeSystems project.</p>
-<ol style="list-style-type: decimal">
-<li><p><strong>Code comments</strong>: Primarily for future you (or someone similar) to get to grips with your code. <em>Why does this code do this?</em>.</p></li>
-<li><p><strong>Package documentation</strong>: Describes what your package does, how it interacts with the larger system. <em>What will this package do for me?</em></p></li>
-<li><p><strong>Overall project documentation</strong>: This manual. <em>How do I use the entire system for my research?</em></p></li>
-</ol>
+<div id="ws-nodes" class="section level1 hasAnchor" number="12">
+<h1><span class="header-section-number">Chapter 12</span> WS Nodes<a href="ws-nodes.html#ws-nodes" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="heartbeat" class="section level2 hasAnchor" number="12.1">
+<h2><span class="header-section-number">12.1</span> Heartbeat<a href="ws-nodes.html#heartbeat" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The script <code>ws-heartbeat</code> is used to send a heartbeat signal to the devices.wildlife.systems server to indicate that the node is alive and connected, as well as to provide some information to assist problem diagnosis. The data sent comes from the onboard sensor readings (<code>sr onboard</code>) and the server stores the node ID, timestamp, CPU and GPU temperatures, and the amount of memory and storage used. The node must be registered with WildlifeSystems for this data to be stored.</p>
+<p>The script may be run for debugging purposes at any time as follows.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb10-1"><a href="ws-nodes.html#cb10-1" tabindex="-1"></a><span class="ex">ws-heartbeat</span></span></code></pre></div>
+<p>The script will exit silently on success.</p>
 
 </div>
 </div>
@@ -271,7 +272,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
         </div>
       </div>
 <a href="indicators-and-heartbeats.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="server-tools.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="developer-guidelines.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -302,7 +303,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/Wildlife-Systems/docs.wildlife.systems/edit/master/70-dev-guidelines.Rmd",
+"link": "https://github.com/Wildlife-Systems/docs.wildlife.systems/edit/master/30-nodes.Rmd",
 "text": "Edit"
 },
 "history": {
