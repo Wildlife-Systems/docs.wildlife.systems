@@ -11,9 +11,9 @@ air-pressure
 gases
 heated-gas-resistance
 sensors-in-wildlifesystems
-sensors-included-in-the-base-system
+devices-included-in-the-base-system
 installing-sensor-support
-reading-data-from-a-sensor
+reading-data-from-a-device
 the-sensor-reading-process
 installing-new-sensors
 implementing-new-sensors

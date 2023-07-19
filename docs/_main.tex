@@ -184,10 +184,10 @@ What are \emph{Biodiversity Technologies}?
 
 The WildlifeSystems platform comes with support for some popular existing environmental sensors, although there are many on the market and the range available is subject to constant change. The modular nature of WildlifeSystems allows for new sensors to be easily integrated if the need arises.
 
-Each sensor may have a number of sensor devices that can be read, for instance many senors modules on the market currently can measure both air temperature and air humidity.
+As many physical packages contain multiple sensors (e.g.~the supported BME680 can monitor temperature, humidity, air pressure and air quality) there is a conceptual difference between a ``device'' and the one or more sensors on a device.
 
-\hypertarget{sensors-included-in-the-base-system}{%
-\section{Sensors included in the base system}\label{sensors-included-in-the-base-system}}
+\hypertarget{devices-included-in-the-base-system}{%
+\section{Devices included in the base system}\label{devices-included-in-the-base-system}}
 
 The Raspberry Pi does not come with environmental sensors, however there are several onboard sensors that are used to monitor the operation of the hardware, to prevent crucial components from overheating, including the temperature of the CPU and GPU chips. WildlifeSystems provides access to these sensors through the \texttt{sensor-onboard} package, as well as providing some \emph{software sensors} that report the free memory and free SD storage available. These can be useful for detecting and resolving possible issues on a sensor node before a serious problem arises.
 
@@ -204,8 +204,8 @@ Support for sensors is installed as part of the node installation process, howev
 
 This will install the \texttt{sensor-control} and \texttt{sensor-onboard} scripts into the system, as well as installing a small of number of supporting packages if they are not already installed.
 
-\hypertarget{reading-data-from-a-sensor}{%
-\section{Reading data from a sensor}\label{reading-data-from-a-sensor}}
+\hypertarget{reading-data-from-a-device}{%
+\section{Reading data from a device}\label{reading-data-from-a-device}}
 
 The sensor read command, \texttt{sr}, can be used to list the available devices on a given sensor.
 
@@ -215,7 +215,7 @@ The sensor read command, \texttt{sr}, can be used to list the available devices 
 \end{Highlighting}
 \end{Shaded}
 
-The sensor read command, \texttt{sr}, can also be used to read data from a named sensor. Not specifying a sensor device is equivalent to reading all devices on that senors (i.e.~using the wildcard''*``).
+The sensor read command, \texttt{sr}, can also be used to read data from a named sensor. Not specifying a sensor is equivalent to reading all sensors on that device (i.e.~using the wildcard''*``).
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -241,7 +241,7 @@ The sensor reading process in WildlifeSystems has five steps.
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \item
-  The \texttt{sr} command identifies which sensor script to route the request to.
+  The \texttt{sr} command identifies which device script to route the request to.
 \item
   The sensor script calls the \texttt{sc-prototype} script to obtain a template (``prototype'') of the JSON request.
 \item

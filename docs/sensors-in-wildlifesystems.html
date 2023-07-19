@@ -165,9 +165,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="4" data-path="sensors-in-wildlifesystems.html"><a href="sensors-in-wildlifesystems.html"><i class="fa fa-check"></i><b>4</b> Sensors in WildlifeSystems</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="sensors-in-wildlifesystems.html"><a href="sensors-in-wildlifesystems.html#sensors-included-in-the-base-system"><i class="fa fa-check"></i><b>4.1</b> Sensors included in the base system</a></li>
+<li class="chapter" data-level="4.1" data-path="sensors-in-wildlifesystems.html"><a href="sensors-in-wildlifesystems.html#devices-included-in-the-base-system"><i class="fa fa-check"></i><b>4.1</b> Devices included in the base system</a></li>
 <li class="chapter" data-level="4.2" data-path="sensors-in-wildlifesystems.html"><a href="sensors-in-wildlifesystems.html#installing-sensor-support"><i class="fa fa-check"></i><b>4.2</b> Installing sensor support</a></li>
-<li class="chapter" data-level="4.3" data-path="sensors-in-wildlifesystems.html"><a href="sensors-in-wildlifesystems.html#reading-data-from-a-sensor"><i class="fa fa-check"></i><b>4.3</b> Reading data from a sensor</a></li>
+<li class="chapter" data-level="4.3" data-path="sensors-in-wildlifesystems.html"><a href="sensors-in-wildlifesystems.html#reading-data-from-a-device"><i class="fa fa-check"></i><b>4.3</b> Reading data from a device</a></li>
 <li class="chapter" data-level="4.4" data-path="sensors-in-wildlifesystems.html"><a href="sensors-in-wildlifesystems.html#the-sensor-reading-process"><i class="fa fa-check"></i><b>4.4</b> The sensor reading process</a></li>
 <li class="chapter" data-level="4.5" data-path="sensors-in-wildlifesystems.html"><a href="sensors-in-wildlifesystems.html#installing-new-sensors"><i class="fa fa-check"></i><b>4.5</b> Installing new sensors</a></li>
 </ul></li>
@@ -255,9 +255,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="sensors-in-wildlifesystems" class="section level1 hasAnchor" number="4">
 <h1><span class="header-section-number">Chapter 4</span> Sensors in WildlifeSystems<a href="sensors-in-wildlifesystems.html#sensors-in-wildlifesystems" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>The WildlifeSystems platform comes with support for some popular existing environmental sensors, although there are many on the market and the range available is subject to constant change. The modular nature of WildlifeSystems allows for new sensors to be easily integrated if the need arises.</p>
-<p>Each sensor may have a number of sensor devices that can be read, for instance many senors modules on the market currently can measure both air temperature and air humidity.</p>
-<div id="sensors-included-in-the-base-system" class="section level2 hasAnchor" number="4.1">
-<h2><span class="header-section-number">4.1</span> Sensors included in the base system<a href="sensors-in-wildlifesystems.html#sensors-included-in-the-base-system" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>As many physical packages contain multiple sensors (e.g. the supported BME680 can monitor temperature, humidity, air pressure and air quality) there is a conceptual difference between a “device” and the one or more sensors on a device.</p>
+<div id="devices-included-in-the-base-system" class="section level2 hasAnchor" number="4.1">
+<h2><span class="header-section-number">4.1</span> Devices included in the base system<a href="sensors-in-wildlifesystems.html#devices-included-in-the-base-system" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The Raspberry Pi does not come with environmental sensors, however there are several onboard sensors that are used to monitor the operation of the hardware, to prevent crucial components from overheating, including the temperature of the CPU and GPU chips. WildlifeSystems provides access to these sensors through the <code>sensor-onboard</code> package, as well as providing some <em>software sensors</em> that report the free memory and free SD storage available. These can be useful for detecting and resolving possible issues on a sensor node before a serious problem arises.</p>
 </div>
 <div id="installing-sensor-support" class="section level2 hasAnchor" number="4.2">
@@ -266,11 +266,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="sensors-in-wildlifesystems.html#cb1-1" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-O</span> <span class="at">-</span> https://raw.githubusercontent.com/Wildlife-Systems/sensor-control/main/install <span class="kw">|</span> <span class="fu">sudo</span> bash</span></code></pre></div>
 <p>This will install the <code>sensor-control</code> and <code>sensor-onboard</code> scripts into the system, as well as installing a small of number of supporting packages if they are not already installed.</p>
 </div>
-<div id="reading-data-from-a-sensor" class="section level2 hasAnchor" number="4.3">
-<h2><span class="header-section-number">4.3</span> Reading data from a sensor<a href="sensors-in-wildlifesystems.html#reading-data-from-a-sensor" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="reading-data-from-a-device" class="section level2 hasAnchor" number="4.3">
+<h2><span class="header-section-number">4.3</span> Reading data from a device<a href="sensors-in-wildlifesystems.html#reading-data-from-a-device" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The sensor read command, <code>sr</code>, can be used to list the available devices on a given sensor.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="sensors-in-wildlifesystems.html#cb2-1" tabindex="-1"></a><span class="ex">sr</span> onboard list</span></code></pre></div>
-<p>The sensor read command, <code>sr</code>, can also be used to read data from a named sensor. Not specifying a sensor device is equivalent to reading all devices on that senors (i.e. using the wildcard”*“).</p>
+<p>The sensor read command, <code>sr</code>, can also be used to read data from a named sensor. Not specifying a sensor is equivalent to reading all sensors on that device (i.e. using the wildcard”*“).</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="sensors-in-wildlifesystems.html#cb3-1" tabindex="-1"></a><span class="ex">sr</span> onboard</span>
 <span id="cb3-2"><a href="sensors-in-wildlifesystems.html#cb3-2" tabindex="-1"></a><span class="ex">sr</span> onboard <span class="pp">*</span></span>
 <span id="cb3-3"><a href="sensors-in-wildlifesystems.html#cb3-3" tabindex="-1"></a><span class="ex">sr</span> onboard onboard_gpu</span></code></pre></div>
@@ -281,7 +281,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">4.4</span> The sensor reading process<a href="sensors-in-wildlifesystems.html#the-sensor-reading-process" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The sensor reading process in WildlifeSystems has five steps.</p>
 <ol style="list-style-type: decimal">
-<li><p>The <code>sr</code> command identifies which sensor script to route the request to.</p></li>
+<li><p>The <code>sr</code> command identifies which device script to route the request to.</p></li>
 <li><p>The sensor script calls the <code>sc-prototype</code> script to obtain a template (“prototype”) of the JSON request.</p></li>
 <li><p>The sensor script accesses the relevant sensor(s) and populates the values in a template for each sensor reading, before returning a JSON array of populated readings to <code>sr</code>.</p></li>
 <li><p>The <code>sr</code> script populates additional information for each reading, providing the <code>node_id</code> and a <code>timestamp</code> for each.</p></li>
