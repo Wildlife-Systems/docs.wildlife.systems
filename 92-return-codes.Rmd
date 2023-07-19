@@ -38,6 +38,20 @@ knitr::kable(t)
 
 ## 20-29 Sensor problems
 
+````{r, echo=FALSE}
+Code <- seq(from=20, to=21)
+Label <- c(
+  "Unknown device",
+  "Unknown sensor"
+)
+Description <- c(
+  "This device is not supported, or software is not installed.",
+  "This sensor is not known on this device."
+)
+t <- cbind(Code, Label, Description)
+knitr::kable(t)
+````
+
 ## 30-39 Sound device problems
 
 ````{r, echo=FALSE}
