@@ -103,3 +103,17 @@ Description <- c(
 t <- cbind(Code, Label, Description)
 knitr::kable(t)
 ````
+
+## 60-69 Special meanings
+
+````{r, echo=FALSE}
+Code <- seq(from=60, to=60)
+Label <- c(
+  "Identify as a sensor device script"
+)
+Description <- c(
+  "Returned by sensor device script in response to first parameter `identify`."
+)
+t <- cbind(Code, Label, Description)
+knitr::kable(t)
+````

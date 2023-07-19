@@ -53,3 +53,4 @@ sensor-problems
 sound-device-problems
 image-device-problems
 power-management-problems
+special-meanings
