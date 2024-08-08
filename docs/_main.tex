@@ -109,7 +109,7 @@
 \fi
 \usepackage[]{natbib}
 \bibliographystyle{plainnat}
-\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\usepackage{bookmark}
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \urlstyle{same}
 \hypersetup{
@@ -120,7 +120,7 @@
 
 \title{WildlifeSystems - biodiversity technologies}
 \author{Ed Baker}
-\date{2023-07-19}
+\date{2024-08-08}
 
 \begin{document}
 \maketitle
@@ -129,70 +129,53 @@
 \setcounter{tocdepth}{1}
 \tableofcontents
 }
-\hypertarget{about}{%
-\chapter*{About}\label{about}}
+\chapter*{About}\label{about}
 \addcontentsline{toc}{chapter}{About}
 
 This book explains the technologies developed as part of WildlifeSystems and how they can be implemented in real-world scenarios.
 
-\hypertarget{support}{%
-\section*{Support}\label{support}}
+\section*{Support}\label{support}
 \addcontentsline{toc}{section}{Support}
 
 WildlifeSystems nodes were originally developed and used as part of the Leverhulme Trust funded Automated Acoustic Observatories project at the University of York. Additional development is undertaken as part of the Urban Nature Project at the Natural History Museum, London.
 
-\hypertarget{biodiversity-technologies}{%
-\chapter{Biodiversity Technologies}\label{biodiversity-technologies}}
+\chapter{Biodiversity Technologies}\label{biodiversity-technologies}
 
 What are \emph{Biodiversity Technologies}?
 
-\hypertarget{structure-of-wildlife-systems}{%
-\section{Structure of Wildlife Systems}\label{structure-of-wildlife-systems}}
+\section{Structure of Wildlife Systems}\label{structure-of-wildlife-systems}
 
-\hypertarget{overall-philosophy}{%
-\subsection{Overall Philosophy}\label{overall-philosophy}}
+\subsection{Overall Philosophy}\label{overall-philosophy}
 
-\hypertarget{packages}{%
-\subsection{Packages}\label{packages}}
+\subsection{Packages}\label{packages}
 
-\hypertarget{sensor-networks}{%
-\chapter{Sensor Networks}\label{sensor-networks}}
+\chapter{Sensor Networks}\label{sensor-networks}
 
-\hypertarget{environmental-sensors}{%
-\chapter{Environmental Sensors}\label{environmental-sensors}}
+\chapter{Environmental Sensors}\label{environmental-sensors}
 
-\hypertarget{how-sensors-work}{%
-\section{How sensors work}\label{how-sensors-work}}
+\section{How sensors work}\label{how-sensors-work}
 
-\hypertarget{temperature}{%
-\subsection{Temperature}\label{temperature}}
+\subsection{Temperature}\label{temperature}
 
-\hypertarget{humidity}{%
-\subsection{Humidity}\label{humidity}}
+\subsection{Humidity}\label{humidity}
 
-\hypertarget{air-pressure}{%
-\subsection{Air Pressure}\label{air-pressure}}
+\subsection{Air Pressure}\label{air-pressure}
 
-\hypertarget{gases}{%
-\subsection{Gases}\label{gases}}
+\subsection{Gases}\label{gases}
 
-\hypertarget{heated-gas-resistance}{%
-\subsubsection{Heated Gas Resistance}\label{heated-gas-resistance}}
+\subsubsection{Heated Gas Resistance}\label{heated-gas-resistance}
 
-\hypertarget{sensors-in-wildlifesystems}{%
-\chapter{Sensors in WildlifeSystems}\label{sensors-in-wildlifesystems}}
+\chapter{Sensors in WildlifeSystems}\label{sensors-in-wildlifesystems}
 
 The WildlifeSystems platform comes with support for some popular existing environmental sensors, although there are many on the market and the range available is subject to constant change. The modular nature of WildlifeSystems allows for new sensors to be easily integrated if the need arises.
 
 As many physical packages contain multiple sensors (e.g.~the supported BME680 can monitor temperature, humidity, air pressure and air quality) there is a conceptual difference between a ``device'' and the one or more sensors on a device.
 
-\hypertarget{devices-included-in-the-base-system}{%
-\section{Devices included in the base system}\label{devices-included-in-the-base-system}}
+\section{Devices included in the base system}\label{devices-included-in-the-base-system}
 
 The Raspberry Pi does not come with environmental sensors, however there are several onboard sensors that are used to monitor the operation of the hardware, to prevent crucial components from overheating, including the temperature of the CPU and GPU chips. WildlifeSystems provides access to these sensors through the \texttt{sensor-onboard} package, as well as providing some \emph{software sensors} that report the free memory and free SD storage available. These can be useful for detecting and resolving possible issues on a sensor node before a serious problem arises.
 
-\hypertarget{installing-sensor-support}{%
-\section{Installing sensor support}\label{installing-sensor-support}}
+\section{Installing sensor support}\label{installing-sensor-support}
 
 Support for sensors is installed as part of the node installation process, however it is possible to install the \texttt{sensor-control} abstraction layer onto any Raspberry Pi system using the command below.
 
@@ -204,8 +187,7 @@ Support for sensors is installed as part of the node installation process, howev
 
 This will install the \texttt{sensor-control} and \texttt{sensor-onboard} scripts into the system, as well as installing a small of number of supporting packages if they are not already installed.
 
-\hypertarget{reading-data-from-a-device}{%
-\section{Reading data from a device}\label{reading-data-from-a-device}}
+\section{Reading data from a device}\label{reading-data-from-a-device}
 
 The sensor read command, \texttt{sr}, can be used to list the available devices on a given sensor.
 
@@ -233,8 +215,7 @@ This will give a JSON string listing information about each sensor (or just the 
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{the-sensor-reading-process}{%
-\section{The sensor reading process}\label{the-sensor-reading-process}}
+\section{The sensor reading process}\label{the-sensor-reading-process}
 
 The sensor reading process in WildlifeSystems has five steps.
 
@@ -252,11 +233,9 @@ The sensor reading process in WildlifeSystems has five steps.
   \texttt{sr} returns the finalised JSON array to the user.
 \end{enumerate}
 
-\hypertarget{installing-new-sensors}{%
-\section{Installing new sensors}\label{installing-new-sensors}}
+\section{Installing new sensors}\label{installing-new-sensors}
 
-\hypertarget{implementing-new-sensors}{%
-\chapter{Implementing new sensors}\label{implementing-new-sensors}}
+\chapter{Implementing new sensors}\label{implementing-new-sensors}
 
 New sensors should be implemented as new packages (i.e, a new GitHub repository). Packages have a standard format, and should be named \texttt{sensor-\textless{}sensor-name\textgreater{}} where \texttt{\textless{}sensor-name\textgreater{}} is short, descriptive of the sensor (e.g.~model number), and unique within the WildlifeSystems ecosystem.
 
@@ -284,15 +263,13 @@ The structure of a basic package is given below.
 
 As many people implement various sensors on the Raspberry Pi, it is likely that some sort of solution is already available, that can be tweaked to output readings in the standard format required. However, you must ensure that any licensing conditions are met. In particular, an open license is required if submitting your sensor package to WildlifeSystems for inclusion in the ecosystem.
 
-\hypertarget{reading-the-sensor}{%
-\section{Reading the sensor}\label{reading-the-sensor}}
+\section{Reading the sensor}\label{reading-the-sensor}
 
 File \texttt{sensor-\textless{}sensor-name\textgreater{}} provides the functionality to read the protoype JSON, populate the JSON with sensor readings, and print the output.
 
 The file can be written in any programming or scripting language, but to prevent overhead consideration should be given to minimising the number of new packages installed.
 
-\hypertarget{in-bash}{%
-\subsection{In bash}\label{in-bash}}
+\subsection{In bash}\label{in-bash}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -313,8 +290,7 @@ The file can be written in any programming or scripting language, but to prevent
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{in-python}{%
-\subsection{In Python}\label{in-python}}
+\subsection{In Python}\label{in-python}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -340,8 +316,7 @@ The file can be written in any programming or scripting language, but to prevent
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{setting-the-environment}{%
-\section{Setting the environment}\label{setting-the-environment}}
+\section{Setting the environment}\label{setting-the-environment}
 
 The file \texttt{\textless{}sensor-name\textgreater{}} in the package specifies information that modify the environment of the Raspberry Pi (e.g.~if the i2c interface should be enabled) before the \texttt{sensor-\textless{}sensor-name\textgreater{}} script is run. This allows sensors with different requirements to run sequentially on the same node.
 
@@ -349,15 +324,13 @@ The file must always be present, even if it is empty. During installation the fi
 
 TODO: i2c
 
-\hypertarget{install}{%
-\section{Install}\label{install}}
+\section{Install}\label{install}
 
 The file \texttt{install} in the directory is run once, when the sensor package is installed. This allows for the installation of packages and scripts necessary for the functioning of the package.
 
 The file is executed by \texttt{bash} and the use of \texttt{sudo} is allowed.
 
-\hypertarget{the-installation-process-with-si}{%
-\section{\texorpdfstring{The installation process with \texttt{si}}{The installation process with si}}\label{the-installation-process-with-si}}
+\section{\texorpdfstring{The installation process with \texttt{si}}{The installation process with si}}\label{the-installation-process-with-si}
 
 The sensor install script, \texttt{si}, from \texttt{sensor-control} is used to install sensor packages. For developer reference the installation process is described below.
 
@@ -375,33 +348,25 @@ The sensor install script, \texttt{si}, from \texttt{sensor-control} is used to 
   The cloned repository is removed from the local filesystem.
 \end{enumerate}
 
-\hypertarget{submitting-packages-to-wildlifesystems}{%
-\section{Submitting packages to WildlifeSystems}\label{submitting-packages-to-wildlifesystems}}
+\section{Submitting packages to WildlifeSystems}\label{submitting-packages-to-wildlifesystems}
 
 Submitting packages (where licensing allows) to WildlifeSystems allows the ecosystem to be developed and sustained collaboratively by the user community.
 
 Packages can be sent to the administrators as a compressed file, or a request can be sent to fork an existing GitHub repository. Contact details can be found at \url{https://wildlife.systems/contact.html}.
 
-\hypertarget{sound-devices}{%
-\chapter{Sound Devices}\label{sound-devices}}
+\chapter{Sound Devices}\label{sound-devices}
 
-\hypertarget{how-sound-devices-work}{%
-\section{How sound devices work}\label{how-sound-devices-work}}
+\section{How sound devices work}\label{how-sound-devices-work}
 
-\hypertarget{sound-devices-in-wildlifesystems}{%
-\chapter{Sound devices in WildlifeSystems}\label{sound-devices-in-wildlifesystems}}
+\chapter{Sound devices in WildlifeSystems}\label{sound-devices-in-wildlifesystems}
 
-\hypertarget{imaging-devices}{%
-\chapter{Imaging Devices}\label{imaging-devices}}
+\chapter{Imaging Devices}\label{imaging-devices}
 
-\hypertarget{how-imaging-devices-work}{%
-\section{How imaging devices work}\label{how-imaging-devices-work}}
+\section{How imaging devices work}\label{how-imaging-devices-work}
 
-\hypertarget{imaging-devices-in-wildlifesystems}{%
-\chapter{Imaging devices in WildlifeSystems}\label{imaging-devices-in-wildlifesystems}}
+\chapter{Imaging devices in WildlifeSystems}\label{imaging-devices-in-wildlifesystems}
 
-\hypertarget{power-management}{%
-\chapter{Power Management}\label{power-management}}
+\chapter{Power Management}\label{power-management}
 
 Power management on the Raspberry Pi is useful when deployments are made that are powered by batteries and/or renewable sources such as solar power that are intermittent.
 
@@ -409,8 +374,7 @@ In addition, there are small environmental benefits on consuming less power on s
 
 The \texttt{pi-pwr} script can be used to turn off unused functionality, either always or just when it is not required.
 
-\hypertarget{installation-of-power-management-tools}{%
-\section{Installation of power management tools}\label{installation-of-power-management-tools}}
+\section{Installation of power management tools}\label{installation-of-power-management-tools}
 
 The power management tools are installed as part of the node installation process, however they can be easily installed independently on any Raspberry Pi system.
 
@@ -420,33 +384,27 @@ The power management tools are installed as part of the node installation proces
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{turning-funtionality-on-and-off}{%
-\section{Turning funtionality on and off}\label{turning-funtionality-on-and-off}}
+\section{Turning funtionality on and off}\label{turning-funtionality-on-and-off}
 
-\hypertarget{considerations}{%
-\section{Considerations}\label{considerations}}
+\section{Considerations}\label{considerations}
 
 Disabling all network functionality will prevent the node from communicating until either the functionality is turned back on or the Raspberry Pi is restarted.
 
 If disabling all connectivity is desired periodically then the functionality to turn these systems back on must be scripted.
 
-\hypertarget{a-note-on-sudo}{%
-\subsection{\texorpdfstring{A note on \texttt{sudo}}{A note on sudo}}\label{a-note-on-sudo}}
+\subsection{\texorpdfstring{A note on \texttt{sudo}}{A note on sudo}}\label{a-note-on-sudo}
 
 Raspberry Pi OS (and previously Raspbian) allows the default user to run sudo without a password. This is not true for other Linux distributions, such as Ubuntu. This could lead to a password prompt when using \texttt{pi-pwr}. As nodes are designed to run autonomously, the installation process for \texttt{ws-node} will configure \texttt{pi-pwr} to not require a \texttt{sudo} password.
 
-\hypertarget{indicators-and-heartbeats}{%
-\chapter{Indicators and heartbeats}\label{indicators-and-heartbeats}}
+\chapter{Indicators and heartbeats}\label{indicators-and-heartbeats}
 
 The script \texttt{ws-indicate} is used to indicate the device's status using the LED(s) on board the Raspberry Pi. The script \texttt{ws-heartbeat} can be used to transmit the device's status to a user-defined script that could provide logging, or submit the status to an online dashboard.
 
-\hypertarget{installation-of-ws-indcate-and-ws-heartbeat}{%
-\section{\texorpdfstring{Installation of \texttt{ws-indcate} and \texttt{ws-heartbeat}}{Installation of ws-indcate and ws-heartbeat}}\label{installation-of-ws-indcate-and-ws-heartbeat}}
+\section{\texorpdfstring{Installation of \texttt{ws-indcate} and \texttt{ws-heartbeat}}{Installation of ws-indcate and ws-heartbeat}}\label{installation-of-ws-indcate-and-ws-heartbeat}
 
 These tools are installed as part of the node installation process.
 
-\hypertarget{indicators}{%
-\section{Indicators}\label{indicators}}
+\section{Indicators}\label{indicators}
 
 Internally \texttt{ws-inidicate} makes repeated calls to \texttt{pi-pwr} to control the LED(s). There are three indicator routines, heartbeat (quick flash of LEDs in order to show device is functioning), countdown (flashes power LED), and record (power LED on, action LED off).
 
@@ -458,13 +416,11 @@ Internally \texttt{ws-inidicate} makes repeated calls to \texttt{pi-pwr} to cont
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{a-note-on-sudo-1}{%
-\subsection{\texorpdfstring{A note on \texttt{sudo}}{A note on sudo}}\label{a-note-on-sudo-1}}
+\subsection{\texorpdfstring{A note on \texttt{sudo}}{A note on sudo}}\label{a-note-on-sudo-1}
 
 Raspberry Pi OS (and previously Raspbian) allows the default user to run sudo without a password. This is not true for other Linux distributions, such as Ubuntu. This could lead to a password prompt when using \texttt{ws-indicate}. As nodes are designed to run autonomously, the installation process for \texttt{ws-node} will configure \texttt{ws-indicate} to not require a \texttt{sudo} password.
 
-\hypertarget{heartbeat}{%
-\section{Heartbeat}\label{heartbeat}}
+\section{Heartbeat}\label{heartbeat}
 
 The script \texttt{ws-heartbeat} is used to send a heartbeat signal to the devices.wildlife.systems server to indicate that the node is alive and connected, as well as to provide some information to assist problem diagnosis. The data sent comes from the onboard sensor readings (\texttt{sr\ onboard}) and the server stores the node ID, timestamp, CPU and GPU temperatures, and the amount of memory and storage used. The node must be registered with WildlifeSystems for this data to be stored.
 
@@ -478,11 +434,9 @@ The script may be run for debugging purposes at any time as follows.
 
 The script will exit silently on success.
 
-\hypertarget{developer-guidelines}{%
-\chapter{Developer Guidelines}\label{developer-guidelines}}
+\chapter{Developer Guidelines}\label{developer-guidelines}
 
-\hypertarget{documentation}{%
-\section{Documentation}\label{documentation}}
+\section{Documentation}\label{documentation}
 
 There are three main kinds of documentation in the WildlifeSystems project.
 
@@ -496,13 +450,11 @@ There are three main kinds of documentation in the WildlifeSystems project.
   \textbf{Overall project documentation}: This manual. \emph{How do I use the entire system for my research?}
 \end{enumerate}
 
-\hypertarget{server-tools}{%
-\chapter{Server Tools}\label{server-tools}}
+\chapter{Server Tools}\label{server-tools}
 
 These tools are only needed for running and maintaining the \href{https://wildlife.systems}{wildlife.systems} webserver.
 
-\hypertarget{installation}{%
-\section{Installation}\label{installation}}
+\section{Installation}\label{installation}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -515,8 +467,7 @@ These tools are only needed for running and maintaining the \href{https://wildli
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{adding-nodes-and-receieving-a-token}{%
-\section{Adding nodes and receieving a token}\label{adding-nodes-and-receieving-a-token}}
+\section{Adding nodes and receieving a token}\label{adding-nodes-and-receieving-a-token}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -526,8 +477,7 @@ These tools are only needed for running and maintaining the \href{https://wildli
 
 Adding a node by it's ID (serial number of the Raspberry Pi) will add the device to the wildlife.systems database, generate a token, and display the token (a UUID) in the console. This token is used to authenticate the device when it sends data to wildlife.systems.
 
-\hypertarget{removing-a-node}{%
-\section{Removing a node}\label{removing-a-node}}
+\section{Removing a node}\label{removing-a-node}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -535,17 +485,14 @@ Adding a node by it's ID (serial number of the Raspberry Pi) will add the device
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{appendix-appendix}{%
-\appendix}
+\appendix
 
 
-\hypertarget{return-codes}{%
-\chapter{Return codes}\label{return-codes}}
+\chapter{Return codes}\label{return-codes}
 
 The various scripts that form the WildlifeSystems ecosystem use a standard set of return codes.
 
-\hypertarget{script-functionality}{%
-\section{00-09 Script functionality}\label{script-functionality}}
+\section{00-09 Script functionality}\label{script-functionality}
 
 \begin{tabular}{l|l|l}
 \hline
@@ -559,8 +506,7 @@ Code & Label & Description\\
 \hline
 \end{tabular}
 
-\hypertarget{parameter-problems}{%
-\section{10-19 Parameter problems}\label{parameter-problems}}
+\section{10-19 Parameter problems}\label{parameter-problems}
 
 \begin{tabular}{l|l|l}
 \hline
@@ -572,8 +518,7 @@ Code & Label & Description\\
 \hline
 \end{tabular}
 
-\hypertarget{sensor-problems}{%
-\section{20-29 Sensor problems}\label{sensor-problems}}
+\section{20-29 Sensor problems}\label{sensor-problems}
 
 \begin{tabular}{l|l|l}
 \hline
@@ -585,8 +530,7 @@ Code & Label & Description\\
 \hline
 \end{tabular}
 
-\hypertarget{sound-device-problems}{%
-\section{30-39 Sound device problems}\label{sound-device-problems}}
+\section{30-39 Sound device problems}\label{sound-device-problems}
 
 \begin{tabular}{l|l|l}
 \hline
@@ -600,8 +544,7 @@ Code & Label & Description\\
 \hline
 \end{tabular}
 
-\hypertarget{image-device-problems}{%
-\section{40-49 Image device problems}\label{image-device-problems}}
+\section{40-49 Image device problems}\label{image-device-problems}
 
 \begin{tabular}{l|l|l}
 \hline
@@ -615,8 +558,7 @@ Code & Label & Description\\
 \hline
 \end{tabular}
 
-\hypertarget{power-management-problems}{%
-\section{50-59 Power management problems}\label{power-management-problems}}
+\section{50-59 Power management problems}\label{power-management-problems}
 
 \begin{tabular}{l|l|l}
 \hline
@@ -628,8 +570,7 @@ Code & Label & Description\\
 \hline
 \end{tabular}
 
-\hypertarget{special-meanings}{%
-\section{60-69 Special meanings}\label{special-meanings}}
+\section{60-69 Special meanings}\label{special-meanings}
 
 \begin{tabular}{l|l|l}
 \hline
