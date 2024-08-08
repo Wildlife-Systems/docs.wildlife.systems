@@ -18,8 +18,14 @@ storageCosts()
 
 These technologies can potentially create vast datasets, and in order to adhere to the FAIR principles (Findable, Accessible, Interoperable, Reusable), it is important for the data to be accompanied by an appropriate suite of data standards, such as those developed by TDWG.
 
-## Structure of Wildlife Systems
+## Overall Philosophy
 
-### Overall Philosophy
+### Leverage what already exists
+
+### Plan for heterogeneity
+
+### Open Source
+
+## Structure of Wildlife Systems
 
 ### Packages
