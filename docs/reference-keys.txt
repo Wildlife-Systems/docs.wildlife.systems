@@ -1,4 +1,7 @@
+fig:storage-costs
 biodiversity-technologies
+what-are-biodiversity-technologies
+what-has-enabled-biodiversity-technologies
 structure-of-wildlife-systems
 overall-philosophy
 packages
