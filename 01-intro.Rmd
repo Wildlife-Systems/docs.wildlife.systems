@@ -1,6 +1,6 @@
 # Biodiversity Technologies 
 
-## What are _Biodiversity Technologies_?
+## What are Biodiversity Technologies?
 
 Biodiversity technologies are tools that allow researchers and others to study, monitor and
 conserve biodiversity. These tools can be used to monitor a wide range of species, habitats, and ecosystems, potentially in (near) real-time and/or from a great distance away.
@@ -22,7 +22,39 @@ These technologies can potentially create vast datasets, and in order to adhere 
 
 ### Leverage what already exists
 
+Many of the tools that are needed to monitor biodiversity already exist, and the goal of WildlifeSystems is to bring these tools together in a coherent and integrated way. This will allow researchers and others to build on existing technologies to develop new tools and applications that can be used to monitor biodiversity in a wide range of environments.These tools are designed to be flexible, scalable, and easy to use, and to provide a platform for the development of new technologies and applications.
+
+### Innovate where necessary
+
+“Technology is stuff that doesn’t work yet.”
+`r tufte::quote_footer('--- Bran Ferren')`  
+
+Where suitable technological solutions already exist, use them. Limit technological research to what needs to be new. Most of the time it's OK to use existing technology, and focus development on the biodiversity related problem you're trying to solve. Older technologies are often better understood and more stable. Some of the technologies WildlifeSystems leverages to innovate in the biodiversity sphere are given in Table \@ref(tab:tech-age).
+
+```{r tech-age, echo=FALSE, tab.cap="Age of technologies underpinning WildlifeSystems."}
+tech <- c(
+  "Ethernet",
+  "BASH",
+  "Linux"
+)
+years <- c(
+  1973,
+  1989,
+  1991
+)
+years_ago <- as.integer(format(Sys.Date(), "%Y")) - years
+
+data <- cbind(tech,years, years_ago)
+colnames(data) <- c("Technology", "Year Introduced", paste("Age in ", format(Sys.Date(), "%Y")))
+
+knitr::kable(data)
+```
+
 ### Plan for heterogeneity
+
+[Any network of devices will become heterogeneous given sufficient time](https://medium.ebaker.me.uk/sensor-networks1-abstracting-heterogeneity-319c0c41c9fa). The primary driver of this shift to heterogeneity is continuous technological innovation combined with obsolescence of technical components. 
+
+Secondary drivers are changes in the purpose, capabilities, and/or scale of the network over time.
 
 ### Open Source
 

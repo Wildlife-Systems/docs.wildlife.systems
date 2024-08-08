@@ -1,9 +1,14 @@
 fig:storage-costs
+tab:tech-age
 biodiversity-technologies
 what-are-biodiversity-technologies
 what-has-enabled-biodiversity-technologies
-structure-of-wildlife-systems
 overall-philosophy
+leverage-what-already-exists
+innovate-where-necessary
+plan-for-heterogeneity
+open-source
+structure-of-wildlife-systems
 packages
 sensor-networks
 environmental-sensors
