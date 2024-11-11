@@ -29,6 +29,7 @@ the-sensor-reading-process
 installing-new-sensors
 supported-sensors
 dht11
+bme680
 implementing-new-sensors
 reading-the-sensor
 in-bash

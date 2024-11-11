@@ -318,6 +318,10 @@ The DHT11 is a low-cost temperature and humidity sensor. It uses a capacitive hu
 
 The low-cost nature of the sensor makes it useful depsite several shortcomings, e.g.~for monitoring the temperature and humidity inside electronics enclosures where accuracy is not critical but the sensor can provide critical early warning of overheating or condensation.
 
+\section{BME680}\label{bme680}
+
+4-in-1 sensor that provides humidity, temperature, pressure, and gas readings.
+
 \chapter{Implementing new sensors}\label{implementing-new-sensors}
 
 New sensors should be implemented as new packages (i.e, a new GitHub repository). Packages have a standard format, and should be named \texttt{sensor-\textless{}sensor-name\textgreater{}} where \texttt{\textless{}sensor-name\textgreater{}} is short, descriptive of the sensor (e.g.~model number), and unique within the WildlifeSystems ecosystem.
