@@ -120,7 +120,7 @@
 
 \title{WildlifeSystems - biodiversity technologies}
 \author{\href{https://ebaker.me.uk}{Ed Baker}}
-\date{2024-08-09}
+\date{2024-11-11}
 
 \begin{document}
 \maketitle
@@ -151,6 +151,10 @@ conserve biodiversity. These tools can be used to monitor a wide range of specie
 The development of biodiversity technologies has been enabled by the rapid advances in sensor technology, data processing, and communication networks. These technologies have made it possible to collect, store, and analyse large amounts of data from a wide range of sources, including remote sensors, cameras, and acoustic recorders.
 
 This has been accompanied by a decline in the cost of these technologies (e.g.~Figure \ref{fig:storage-costs}), making them more accessible to researchers, conservationists, and others interested in monitoring biodiversity.
+
+\begin{verbatim}
+## Warning in xy.coords(x, y, xlabel, ylabel, log): NAs introduced by coercion
+\end{verbatim}
 
 \begin{figure}
 \centering
@@ -218,7 +222,15 @@ Defined interfaces between components allow for easy integration of new technolo
 
 \subsection{Temperature}\label{temperature}
 
+\subsubsection{Thermistors}\label{thermistors}
+
+A thermistor is a type of resistor whose resistance changes significantly with temperature. The word is a portmanteau of thermal and resistor.
+
 \subsection{Humidity}\label{humidity}
+
+\subsubsection{Capacitive Humidity Sensors}\label{capacitive-humidity-sensors}
+
+A capacitative humidity sensor consists of a small capacitor with a hygroscopic dielectric material between two electrodes. The dielectric material, usually a plastic or polymer, has a low dielectric constant when dry. In the presence of moisture, the dielectric constant increases due to water vapor, which has a much higher dielectric constant. As moisture is absorbed, the sensor's capacitance increases. The amount of moisture absorbed depends on the surrounding temperature and water vapour pressure, which also affects the hygroscopic dielectric material used in the sensor.
 
 \subsection{Air Pressure}\label{air-pressure}
 
@@ -229,6 +241,8 @@ Defined interfaces between components allow for easy integration of new technolo
 \chapter{Sensors in WildlifeSystems}\label{sensors-in-wildlifesystems}
 
 The WildlifeSystems platform comes with support for some popular existing environmental sensors, although there are many on the market and the range available is subject to constant change. The modular nature of WildlifeSystems allows for new sensors to be easily integrated if the need arises.
+
+WildlifeSystems takes an abstracted approach to sensors. Interface modules are provided for each sensor, which can be used to read the sensor data into a standard format.
 
 As many physical packages contain multiple sensors (e.g.~the supported BME680 can monitor temperature, humidity, air pressure and air quality) there is a conceptual difference between a ``device'' and the one or more sensors on a device.
 
@@ -295,6 +309,14 @@ The sensor reading process in WildlifeSystems has five steps.
 \end{enumerate}
 
 \section{Installing new sensors}\label{installing-new-sensors}
+
+\chapter{Supported sensors}\label{supported-sensors}
+
+\section{DHT11}\label{dht11}
+
+The DHT11 is a low-cost temperature and humidity sensor. It uses a capacitive humidity sensor and a thermistor to measure the surrounding air, and sends the data by digital signals on the data pin.
+
+The low-cost nature of the sensor makes it useful depsite several shortcomings, e.g.~for monitoring the temperature and humidity inside electronics enclosures where accuracy is not critical but the sensor can provide critical early warning of overheating or condensation.
 
 \chapter{Implementing new sensors}\label{implementing-new-sensors}
 

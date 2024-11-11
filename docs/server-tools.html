@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 13 Server Tools | WildlifeSystems - biodiversity technologies</title>
+  <title>Chapter 14 Server Tools | WildlifeSystems - biodiversity technologies</title>
   <meta name="description" content="Manual for using WildlifeSystems technologies for monitoring biodiversity." />
-  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.41 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 13 Server Tools | WildlifeSystems - biodiversity technologies" />
+  <meta property="og:title" content="Chapter 14 Server Tools | WildlifeSystems - biodiversity technologies" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="Manual for using WildlifeSystems technologies for monitoring biodiversity." />
   <meta name="github-repo" content="wildlife-systems/docs.wildlife.systems" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 13 Server Tools | WildlifeSystems - biodiversity technologies" />
+  <meta name="twitter:title" content="Chapter 14 Server Tools | WildlifeSystems - biodiversity technologies" />
   
   <meta name="twitter:description" content="Manual for using WildlifeSystems technologies for monitoring biodiversity." />
   
@@ -23,7 +23,7 @@
 <meta name="author" content="Ed Baker" />
 
 
-<meta name="date" content="2024-08-09" />
+<meta name="date" content="2024-11-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -75,7 +75,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -192,55 +192,59 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.4" data-path="sensors-in-wildlifesystems.html"><a href="sensors-in-wildlifesystems.html#the-sensor-reading-process"><i class="fa fa-check"></i><b>4.4</b> The sensor reading process</a></li>
 <li class="chapter" data-level="4.5" data-path="sensors-in-wildlifesystems.html"><a href="sensors-in-wildlifesystems.html#installing-new-sensors"><i class="fa fa-check"></i><b>4.5</b> Installing new sensors</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="implementing-new-sensors.html"><a href="implementing-new-sensors.html"><i class="fa fa-check"></i><b>5</b> Implementing new sensors</a>
+<li class="chapter" data-level="5" data-path="supported-sensors.html"><a href="supported-sensors.html"><i class="fa fa-check"></i><b>5</b> Supported sensors</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="implementing-new-sensors.html"><a href="implementing-new-sensors.html#reading-the-sensor"><i class="fa fa-check"></i><b>5.1</b> Reading the sensor</a>
-<ul>
-<li class="chapter" data-level="5.1.1" data-path="implementing-new-sensors.html"><a href="implementing-new-sensors.html#in-bash"><i class="fa fa-check"></i><b>5.1.1</b> In bash</a></li>
-<li class="chapter" data-level="5.1.2" data-path="implementing-new-sensors.html"><a href="implementing-new-sensors.html#in-python"><i class="fa fa-check"></i><b>5.1.2</b> In Python</a></li>
+<li class="chapter" data-level="5.1" data-path="supported-sensors.html"><a href="supported-sensors.html#dht11"><i class="fa fa-check"></i><b>5.1</b> DHT11</a></li>
 </ul></li>
-<li class="chapter" data-level="5.2" data-path="implementing-new-sensors.html"><a href="implementing-new-sensors.html#setting-the-environment"><i class="fa fa-check"></i><b>5.2</b> Setting the environment</a></li>
-<li class="chapter" data-level="5.3" data-path="implementing-new-sensors.html"><a href="implementing-new-sensors.html#install"><i class="fa fa-check"></i><b>5.3</b> Install</a></li>
-<li class="chapter" data-level="5.4" data-path="implementing-new-sensors.html"><a href="implementing-new-sensors.html#the-installation-process-with-si"><i class="fa fa-check"></i><b>5.4</b> The installation process with <code>si</code></a></li>
-<li class="chapter" data-level="5.5" data-path="implementing-new-sensors.html"><a href="implementing-new-sensors.html#submitting-packages-to-wildlifesystems"><i class="fa fa-check"></i><b>5.5</b> Submitting packages to WildlifeSystems</a></li>
-</ul></li>
-<li class="chapter" data-level="6" data-path="sound-devices.html"><a href="sound-devices.html"><i class="fa fa-check"></i><b>6</b> Sound Devices</a>
+<li class="chapter" data-level="6" data-path="implementing-new-sensors.html"><a href="implementing-new-sensors.html"><i class="fa fa-check"></i><b>6</b> Implementing new sensors</a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="sound-devices.html"><a href="sound-devices.html#how-sound-devices-work"><i class="fa fa-check"></i><b>6.1</b> How sound devices work</a></li>
-</ul></li>
-<li class="chapter" data-level="7" data-path="sound-devices-in-wildlifesystems.html"><a href="sound-devices-in-wildlifesystems.html"><i class="fa fa-check"></i><b>7</b> Sound devices in WildlifeSystems</a></li>
-<li class="chapter" data-level="8" data-path="imaging-devices.html"><a href="imaging-devices.html"><i class="fa fa-check"></i><b>8</b> Imaging Devices</a>
+<li class="chapter" data-level="6.1" data-path="implementing-new-sensors.html"><a href="implementing-new-sensors.html#reading-the-sensor"><i class="fa fa-check"></i><b>6.1</b> Reading the sensor</a>
 <ul>
-<li class="chapter" data-level="8.1" data-path="imaging-devices.html"><a href="imaging-devices.html#how-imaging-devices-work"><i class="fa fa-check"></i><b>8.1</b> How imaging devices work</a></li>
+<li class="chapter" data-level="6.1.1" data-path="implementing-new-sensors.html"><a href="implementing-new-sensors.html#in-bash"><i class="fa fa-check"></i><b>6.1.1</b> In bash</a></li>
+<li class="chapter" data-level="6.1.2" data-path="implementing-new-sensors.html"><a href="implementing-new-sensors.html#in-python"><i class="fa fa-check"></i><b>6.1.2</b> In Python</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="imaging-devices-in-wildlifesystems.html"><a href="imaging-devices-in-wildlifesystems.html"><i class="fa fa-check"></i><b>9</b> Imaging devices in WildlifeSystems</a></li>
-<li class="chapter" data-level="10" data-path="power-management.html"><a href="power-management.html"><i class="fa fa-check"></i><b>10</b> Power Management</a>
+<li class="chapter" data-level="6.2" data-path="implementing-new-sensors.html"><a href="implementing-new-sensors.html#setting-the-environment"><i class="fa fa-check"></i><b>6.2</b> Setting the environment</a></li>
+<li class="chapter" data-level="6.3" data-path="implementing-new-sensors.html"><a href="implementing-new-sensors.html#install"><i class="fa fa-check"></i><b>6.3</b> Install</a></li>
+<li class="chapter" data-level="6.4" data-path="implementing-new-sensors.html"><a href="implementing-new-sensors.html#the-installation-process-with-si"><i class="fa fa-check"></i><b>6.4</b> The installation process with <code>si</code></a></li>
+<li class="chapter" data-level="6.5" data-path="implementing-new-sensors.html"><a href="implementing-new-sensors.html#submitting-packages-to-wildlifesystems"><i class="fa fa-check"></i><b>6.5</b> Submitting packages to WildlifeSystems</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="sound-devices.html"><a href="sound-devices.html"><i class="fa fa-check"></i><b>7</b> Sound Devices</a>
 <ul>
-<li class="chapter" data-level="10.1" data-path="power-management.html"><a href="power-management.html#installation-of-power-management-tools"><i class="fa fa-check"></i><b>10.1</b> Installation of power management tools</a></li>
-<li class="chapter" data-level="10.2" data-path="power-management.html"><a href="power-management.html#turning-funtionality-on-and-off"><i class="fa fa-check"></i><b>10.2</b> Turning funtionality on and off</a></li>
-<li class="chapter" data-level="10.3" data-path="power-management.html"><a href="power-management.html#considerations"><i class="fa fa-check"></i><b>10.3</b> Considerations</a>
+<li class="chapter" data-level="7.1" data-path="sound-devices.html"><a href="sound-devices.html#how-sound-devices-work"><i class="fa fa-check"></i><b>7.1</b> How sound devices work</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="sound-devices-in-wildlifesystems.html"><a href="sound-devices-in-wildlifesystems.html"><i class="fa fa-check"></i><b>8</b> Sound devices in WildlifeSystems</a></li>
+<li class="chapter" data-level="9" data-path="imaging-devices.html"><a href="imaging-devices.html"><i class="fa fa-check"></i><b>9</b> Imaging Devices</a>
 <ul>
-<li class="chapter" data-level="10.3.1" data-path="power-management.html"><a href="power-management.html#a-note-on-sudo"><i class="fa fa-check"></i><b>10.3.1</b> A note on <code>sudo</code></a></li>
+<li class="chapter" data-level="9.1" data-path="imaging-devices.html"><a href="imaging-devices.html#how-imaging-devices-work"><i class="fa fa-check"></i><b>9.1</b> How imaging devices work</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="imaging-devices-in-wildlifesystems.html"><a href="imaging-devices-in-wildlifesystems.html"><i class="fa fa-check"></i><b>10</b> Imaging devices in WildlifeSystems</a></li>
+<li class="chapter" data-level="11" data-path="power-management.html"><a href="power-management.html"><i class="fa fa-check"></i><b>11</b> Power Management</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="power-management.html"><a href="power-management.html#installation-of-power-management-tools"><i class="fa fa-check"></i><b>11.1</b> Installation of power management tools</a></li>
+<li class="chapter" data-level="11.2" data-path="power-management.html"><a href="power-management.html#turning-funtionality-on-and-off"><i class="fa fa-check"></i><b>11.2</b> Turning funtionality on and off</a></li>
+<li class="chapter" data-level="11.3" data-path="power-management.html"><a href="power-management.html#considerations"><i class="fa fa-check"></i><b>11.3</b> Considerations</a>
+<ul>
+<li class="chapter" data-level="11.3.1" data-path="power-management.html"><a href="power-management.html#a-note-on-sudo"><i class="fa fa-check"></i><b>11.3.1</b> A note on <code>sudo</code></a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="indicators-and-heartbeats.html"><a href="indicators-and-heartbeats.html"><i class="fa fa-check"></i><b>11</b> Indicators and heartbeats</a>
+<li class="chapter" data-level="12" data-path="indicators-and-heartbeats.html"><a href="indicators-and-heartbeats.html"><i class="fa fa-check"></i><b>12</b> Indicators and heartbeats</a>
 <ul>
-<li class="chapter" data-level="11.1" data-path="indicators-and-heartbeats.html"><a href="indicators-and-heartbeats.html#installation-of-ws-indcate-and-ws-heartbeat"><i class="fa fa-check"></i><b>11.1</b> Installation of <code>ws-indcate</code> and <code>ws-heartbeat</code></a></li>
-<li class="chapter" data-level="11.2" data-path="indicators-and-heartbeats.html"><a href="indicators-and-heartbeats.html#indicators"><i class="fa fa-check"></i><b>11.2</b> Indicators</a>
+<li class="chapter" data-level="12.1" data-path="indicators-and-heartbeats.html"><a href="indicators-and-heartbeats.html#installation-of-ws-indcate-and-ws-heartbeat"><i class="fa fa-check"></i><b>12.1</b> Installation of <code>ws-indcate</code> and <code>ws-heartbeat</code></a></li>
+<li class="chapter" data-level="12.2" data-path="indicators-and-heartbeats.html"><a href="indicators-and-heartbeats.html#indicators"><i class="fa fa-check"></i><b>12.2</b> Indicators</a>
 <ul>
-<li class="chapter" data-level="11.2.1" data-path="indicators-and-heartbeats.html"><a href="indicators-and-heartbeats.html#a-note-on-sudo-1"><i class="fa fa-check"></i><b>11.2.1</b> A note on <code>sudo</code></a></li>
+<li class="chapter" data-level="12.2.1" data-path="indicators-and-heartbeats.html"><a href="indicators-and-heartbeats.html#a-note-on-sudo-1"><i class="fa fa-check"></i><b>12.2.1</b> A note on <code>sudo</code></a></li>
 </ul></li>
-<li class="chapter" data-level="11.3" data-path="indicators-and-heartbeats.html"><a href="indicators-and-heartbeats.html#heartbeat"><i class="fa fa-check"></i><b>11.3</b> Heartbeat</a></li>
+<li class="chapter" data-level="12.3" data-path="indicators-and-heartbeats.html"><a href="indicators-and-heartbeats.html#heartbeat"><i class="fa fa-check"></i><b>12.3</b> Heartbeat</a></li>
 </ul></li>
-<li class="chapter" data-level="12" data-path="developer-guidelines.html"><a href="developer-guidelines.html"><i class="fa fa-check"></i><b>12</b> Developer Guidelines</a>
+<li class="chapter" data-level="13" data-path="developer-guidelines.html"><a href="developer-guidelines.html"><i class="fa fa-check"></i><b>13</b> Developer Guidelines</a>
 <ul>
-<li class="chapter" data-level="12.1" data-path="developer-guidelines.html"><a href="developer-guidelines.html#documentation"><i class="fa fa-check"></i><b>12.1</b> Documentation</a></li>
+<li class="chapter" data-level="13.1" data-path="developer-guidelines.html"><a href="developer-guidelines.html#documentation"><i class="fa fa-check"></i><b>13.1</b> Documentation</a></li>
 </ul></li>
-<li class="chapter" data-level="13" data-path="server-tools.html"><a href="server-tools.html"><i class="fa fa-check"></i><b>13</b> Server Tools</a>
+<li class="chapter" data-level="14" data-path="server-tools.html"><a href="server-tools.html"><i class="fa fa-check"></i><b>14</b> Server Tools</a>
 <ul>
-<li class="chapter" data-level="13.1" data-path="server-tools.html"><a href="server-tools.html#installation"><i class="fa fa-check"></i><b>13.1</b> Installation</a></li>
-<li class="chapter" data-level="13.2" data-path="server-tools.html"><a href="server-tools.html#adding-nodes-and-receieving-a-token"><i class="fa fa-check"></i><b>13.2</b> Adding nodes and receieving a token</a></li>
-<li class="chapter" data-level="13.3" data-path="server-tools.html"><a href="server-tools.html#removing-a-node"><i class="fa fa-check"></i><b>13.3</b> Removing a node</a></li>
+<li class="chapter" data-level="14.1" data-path="server-tools.html"><a href="server-tools.html#installation"><i class="fa fa-check"></i><b>14.1</b> Installation</a></li>
+<li class="chapter" data-level="14.2" data-path="server-tools.html"><a href="server-tools.html#adding-nodes-and-receieving-a-token"><i class="fa fa-check"></i><b>14.2</b> Adding nodes and receieving a token</a></li>
+<li class="chapter" data-level="14.3" data-path="server-tools.html"><a href="server-tools.html#removing-a-node"><i class="fa fa-check"></i><b>14.3</b> Removing a node</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="appendix"><span><b>Appendix</b></span></li>
@@ -274,26 +278,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="server-tools" class="section level1 hasAnchor" number="13">
-<h1><span class="header-section-number">Chapter 13</span> Server Tools<a href="server-tools.html#server-tools" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="server-tools" class="section level1 hasAnchor" number="14">
+<h1><span class="header-section-number">Chapter 14</span> Server Tools<a href="server-tools.html#server-tools" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>These tools are only needed for running and maintaining the <a href="https://wildlife.systems">wildlife.systems</a> webserver.</p>
-<div id="installation" class="section level2 hasAnchor" number="13.1">
-<h2><span class="header-section-number">13.1</span> Installation<a href="server-tools.html#installation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb11"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb11-1"><a href="server-tools.html#cb11-1" tabindex="-1"></a><span class="fu">git</span> clone git@github.com:Wildlife-Systems/wildlife.systems-tools.git</span>
-<span id="cb11-2"><a href="server-tools.html#cb11-2" tabindex="-1"></a><span class="bu">cd</span> wildlife.systems-tools</span>
-<span id="cb11-3"><a href="server-tools.html#cb11-3" tabindex="-1"></a><span class="ex">./install</span></span>
-<span id="cb11-4"><a href="server-tools.html#cb11-4" tabindex="-1"></a><span class="fu">cp</span> .ws-db.php ~/</span>
-<span id="cb11-5"><a href="server-tools.html#cb11-5" tabindex="-1"></a></span>
-<span id="cb11-6"><a href="server-tools.html#cb11-6" tabindex="-1"></a><span class="co">#Edit ~/.ws-db.php to connect to the wildlife-systems database</span></span></code></pre></div>
+<div id="installation" class="section level2 hasAnchor" number="14.1">
+<h2><span class="header-section-number">14.1</span> Installation<a href="server-tools.html#installation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb12"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb12-1"><a href="server-tools.html#cb12-1" tabindex="-1"></a><span class="fu">git</span> clone git@github.com:Wildlife-Systems/wildlife.systems-tools.git</span>
+<span id="cb12-2"><a href="server-tools.html#cb12-2" tabindex="-1"></a><span class="bu">cd</span> wildlife.systems-tools</span>
+<span id="cb12-3"><a href="server-tools.html#cb12-3" tabindex="-1"></a><span class="ex">./install</span></span>
+<span id="cb12-4"><a href="server-tools.html#cb12-4" tabindex="-1"></a><span class="fu">cp</span> .ws-db.php ~/</span>
+<span id="cb12-5"><a href="server-tools.html#cb12-5" tabindex="-1"></a></span>
+<span id="cb12-6"><a href="server-tools.html#cb12-6" tabindex="-1"></a><span class="co">#Edit ~/.ws-db.php to connect to the wildlife-systems database</span></span></code></pre></div>
 </div>
-<div id="adding-nodes-and-receieving-a-token" class="section level2 hasAnchor" number="13.2">
-<h2><span class="header-section-number">13.2</span> Adding nodes and receieving a token<a href="server-tools.html#adding-nodes-and-receieving-a-token" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb12"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb12-1"><a href="server-tools.html#cb12-1" tabindex="-1"></a><span class="ex">ws-node-add</span> <span class="op">&lt;</span>node_id<span class="op">&gt;</span></span></code></pre></div>
+<div id="adding-nodes-and-receieving-a-token" class="section level2 hasAnchor" number="14.2">
+<h2><span class="header-section-number">14.2</span> Adding nodes and receieving a token<a href="server-tools.html#adding-nodes-and-receieving-a-token" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb13"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb13-1"><a href="server-tools.html#cb13-1" tabindex="-1"></a><span class="ex">ws-node-add</span> <span class="op">&lt;</span>node_id<span class="op">&gt;</span></span></code></pre></div>
 <p>Adding a node by it’s ID (serial number of the Raspberry Pi) will add the device to the wildlife.systems database, generate a token, and display the token (a UUID) in the console. This token is used to authenticate the device when it sends data to wildlife.systems.</p>
 </div>
-<div id="removing-a-node" class="section level2 hasAnchor" number="13.3">
-<h2><span class="header-section-number">13.3</span> Removing a node<a href="server-tools.html#removing-a-node" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb13"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb13-1"><a href="server-tools.html#cb13-1" tabindex="-1"></a><span class="ex">ws-node-remove</span> <span class="op">&lt;</span>node_id<span class="op">&gt;</span></span></code></pre></div>
+<div id="removing-a-node" class="section level2 hasAnchor" number="14.3">
+<h2><span class="header-section-number">14.3</span> Removing a node<a href="server-tools.html#removing-a-node" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb14"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb14-1"><a href="server-tools.html#cb14-1" tabindex="-1"></a><span class="ex">ws-node-remove</span> <span class="op">&lt;</span>node_id<span class="op">&gt;</span></span></code></pre></div>
 
 </div>
 </div>

@@ -15,7 +15,9 @@ sensor-networks
 environmental-sensors
 how-sensors-work
 temperature
+thermistors
 humidity
+capacitive-humidity-sensors
 air-pressure
 gases
 heated-gas-resistance
@@ -25,6 +27,8 @@ installing-sensor-support
 reading-data-from-a-device
 the-sensor-reading-process
 installing-new-sensors
+supported-sensors
+dht11
 implementing-new-sensors
 reading-the-sensor
 in-bash

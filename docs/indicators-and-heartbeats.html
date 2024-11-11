@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 11 Indicators and heartbeats | WildlifeSystems - biodiversity technologies</title>
+  <title>Chapter 12 Indicators and heartbeats | WildlifeSystems - biodiversity technologies</title>
   <meta name="description" content="Manual for using WildlifeSystems technologies for monitoring biodiversity." />
-  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.41 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 11 Indicators and heartbeats | WildlifeSystems - biodiversity technologies" />
+  <meta property="og:title" content="Chapter 12 Indicators and heartbeats | WildlifeSystems - biodiversity technologies" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="Manual for using WildlifeSystems technologies for monitoring biodiversity." />
   <meta name="github-repo" content="wildlife-systems/docs.wildlife.systems" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 11 Indicators and heartbeats | WildlifeSystems - biodiversity technologies" />
+  <meta name="twitter:title" content="Chapter 12 Indicators and heartbeats | WildlifeSystems - biodiversity technologies" />
   
   <meta name="twitter:description" content="Manual for using WildlifeSystems technologies for monitoring biodiversity." />
   
@@ -23,7 +23,7 @@
 <meta name="author" content="Ed Baker" />
 
 
-<meta name="date" content="2024-08-09" />
+<meta name="date" content="2024-11-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -75,7 +75,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -192,55 +192,59 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.4" data-path="sensors-in-wildlifesystems.html"><a href="sensors-in-wildlifesystems.html#the-sensor-reading-process"><i class="fa fa-check"></i><b>4.4</b> The sensor reading process</a></li>
 <li class="chapter" data-level="4.5" data-path="sensors-in-wildlifesystems.html"><a href="sensors-in-wildlifesystems.html#installing-new-sensors"><i class="fa fa-check"></i><b>4.5</b> Installing new sensors</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="implementing-new-sensors.html"><a href="implementing-new-sensors.html"><i class="fa fa-check"></i><b>5</b> Implementing new sensors</a>
+<li class="chapter" data-level="5" data-path="supported-sensors.html"><a href="supported-sensors.html"><i class="fa fa-check"></i><b>5</b> Supported sensors</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="implementing-new-sensors.html"><a href="implementing-new-sensors.html#reading-the-sensor"><i class="fa fa-check"></i><b>5.1</b> Reading the sensor</a>
-<ul>
-<li class="chapter" data-level="5.1.1" data-path="implementing-new-sensors.html"><a href="implementing-new-sensors.html#in-bash"><i class="fa fa-check"></i><b>5.1.1</b> In bash</a></li>
-<li class="chapter" data-level="5.1.2" data-path="implementing-new-sensors.html"><a href="implementing-new-sensors.html#in-python"><i class="fa fa-check"></i><b>5.1.2</b> In Python</a></li>
+<li class="chapter" data-level="5.1" data-path="supported-sensors.html"><a href="supported-sensors.html#dht11"><i class="fa fa-check"></i><b>5.1</b> DHT11</a></li>
 </ul></li>
-<li class="chapter" data-level="5.2" data-path="implementing-new-sensors.html"><a href="implementing-new-sensors.html#setting-the-environment"><i class="fa fa-check"></i><b>5.2</b> Setting the environment</a></li>
-<li class="chapter" data-level="5.3" data-path="implementing-new-sensors.html"><a href="implementing-new-sensors.html#install"><i class="fa fa-check"></i><b>5.3</b> Install</a></li>
-<li class="chapter" data-level="5.4" data-path="implementing-new-sensors.html"><a href="implementing-new-sensors.html#the-installation-process-with-si"><i class="fa fa-check"></i><b>5.4</b> The installation process with <code>si</code></a></li>
-<li class="chapter" data-level="5.5" data-path="implementing-new-sensors.html"><a href="implementing-new-sensors.html#submitting-packages-to-wildlifesystems"><i class="fa fa-check"></i><b>5.5</b> Submitting packages to WildlifeSystems</a></li>
-</ul></li>
-<li class="chapter" data-level="6" data-path="sound-devices.html"><a href="sound-devices.html"><i class="fa fa-check"></i><b>6</b> Sound Devices</a>
+<li class="chapter" data-level="6" data-path="implementing-new-sensors.html"><a href="implementing-new-sensors.html"><i class="fa fa-check"></i><b>6</b> Implementing new sensors</a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="sound-devices.html"><a href="sound-devices.html#how-sound-devices-work"><i class="fa fa-check"></i><b>6.1</b> How sound devices work</a></li>
-</ul></li>
-<li class="chapter" data-level="7" data-path="sound-devices-in-wildlifesystems.html"><a href="sound-devices-in-wildlifesystems.html"><i class="fa fa-check"></i><b>7</b> Sound devices in WildlifeSystems</a></li>
-<li class="chapter" data-level="8" data-path="imaging-devices.html"><a href="imaging-devices.html"><i class="fa fa-check"></i><b>8</b> Imaging Devices</a>
+<li class="chapter" data-level="6.1" data-path="implementing-new-sensors.html"><a href="implementing-new-sensors.html#reading-the-sensor"><i class="fa fa-check"></i><b>6.1</b> Reading the sensor</a>
 <ul>
-<li class="chapter" data-level="8.1" data-path="imaging-devices.html"><a href="imaging-devices.html#how-imaging-devices-work"><i class="fa fa-check"></i><b>8.1</b> How imaging devices work</a></li>
+<li class="chapter" data-level="6.1.1" data-path="implementing-new-sensors.html"><a href="implementing-new-sensors.html#in-bash"><i class="fa fa-check"></i><b>6.1.1</b> In bash</a></li>
+<li class="chapter" data-level="6.1.2" data-path="implementing-new-sensors.html"><a href="implementing-new-sensors.html#in-python"><i class="fa fa-check"></i><b>6.1.2</b> In Python</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="imaging-devices-in-wildlifesystems.html"><a href="imaging-devices-in-wildlifesystems.html"><i class="fa fa-check"></i><b>9</b> Imaging devices in WildlifeSystems</a></li>
-<li class="chapter" data-level="10" data-path="power-management.html"><a href="power-management.html"><i class="fa fa-check"></i><b>10</b> Power Management</a>
+<li class="chapter" data-level="6.2" data-path="implementing-new-sensors.html"><a href="implementing-new-sensors.html#setting-the-environment"><i class="fa fa-check"></i><b>6.2</b> Setting the environment</a></li>
+<li class="chapter" data-level="6.3" data-path="implementing-new-sensors.html"><a href="implementing-new-sensors.html#install"><i class="fa fa-check"></i><b>6.3</b> Install</a></li>
+<li class="chapter" data-level="6.4" data-path="implementing-new-sensors.html"><a href="implementing-new-sensors.html#the-installation-process-with-si"><i class="fa fa-check"></i><b>6.4</b> The installation process with <code>si</code></a></li>
+<li class="chapter" data-level="6.5" data-path="implementing-new-sensors.html"><a href="implementing-new-sensors.html#submitting-packages-to-wildlifesystems"><i class="fa fa-check"></i><b>6.5</b> Submitting packages to WildlifeSystems</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="sound-devices.html"><a href="sound-devices.html"><i class="fa fa-check"></i><b>7</b> Sound Devices</a>
 <ul>
-<li class="chapter" data-level="10.1" data-path="power-management.html"><a href="power-management.html#installation-of-power-management-tools"><i class="fa fa-check"></i><b>10.1</b> Installation of power management tools</a></li>
-<li class="chapter" data-level="10.2" data-path="power-management.html"><a href="power-management.html#turning-funtionality-on-and-off"><i class="fa fa-check"></i><b>10.2</b> Turning funtionality on and off</a></li>
-<li class="chapter" data-level="10.3" data-path="power-management.html"><a href="power-management.html#considerations"><i class="fa fa-check"></i><b>10.3</b> Considerations</a>
+<li class="chapter" data-level="7.1" data-path="sound-devices.html"><a href="sound-devices.html#how-sound-devices-work"><i class="fa fa-check"></i><b>7.1</b> How sound devices work</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="sound-devices-in-wildlifesystems.html"><a href="sound-devices-in-wildlifesystems.html"><i class="fa fa-check"></i><b>8</b> Sound devices in WildlifeSystems</a></li>
+<li class="chapter" data-level="9" data-path="imaging-devices.html"><a href="imaging-devices.html"><i class="fa fa-check"></i><b>9</b> Imaging Devices</a>
 <ul>
-<li class="chapter" data-level="10.3.1" data-path="power-management.html"><a href="power-management.html#a-note-on-sudo"><i class="fa fa-check"></i><b>10.3.1</b> A note on <code>sudo</code></a></li>
+<li class="chapter" data-level="9.1" data-path="imaging-devices.html"><a href="imaging-devices.html#how-imaging-devices-work"><i class="fa fa-check"></i><b>9.1</b> How imaging devices work</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="imaging-devices-in-wildlifesystems.html"><a href="imaging-devices-in-wildlifesystems.html"><i class="fa fa-check"></i><b>10</b> Imaging devices in WildlifeSystems</a></li>
+<li class="chapter" data-level="11" data-path="power-management.html"><a href="power-management.html"><i class="fa fa-check"></i><b>11</b> Power Management</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="power-management.html"><a href="power-management.html#installation-of-power-management-tools"><i class="fa fa-check"></i><b>11.1</b> Installation of power management tools</a></li>
+<li class="chapter" data-level="11.2" data-path="power-management.html"><a href="power-management.html#turning-funtionality-on-and-off"><i class="fa fa-check"></i><b>11.2</b> Turning funtionality on and off</a></li>
+<li class="chapter" data-level="11.3" data-path="power-management.html"><a href="power-management.html#considerations"><i class="fa fa-check"></i><b>11.3</b> Considerations</a>
+<ul>
+<li class="chapter" data-level="11.3.1" data-path="power-management.html"><a href="power-management.html#a-note-on-sudo"><i class="fa fa-check"></i><b>11.3.1</b> A note on <code>sudo</code></a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="indicators-and-heartbeats.html"><a href="indicators-and-heartbeats.html"><i class="fa fa-check"></i><b>11</b> Indicators and heartbeats</a>
+<li class="chapter" data-level="12" data-path="indicators-and-heartbeats.html"><a href="indicators-and-heartbeats.html"><i class="fa fa-check"></i><b>12</b> Indicators and heartbeats</a>
 <ul>
-<li class="chapter" data-level="11.1" data-path="indicators-and-heartbeats.html"><a href="indicators-and-heartbeats.html#installation-of-ws-indcate-and-ws-heartbeat"><i class="fa fa-check"></i><b>11.1</b> Installation of <code>ws-indcate</code> and <code>ws-heartbeat</code></a></li>
-<li class="chapter" data-level="11.2" data-path="indicators-and-heartbeats.html"><a href="indicators-and-heartbeats.html#indicators"><i class="fa fa-check"></i><b>11.2</b> Indicators</a>
+<li class="chapter" data-level="12.1" data-path="indicators-and-heartbeats.html"><a href="indicators-and-heartbeats.html#installation-of-ws-indcate-and-ws-heartbeat"><i class="fa fa-check"></i><b>12.1</b> Installation of <code>ws-indcate</code> and <code>ws-heartbeat</code></a></li>
+<li class="chapter" data-level="12.2" data-path="indicators-and-heartbeats.html"><a href="indicators-and-heartbeats.html#indicators"><i class="fa fa-check"></i><b>12.2</b> Indicators</a>
 <ul>
-<li class="chapter" data-level="11.2.1" data-path="indicators-and-heartbeats.html"><a href="indicators-and-heartbeats.html#a-note-on-sudo-1"><i class="fa fa-check"></i><b>11.2.1</b> A note on <code>sudo</code></a></li>
+<li class="chapter" data-level="12.2.1" data-path="indicators-and-heartbeats.html"><a href="indicators-and-heartbeats.html#a-note-on-sudo-1"><i class="fa fa-check"></i><b>12.2.1</b> A note on <code>sudo</code></a></li>
 </ul></li>
-<li class="chapter" data-level="11.3" data-path="indicators-and-heartbeats.html"><a href="indicators-and-heartbeats.html#heartbeat"><i class="fa fa-check"></i><b>11.3</b> Heartbeat</a></li>
+<li class="chapter" data-level="12.3" data-path="indicators-and-heartbeats.html"><a href="indicators-and-heartbeats.html#heartbeat"><i class="fa fa-check"></i><b>12.3</b> Heartbeat</a></li>
 </ul></li>
-<li class="chapter" data-level="12" data-path="developer-guidelines.html"><a href="developer-guidelines.html"><i class="fa fa-check"></i><b>12</b> Developer Guidelines</a>
+<li class="chapter" data-level="13" data-path="developer-guidelines.html"><a href="developer-guidelines.html"><i class="fa fa-check"></i><b>13</b> Developer Guidelines</a>
 <ul>
-<li class="chapter" data-level="12.1" data-path="developer-guidelines.html"><a href="developer-guidelines.html#documentation"><i class="fa fa-check"></i><b>12.1</b> Documentation</a></li>
+<li class="chapter" data-level="13.1" data-path="developer-guidelines.html"><a href="developer-guidelines.html#documentation"><i class="fa fa-check"></i><b>13.1</b> Documentation</a></li>
 </ul></li>
-<li class="chapter" data-level="13" data-path="server-tools.html"><a href="server-tools.html"><i class="fa fa-check"></i><b>13</b> Server Tools</a>
+<li class="chapter" data-level="14" data-path="server-tools.html"><a href="server-tools.html"><i class="fa fa-check"></i><b>14</b> Server Tools</a>
 <ul>
-<li class="chapter" data-level="13.1" data-path="server-tools.html"><a href="server-tools.html#installation"><i class="fa fa-check"></i><b>13.1</b> Installation</a></li>
-<li class="chapter" data-level="13.2" data-path="server-tools.html"><a href="server-tools.html#adding-nodes-and-receieving-a-token"><i class="fa fa-check"></i><b>13.2</b> Adding nodes and receieving a token</a></li>
-<li class="chapter" data-level="13.3" data-path="server-tools.html"><a href="server-tools.html#removing-a-node"><i class="fa fa-check"></i><b>13.3</b> Removing a node</a></li>
+<li class="chapter" data-level="14.1" data-path="server-tools.html"><a href="server-tools.html#installation"><i class="fa fa-check"></i><b>14.1</b> Installation</a></li>
+<li class="chapter" data-level="14.2" data-path="server-tools.html"><a href="server-tools.html#adding-nodes-and-receieving-a-token"><i class="fa fa-check"></i><b>14.2</b> Adding nodes and receieving a token</a></li>
+<li class="chapter" data-level="14.3" data-path="server-tools.html"><a href="server-tools.html#removing-a-node"><i class="fa fa-check"></i><b>14.3</b> Removing a node</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="appendix"><span><b>Appendix</b></span></li>
@@ -274,29 +278,29 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="indicators-and-heartbeats" class="section level1 hasAnchor" number="11">
-<h1><span class="header-section-number">Chapter 11</span> Indicators and heartbeats<a href="indicators-and-heartbeats.html#indicators-and-heartbeats" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="indicators-and-heartbeats" class="section level1 hasAnchor" number="12">
+<h1><span class="header-section-number">Chapter 12</span> Indicators and heartbeats<a href="indicators-and-heartbeats.html#indicators-and-heartbeats" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>The script <code>ws-indicate</code> is used to indicate the device’s status using the LED(s) on board the Raspberry Pi. The script <code>ws-heartbeat</code> can be used to transmit the device’s status to a user-defined script that could provide logging, or submit the status to an online dashboard.</p>
-<div id="installation-of-ws-indcate-and-ws-heartbeat" class="section level2 hasAnchor" number="11.1">
-<h2><span class="header-section-number">11.1</span> Installation of <code>ws-indcate</code> and <code>ws-heartbeat</code><a href="indicators-and-heartbeats.html#installation-of-ws-indcate-and-ws-heartbeat" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="installation-of-ws-indcate-and-ws-heartbeat" class="section level2 hasAnchor" number="12.1">
+<h2><span class="header-section-number">12.1</span> Installation of <code>ws-indcate</code> and <code>ws-heartbeat</code><a href="indicators-and-heartbeats.html#installation-of-ws-indcate-and-ws-heartbeat" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>These tools are installed as part of the node installation process.</p>
 </div>
-<div id="indicators" class="section level2 hasAnchor" number="11.2">
-<h2><span class="header-section-number">11.2</span> Indicators<a href="indicators-and-heartbeats.html#indicators" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="indicators" class="section level2 hasAnchor" number="12.2">
+<h2><span class="header-section-number">12.2</span> Indicators<a href="indicators-and-heartbeats.html#indicators" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Internally <code>ws-inidicate</code> makes repeated calls to <code>pi-pwr</code> to control the LED(s). There are three indicator routines, heartbeat (quick flash of LEDs in order to show device is functioning), countdown (flashes power LED), and record (power LED on, action LED off).</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb9-1"><a href="indicators-and-heartbeats.html#cb9-1" tabindex="-1"></a><span class="fu">sudo</span> ws-indicate</span>
-<span id="cb9-2"><a href="indicators-and-heartbeats.html#cb9-2" tabindex="-1"></a><span class="fu">sudo</span> ws-indicate countdown 5   <span class="co"># counts down from 5</span></span>
-<span id="cb9-3"><a href="indicators-and-heartbeats.html#cb9-3" tabindex="-1"></a><span class="fu">sudo</span> ws-indicate record action <span class="co"># record light is on while action is executed</span></span></code></pre></div>
-<div id="a-note-on-sudo-1" class="section level3 hasAnchor" number="11.2.1">
-<h3><span class="header-section-number">11.2.1</span> A note on <code>sudo</code><a href="indicators-and-heartbeats.html#a-note-on-sudo-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb10"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb10-1"><a href="indicators-and-heartbeats.html#cb10-1" tabindex="-1"></a><span class="fu">sudo</span> ws-indicate</span>
+<span id="cb10-2"><a href="indicators-and-heartbeats.html#cb10-2" tabindex="-1"></a><span class="fu">sudo</span> ws-indicate countdown 5   <span class="co"># counts down from 5</span></span>
+<span id="cb10-3"><a href="indicators-and-heartbeats.html#cb10-3" tabindex="-1"></a><span class="fu">sudo</span> ws-indicate record action <span class="co"># record light is on while action is executed</span></span></code></pre></div>
+<div id="a-note-on-sudo-1" class="section level3 hasAnchor" number="12.2.1">
+<h3><span class="header-section-number">12.2.1</span> A note on <code>sudo</code><a href="indicators-and-heartbeats.html#a-note-on-sudo-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Raspberry Pi OS (and previously Raspbian) allows the default user to run sudo without a password. This is not true for other Linux distributions, such as Ubuntu. This could lead to a password prompt when using <code>ws-indicate</code>. As nodes are designed to run autonomously, the installation process for <code>ws-node</code> will configure <code>ws-indicate</code> to not require a <code>sudo</code> password.</p>
 </div>
 </div>
-<div id="heartbeat" class="section level2 hasAnchor" number="11.3">
-<h2><span class="header-section-number">11.3</span> Heartbeat<a href="indicators-and-heartbeats.html#heartbeat" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="heartbeat" class="section level2 hasAnchor" number="12.3">
+<h2><span class="header-section-number">12.3</span> Heartbeat<a href="indicators-and-heartbeats.html#heartbeat" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The script <code>ws-heartbeat</code> is used to send a heartbeat signal to the devices.wildlife.systems server to indicate that the node is alive and connected, as well as to provide some information to assist problem diagnosis. The data sent comes from the onboard sensor readings (<code>sr onboard</code>) and the server stores the node ID, timestamp, CPU and GPU temperatures, and the amount of memory and storage used. The node must be registered with WildlifeSystems for this data to be stored.</p>
 <p>The script may be run for debugging purposes at any time as follows.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb10-1"><a href="indicators-and-heartbeats.html#cb10-1" tabindex="-1"></a><span class="ex">ws-heartbeat</span></span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb11-1"><a href="indicators-and-heartbeats.html#cb11-1" tabindex="-1"></a><span class="ex">ws-heartbeat</span></span></code></pre></div>
 <p>The script will exit silently on success.</p>
 
 </div>

@@ -4,7 +4,15 @@
 
 ### Temperature
 
+#### Thermistors
+
+A thermistor is a type of resistor whose resistance changes significantly with temperature. The word is a portmanteau of thermal and resistor.
+
 ### Humidity
+
+#### Capacitive Humidity Sensors
+
+A capacitative humidity sensor  consists of a small capacitor with a hygroscopic dielectric material between two electrodes. The dielectric material, usually a plastic or polymer, has a low dielectric constant when dry. In the presence of moisture, the dielectric constant increases due to water vapor, which has a much higher dielectric constant. As moisture is absorbed, the sensor's capacitance increases. The amount of moisture absorbed depends on the surrounding temperature and water vapour pressure, which also affects the hygroscopic dielectric material used in the sensor.
 
 ### Air Pressure
 
