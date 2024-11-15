@@ -19,3 +19,7 @@ A capacitative humidity sensor  consists of a small capacitor with a hygroscopic
 ### Gases
 
 #### Heated Gas Resistance
+
+Heated gas sensors are used to detect gases in the air. The sensor consists of a metal oxide semiconductor that is heated to a high temperature. Volatile organic compounds (VOCs) in the air change the resistance of the sensor.
+
+These sensors are typically used indoors and have a short lifespan (perhaps two years). As such they are rarely used in environmental sensing applications, but are included on some common sensors such as the BME680.
