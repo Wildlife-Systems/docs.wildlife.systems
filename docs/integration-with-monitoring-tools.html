@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 7 Sound Devices | WildlifeSystems - biodiversity technologies</title>
+  <title>Chapter 13 Integration with monitoring tools | WildlifeSystems - biodiversity technologies</title>
   <meta name="description" content="Manual for using WildlifeSystems technologies for monitoring biodiversity." />
   <meta name="generator" content="bookdown 0.41 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 7 Sound Devices | WildlifeSystems - biodiversity technologies" />
+  <meta property="og:title" content="Chapter 13 Integration with monitoring tools | WildlifeSystems - biodiversity technologies" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="Manual for using WildlifeSystems technologies for monitoring biodiversity." />
   <meta name="github-repo" content="wildlife-systems/docs.wildlife.systems" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 7 Sound Devices | WildlifeSystems - biodiversity technologies" />
+  <meta name="twitter:title" content="Chapter 13 Integration with monitoring tools | WildlifeSystems - biodiversity technologies" />
   
   <meta name="twitter:description" content="Manual for using WildlifeSystems technologies for monitoring biodiversity." />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="implementing-new-sensors.html"/>
-<link rel="next" href="sound-devices-in-wildlifesystems.html"/>
+<link rel="prev" href="indicators-and-heartbeats.html"/>
+<link rel="next" href="developer-guidelines.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -286,11 +286,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="sound-devices" class="section level1 hasAnchor" number="7">
-<h1><span class="header-section-number">Chapter 7</span> Sound Devices<a href="sound-devices.html#sound-devices" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div id="how-sound-devices-work" class="section level2 hasAnchor" number="7.1">
-<h2><span class="header-section-number">7.1</span> How sound devices work<a href="sound-devices.html#how-sound-devices-work" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="integration-with-monitoring-tools" class="section level1 hasAnchor" number="13">
+<h1><span class="header-section-number">Chapter 13</span> Integration with monitoring tools<a href="integration-with-monitoring-tools.html#integration-with-monitoring-tools" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="prtg" class="section level2 hasAnchor" number="13.1">
+<h2><span class="header-section-number">13.1</span> PRTG<a href="integration-with-monitoring-tools.html#prtg" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>As the devices are Raspberry Pi based, we can use the PRTG monitoring tool to monitor standard aspects of their performance including CPU, memory, disk space, and network traffic.</p>
+<div id="monitoring-custom-sensors" class="section level3 hasAnchor" number="13.1.1">
+<h3><span class="header-section-number">13.1.1</span> Monitoring custom sensors<a href="integration-with-monitoring-tools.html#monitoring-custom-sensors" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Some sensors attached to WildlifeSystems nodes may be used to monitor aspects of the devices themselves, rather than the environment. Using custom PRTG scripts it is possible to include these measurements in PRTG reports and alerts.</p>
+<p>The following example reports the humidity of the device enclosure measured by a DHT11 sensor. It makes use of the WildlifeSystems <code>sr</code> command to read the sensor in a standard JSON format, and converts the reading to a format expected by PRTG.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb12-1"><a href="integration-with-monitoring-tools.html#cb12-1" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
+<span id="cb12-2"><a href="integration-with-monitoring-tools.html#cb12-2" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="integration-with-monitoring-tools.html#cb12-3" tabindex="-1"></a><span class="va">HV</span><span class="op">=</span><span class="va">$(</span><span class="fu">sudo</span> sr dht11 <span class="kw">|</span> <span class="ex">jq</span> <span class="st">&#39;map(select(.sensor == &quot;dht11_humidity&quot;)) | .[][&quot;value&quot;]&#39;</span><span class="va">)</span></span>
+<span id="cb12-4"><a href="integration-with-monitoring-tools.html#cb12-4" tabindex="-1"></a></span>
+<span id="cb12-5"><a href="integration-with-monitoring-tools.html#cb12-5" tabindex="-1"></a><span class="cf">if</span> <span class="kw">((</span> <span class="va">$HV</span> <span class="op">&lt;</span> <span class="dv">75</span> <span class="kw">));</span> <span class="cf">then</span></span>
+<span id="cb12-6"><a href="integration-with-monitoring-tools.html#cb12-6" tabindex="-1"></a>  <span class="ex">/bin/echo</span> <span class="st">&quot;0:</span><span class="va">$HV</span><span class="st">:Acceptable humidity&quot;</span></span>
+<span id="cb12-7"><a href="integration-with-monitoring-tools.html#cb12-7" tabindex="-1"></a><span class="cf">else</span></span>
+<span id="cb12-8"><a href="integration-with-monitoring-tools.html#cb12-8" tabindex="-1"></a>  <span class="ex">/bin/echo</span> <span class="st">&quot;4:</span><span class="va">$HV</span><span class="st">:Too humid&quot;</span></span>
+<span id="cb12-9"><a href="integration-with-monitoring-tools.html#cb12-9" tabindex="-1"></a><span class="cf">fi</span></span></code></pre></div>
 
+</div>
 </div>
 </div>
             </section>
@@ -298,8 +313,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="implementing-new-sensors.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="sound-devices-in-wildlifesystems.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="indicators-and-heartbeats.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="developer-guidelines.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -330,7 +345,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/Wildlife-Systems/docs.wildlife.systems/edit/master/10-sound-devices.Rmd",
+"link": "https://github.com/Wildlife-Systems/docs.wildlife.systems/edit/master/65-monitoring-tools.Rmd",
 "text": "Edit"
 },
 "history": {

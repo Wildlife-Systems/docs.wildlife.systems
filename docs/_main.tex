@@ -120,7 +120,7 @@
 
 \title{WildlifeSystems - biodiversity technologies}
 \author{\href{https://ebaker.me.uk}{Ed Baker}}
-\date{2024-11-15}
+\date{2024-11-17}
 
 \begin{document}
 \maketitle
@@ -524,6 +524,32 @@ The script may be run for debugging purposes at any time as follows.
 \end{Shaded}
 
 The script will exit silently on success.
+
+\chapter{Integration with monitoring tools}\label{integration-with-monitoring-tools}
+
+\section{PRTG}\label{prtg}
+
+As the devices are Raspberry Pi based, we can use the PRTG monitoring tool to monitor standard aspects of their performance including CPU, memory, disk space, and network traffic.
+
+\subsection{Monitoring custom sensors}\label{monitoring-custom-sensors}
+
+Some sensors attached to WildlifeSystems nodes may be used to monitor aspects of the devices themselves, rather than the environment. Using custom PRTG scripts it is possible to include these measurements in PRTG reports and alerts.
+
+The following example reports the humidity of the device enclosure measured by a DHT11 sensor. It makes use of the WildlifeSystems \texttt{sr} command to read the sensor in a standard JSON format, and converts the reading to a format expected by PRTG.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#!/bin/bash}
+
+\VariableTok{HV}\OperatorTok{=}\VariableTok{$(}\FunctionTok{sudo}\NormalTok{ sr dht11 }\KeywordTok{|} \ExtensionTok{jq} \StringTok{\textquotesingle{}map(select(.sensor == "dht11\_humidity")) | .[]["value"]\textquotesingle{}}\VariableTok{)}
+
+\ControlFlowTok{if} \KeywordTok{((} \VariableTok{$HV} \OperatorTok{\textless{}} \DecValTok{75} \KeywordTok{));} \ControlFlowTok{then}
+  \ExtensionTok{/bin/echo} \StringTok{"0:}\VariableTok{$HV}\StringTok{:Acceptable humidity"}
+\ControlFlowTok{else}
+  \ExtensionTok{/bin/echo} \StringTok{"4:}\VariableTok{$HV}\StringTok{:Too humid"}
+\ControlFlowTok{fi}
+\end{Highlighting}
+\end{Shaded}
 
 \chapter{Developer Guidelines}\label{developer-guidelines}
 

@@ -1,0 +1,24 @@
+# Integration with monitoring tools
+
+## PRTG
+
+As the devices are Raspberry Pi based, we can use the PRTG monitoring tool to monitor standard aspects of their performance including CPU, memory, disk space, and network traffic.
+
+### Monitoring custom sensors
+
+Some sensors attached to WildlifeSystems nodes may be used to monitor aspects of the devices themselves, rather than the environment. Using custom PRTG scripts it is possible to include these measurements in PRTG reports and alerts.
+
+The following example reports the humidity of the device enclosure measured by a DHT11 sensor. It makes use of the WildlifeSystems `sr` command to read the sensor in a standard JSON format, and converts the reading to a format expected by PRTG.
+
+```bash
+#!/bin/bash
+
+HV=$(sudo sr dht11 | jq 'map(select(.sensor == "dht11_humidity")) | .[]["value"]')
+
+if (( $HV < 75 )); then
+  /bin/echo "0:$HV:Acceptable humidity"
+else
+  /bin/echo "4:$HV:Too humid"
+fi
+
+```

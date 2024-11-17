@@ -23,7 +23,7 @@
 <meta name="author" content="Ed Baker" />
 
 
-<meta name="date" content="2024-11-15" />
+<meta name="date" content="2024-11-17" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -237,15 +237,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="12.3" data-path="indicators-and-heartbeats.html"><a href="indicators-and-heartbeats.html#heartbeat"><i class="fa fa-check"></i><b>12.3</b> Heartbeat</a></li>
 </ul></li>
-<li class="chapter" data-level="13" data-path="developer-guidelines.html"><a href="developer-guidelines.html"><i class="fa fa-check"></i><b>13</b> Developer Guidelines</a>
+<li class="chapter" data-level="13" data-path="integration-with-monitoring-tools.html"><a href="integration-with-monitoring-tools.html"><i class="fa fa-check"></i><b>13</b> Integration with monitoring tools</a>
 <ul>
-<li class="chapter" data-level="13.1" data-path="developer-guidelines.html"><a href="developer-guidelines.html#documentation"><i class="fa fa-check"></i><b>13.1</b> Documentation</a></li>
+<li class="chapter" data-level="13.1" data-path="integration-with-monitoring-tools.html"><a href="integration-with-monitoring-tools.html#prtg"><i class="fa fa-check"></i><b>13.1</b> PRTG</a>
+<ul>
+<li class="chapter" data-level="13.1.1" data-path="integration-with-monitoring-tools.html"><a href="integration-with-monitoring-tools.html#monitoring-custom-sensors"><i class="fa fa-check"></i><b>13.1.1</b> Monitoring custom sensors</a></li>
 </ul></li>
-<li class="chapter" data-level="14" data-path="server-tools.html"><a href="server-tools.html"><i class="fa fa-check"></i><b>14</b> Server Tools</a>
+</ul></li>
+<li class="chapter" data-level="14" data-path="developer-guidelines.html"><a href="developer-guidelines.html"><i class="fa fa-check"></i><b>14</b> Developer Guidelines</a>
 <ul>
-<li class="chapter" data-level="14.1" data-path="server-tools.html"><a href="server-tools.html#installation"><i class="fa fa-check"></i><b>14.1</b> Installation</a></li>
-<li class="chapter" data-level="14.2" data-path="server-tools.html"><a href="server-tools.html#adding-nodes-and-receieving-a-token"><i class="fa fa-check"></i><b>14.2</b> Adding nodes and receieving a token</a></li>
-<li class="chapter" data-level="14.3" data-path="server-tools.html"><a href="server-tools.html#removing-a-node"><i class="fa fa-check"></i><b>14.3</b> Removing a node</a></li>
+<li class="chapter" data-level="14.1" data-path="developer-guidelines.html"><a href="developer-guidelines.html#documentation"><i class="fa fa-check"></i><b>14.1</b> Documentation</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="server-tools.html"><a href="server-tools.html"><i class="fa fa-check"></i><b>15</b> Server Tools</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="server-tools.html"><a href="server-tools.html#installation"><i class="fa fa-check"></i><b>15.1</b> Installation</a></li>
+<li class="chapter" data-level="15.2" data-path="server-tools.html"><a href="server-tools.html#adding-nodes-and-receieving-a-token"><i class="fa fa-check"></i><b>15.2</b> Adding nodes and receieving a token</a></li>
+<li class="chapter" data-level="15.3" data-path="server-tools.html"><a href="server-tools.html#removing-a-node"><i class="fa fa-check"></i><b>15.3</b> Removing a node</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="appendix"><span><b>Appendix</b></span></li>
@@ -279,10 +286,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="return-codes" class="section level1 hasAnchor" number="15">
+<div id="return-codes" class="section level1 hasAnchor" number="16">
 <h1><span class="header-section-number">A</span> Return codes<a href="return-codes.html#return-codes" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>The various scripts that form the WildlifeSystems ecosystem use a standard set of return codes.</p>
-<div id="script-functionality" class="section level2 hasAnchor" number="15.1">
+<div id="script-functionality" class="section level2 hasAnchor" number="16.1">
 <h2><span class="header-section-number">A.1</span> 00-09 Script functionality<a href="return-codes.html#script-functionality" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <table>
 <colgroup>
@@ -316,7 +323,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tbody>
 </table>
 </div>
-<div id="parameter-problems" class="section level2 hasAnchor" number="15.2">
+<div id="parameter-problems" class="section level2 hasAnchor" number="16.2">
 <h2><span class="header-section-number">A.2</span> 10-19 Parameter problems<a href="return-codes.html#parameter-problems" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <table>
 <colgroup>
@@ -345,7 +352,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tbody>
 </table>
 </div>
-<div id="sensor-problems" class="section level2 hasAnchor" number="15.3">
+<div id="sensor-problems" class="section level2 hasAnchor" number="16.3">
 <h2><span class="header-section-number">A.3</span> 20-29 Sensor problems<a href="return-codes.html#sensor-problems" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <table>
 <colgroup>
@@ -374,7 +381,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tbody>
 </table>
 </div>
-<div id="sound-device-problems" class="section level2 hasAnchor" number="15.4">
+<div id="sound-device-problems" class="section level2 hasAnchor" number="16.4">
 <h2><span class="header-section-number">A.4</span> 30-39 Sound device problems<a href="return-codes.html#sound-device-problems" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <table>
 <colgroup>
@@ -408,7 +415,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tbody>
 </table>
 </div>
-<div id="image-device-problems" class="section level2 hasAnchor" number="15.5">
+<div id="image-device-problems" class="section level2 hasAnchor" number="16.5">
 <h2><span class="header-section-number">A.5</span> 40-49 Image device problems<a href="return-codes.html#image-device-problems" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <table>
 <colgroup>
@@ -442,7 +449,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tbody>
 </table>
 </div>
-<div id="power-management-problems" class="section level2 hasAnchor" number="15.6">
+<div id="power-management-problems" class="section level2 hasAnchor" number="16.6">
 <h2><span class="header-section-number">A.6</span> 50-59 Power management problems<a href="return-codes.html#power-management-problems" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <table>
 <colgroup>
@@ -471,7 +478,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tbody>
 </table>
 </div>
-<div id="special-meanings" class="section level2 hasAnchor" number="15.7">
+<div id="special-meanings" class="section level2 hasAnchor" number="16.7">
 <h2><span class="header-section-number">A.7</span> 60-69 Special meanings<a href="return-codes.html#special-meanings" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <table>
 <colgroup>

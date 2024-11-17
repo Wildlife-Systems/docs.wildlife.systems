@@ -54,6 +54,9 @@ installation-of-ws-indcate-and-ws-heartbeat
 indicators
 a-note-on-sudo-1
 heartbeat
+integration-with-monitoring-tools
+prtg
+monitoring-custom-sensors
 developer-guidelines
 documentation
 server-tools
