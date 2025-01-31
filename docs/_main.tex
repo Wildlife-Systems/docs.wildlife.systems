@@ -120,7 +120,7 @@
 
 \title{WildlifeSystems - biodiversity technologies}
 \author{\href{https://ebaker.me.uk}{Ed Baker}}
-\date{2024-11-17}
+\date{2025-01-31}
 
 \begin{document}
 \maketitle
@@ -183,13 +183,13 @@ Where suitable technological solutions already exist, use them. Limit technologi
 \centering
 \begin{tabular}[t]{l|l|l}
 \hline
-Technology & Year Introduced & Age in  2024\\
+Technology & Year Introduced & Age in  2025\\
 \hline
-Ethernet & 1973 & 51\\
+Ethernet & 1973 & 52\\
 \hline
-BASH & 1989 & 35\\
+BASH & 1989 & 36\\
 \hline
-Linux & 1991 & 33\\
+Linux & 1991 & 34\\
 \hline
 \end{tabular}
 \end{table}
@@ -450,6 +450,36 @@ Packages can be sent to the administrators as a compressed file, or a request ca
 \section{How sound devices work}\label{how-sound-devices-work}
 
 \chapter{Sound devices in WildlifeSystems}\label{sound-devices-in-wildlifesystems}
+
+\section{Installing sound device support}\label{installing-sound-device-support}
+
+Support for sound devices is installed as part of the node installation process, however it is possible to install the \texttt{sound-device-control} abstraction layer onto any Raspberry Pi system using the command below.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{\textasciigrave{}}\FunctionTok{wget} \AttributeTok{{-}O} \AttributeTok{{-}}\NormalTok{ https://github.com/wildlife{-}systems/sound{-}device{-}control/raw/master/install }\KeywordTok{|} \FunctionTok{sudo}\NormalTok{ bash}\KeywordTok{\textasciigrave{}}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Supported sound devices}\label{supported-sound-devices}
+
+The WildlifeSystems platform supports several popular sound capture and playback devices.
+
+\subsection{Raspberry Pi onboard audio}\label{raspberry-pi-onboard-audio}
+
+\subsection{AudioInjector Zero}\label{audioinjector-zero}
+
+\subsection{AudioInjector Octo}\label{audioinjector-octo}
+
+\subsection{AudioInjector Ultra}\label{audioinjector-ultra}
+
+\subsection{I2C microphone (e.g.~Google Voice Hat / Adafruit i2c microphone)}\label{i2c-microphone-e.g.-google-voice-hat-adafruit-i2c-microphone}
+
+\subsection{Respeaker 6 mic array}\label{respeaker-6-mic-array}
+
+\subsection{Audio+ DAC}\label{audio-dac}
+
+\subsection{Wolfson Audio Card}\label{wolfson-audio-card}
 
 \chapter{Imaging Devices}\label{imaging-devices}
 

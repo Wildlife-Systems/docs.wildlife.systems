@@ -1,1 +1,29 @@
 # Sound devices in WildlifeSystems
+
+## Installing sound device support
+
+Support for sound devices is installed as part of the node installation process, however it is possible to install the `sound-device-control` abstraction layer onto any Raspberry Pi system using the command below.
+
+```{bash eval=FALSE}
+`wget -O - https://github.com/wildlife-systems/sound-device-control/raw/master/install | sudo bash`
+```
+
+## Supported sound devices
+
+The WildlifeSystems platform supports several popular sound capture and playback devices. 
+
+### Raspberry Pi onboard audio
+
+### AudioInjector Zero
+
+### AudioInjector Octo
+
+### AudioInjector Ultra
+
+### I2C microphone (e.g. Google Voice Hat / Adafruit i2c microphone)
+
+### Respeaker 6 mic array
+
+### Audio+ DAC
+
+### Wolfson Audio Card

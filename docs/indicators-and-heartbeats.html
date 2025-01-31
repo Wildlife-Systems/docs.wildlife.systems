@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 12 Indicators and heartbeats | WildlifeSystems - biodiversity technologies</title>
   <meta name="description" content="Manual for using WildlifeSystems technologies for monitoring biodiversity." />
-  <meta name="generator" content="bookdown 0.41 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.42 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 12 Indicators and heartbeats | WildlifeSystems - biodiversity technologies" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Ed Baker" />
 
 
-<meta name="date" content="2024-11-17" />
+<meta name="date" content="2025-01-31" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -213,7 +213,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="7.1" data-path="sound-devices.html"><a href="sound-devices.html#how-sound-devices-work"><i class="fa fa-check"></i><b>7.1</b> How sound devices work</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="sound-devices-in-wildlifesystems.html"><a href="sound-devices-in-wildlifesystems.html"><i class="fa fa-check"></i><b>8</b> Sound devices in WildlifeSystems</a></li>
+<li class="chapter" data-level="8" data-path="sound-devices-in-wildlifesystems.html"><a href="sound-devices-in-wildlifesystems.html"><i class="fa fa-check"></i><b>8</b> Sound devices in WildlifeSystems</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="sound-devices-in-wildlifesystems.html"><a href="sound-devices-in-wildlifesystems.html#installing-sound-device-support"><i class="fa fa-check"></i><b>8.1</b> Installing sound device support</a></li>
+<li class="chapter" data-level="8.2" data-path="sound-devices-in-wildlifesystems.html"><a href="sound-devices-in-wildlifesystems.html#supported-sound-devices"><i class="fa fa-check"></i><b>8.2</b> Supported sound devices</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="sound-devices-in-wildlifesystems.html"><a href="sound-devices-in-wildlifesystems.html#raspberry-pi-onboard-audio"><i class="fa fa-check"></i><b>8.2.1</b> Raspberry Pi onboard audio</a></li>
+<li class="chapter" data-level="8.2.2" data-path="sound-devices-in-wildlifesystems.html"><a href="sound-devices-in-wildlifesystems.html#audioinjector-zero"><i class="fa fa-check"></i><b>8.2.2</b> AudioInjector Zero</a></li>
+<li class="chapter" data-level="8.2.3" data-path="sound-devices-in-wildlifesystems.html"><a href="sound-devices-in-wildlifesystems.html#audioinjector-octo"><i class="fa fa-check"></i><b>8.2.3</b> AudioInjector Octo</a></li>
+<li class="chapter" data-level="8.2.4" data-path="sound-devices-in-wildlifesystems.html"><a href="sound-devices-in-wildlifesystems.html#audioinjector-ultra"><i class="fa fa-check"></i><b>8.2.4</b> AudioInjector Ultra</a></li>
+<li class="chapter" data-level="8.2.5" data-path="sound-devices-in-wildlifesystems.html"><a href="sound-devices-in-wildlifesystems.html#i2c-microphone-e.g.-google-voice-hat-adafruit-i2c-microphone"><i class="fa fa-check"></i><b>8.2.5</b> I2C microphone (e.g. Google Voice Hat / Adafruit i2c microphone)</a></li>
+<li class="chapter" data-level="8.2.6" data-path="sound-devices-in-wildlifesystems.html"><a href="sound-devices-in-wildlifesystems.html#respeaker-6-mic-array"><i class="fa fa-check"></i><b>8.2.6</b> Respeaker 6 mic array</a></li>
+<li class="chapter" data-level="8.2.7" data-path="sound-devices-in-wildlifesystems.html"><a href="sound-devices-in-wildlifesystems.html#audio-dac"><i class="fa fa-check"></i><b>8.2.7</b> Audio+ DAC</a></li>
+<li class="chapter" data-level="8.2.8" data-path="sound-devices-in-wildlifesystems.html"><a href="sound-devices-in-wildlifesystems.html#wolfson-audio-card"><i class="fa fa-check"></i><b>8.2.8</b> Wolfson Audio Card</a></li>
+</ul></li>
+</ul></li>
 <li class="chapter" data-level="9" data-path="imaging-devices.html"><a href="imaging-devices.html"><i class="fa fa-check"></i><b>9</b> Imaging Devices</a>
 <ul>
 <li class="chapter" data-level="9.1" data-path="imaging-devices.html"><a href="imaging-devices.html#how-imaging-devices-work"><i class="fa fa-check"></i><b>9.1</b> How imaging devices work</a></li>
@@ -296,9 +310,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="indicators" class="section level2 hasAnchor" number="12.2">
 <h2><span class="header-section-number">12.2</span> Indicators<a href="indicators-and-heartbeats.html#indicators" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Internally <code>ws-inidicate</code> makes repeated calls to <code>pi-pwr</code> to control the LED(s). There are three indicator routines, heartbeat (quick flash of LEDs in order to show device is functioning), countdown (flashes power LED), and record (power LED on, action LED off).</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb10-1"><a href="indicators-and-heartbeats.html#cb10-1" tabindex="-1"></a><span class="fu">sudo</span> ws-indicate</span>
-<span id="cb10-2"><a href="indicators-and-heartbeats.html#cb10-2" tabindex="-1"></a><span class="fu">sudo</span> ws-indicate countdown 5   <span class="co"># counts down from 5</span></span>
-<span id="cb10-3"><a href="indicators-and-heartbeats.html#cb10-3" tabindex="-1"></a><span class="fu">sudo</span> ws-indicate record action <span class="co"># record light is on while action is executed</span></span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb11-1"><a href="indicators-and-heartbeats.html#cb11-1" tabindex="-1"></a><span class="fu">sudo</span> ws-indicate</span>
+<span id="cb11-2"><a href="indicators-and-heartbeats.html#cb11-2" tabindex="-1"></a><span class="fu">sudo</span> ws-indicate countdown 5   <span class="co"># counts down from 5</span></span>
+<span id="cb11-3"><a href="indicators-and-heartbeats.html#cb11-3" tabindex="-1"></a><span class="fu">sudo</span> ws-indicate record action <span class="co"># record light is on while action is executed</span></span></code></pre></div>
 <div id="a-note-on-sudo-1" class="section level3 hasAnchor" number="12.2.1">
 <h3><span class="header-section-number">12.2.1</span> A note on <code>sudo</code><a href="indicators-and-heartbeats.html#a-note-on-sudo-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Raspberry Pi OS (and previously Raspbian) allows the default user to run sudo without a password. This is not true for other Linux distributions, such as Ubuntu. This could lead to a password prompt when using <code>ws-indicate</code>. As nodes are designed to run autonomously, the installation process for <code>ws-node</code> will configure <code>ws-indicate</code> to not require a <code>sudo</code> password.</p>
@@ -308,7 +322,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">12.3</span> Heartbeat<a href="indicators-and-heartbeats.html#heartbeat" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The script <code>ws-heartbeat</code> is used to send a heartbeat signal to the devices.wildlife.systems server to indicate that the node is alive and connected, as well as to provide some information to assist problem diagnosis. The data sent comes from the onboard sensor readings (<code>sr onboard</code>) and the server stores the node ID, timestamp, CPU and GPU temperatures, and the amount of memory and storage used. The node must be registered with WildlifeSystems for this data to be stored.</p>
 <p>The script may be run for debugging purposes at any time as follows.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb11-1"><a href="indicators-and-heartbeats.html#cb11-1" tabindex="-1"></a><span class="ex">ws-heartbeat</span></span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb12-1"><a href="indicators-and-heartbeats.html#cb12-1" tabindex="-1"></a><span class="ex">ws-heartbeat</span></span></code></pre></div>
 <p>The script will exit silently on success.</p>
 
 </div>

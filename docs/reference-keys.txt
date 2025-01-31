@@ -41,6 +41,16 @@ submitting-packages-to-wildlifesystems
 sound-devices
 how-sound-devices-work
 sound-devices-in-wildlifesystems
+installing-sound-device-support
+supported-sound-devices
+raspberry-pi-onboard-audio
+audioinjector-zero
+audioinjector-octo
+audioinjector-ultra
+i2c-microphone-e.g.-google-voice-hat-adafruit-i2c-microphone
+respeaker-6-mic-array
+audio-dac
+wolfson-audio-card
 imaging-devices
 how-imaging-devices-work
 imaging-devices-in-wildlifesystems
