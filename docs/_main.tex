@@ -120,7 +120,7 @@
 
 \title{WildlifeSystems - biodiversity technologies}
 \author{\href{https://ebaker.me.uk}{Ed Baker}}
-\date{2025-01-31}
+\date{2025-02-03}
 
 \begin{document}
 \maketitle
@@ -473,13 +473,33 @@ The WildlifeSystems platform supports several popular sound capture and playback
 
 \subsection{AudioInjector Ultra}\label{audioinjector-ultra}
 
-\subsection{I2C microphone (e.g.~Google Voice Hat / Adafruit i2c microphone)}\label{i2c-microphone-e.g.-google-voice-hat-adafruit-i2c-microphone}
+\subsection{I2C microphone (e.g.~Google Voice Hat)}\label{i2c-microphone-e.g.-google-voice-hat}
+
+Limited to 48kHz sample rate, no record volume control.
 
 \subsection{Respeaker 6 mic array}\label{respeaker-6-mic-array}
 
 \subsection{Audio+ DAC}\label{audio-dac}
 
 \subsection{Wolfson Audio Card}\label{wolfson-audio-card}
+
+\section{Installing a sound device}\label{installing-a-sound-device}
+
+To install support for a sound device, run the following command.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{sdc{-}inst} \OperatorTok{\textless{}}\NormalTok{sound{-}device{-}name}\OperatorTok{\textgreater{}}
+\end{Highlighting}
+\end{Shaded}
+
+To get a list of names of supported devices, run the following command.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{sdc{-}inst}\NormalTok{ list}
+\end{Highlighting}
+\end{Shaded}
 
 \chapter{Imaging Devices}\label{imaging-devices}
 

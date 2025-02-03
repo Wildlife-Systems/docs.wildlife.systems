@@ -23,7 +23,7 @@
 <meta name="author" content="Ed Baker" />
 
 
-<meta name="date" content="2025-01-31" />
+<meta name="date" content="2025-02-03" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -222,11 +222,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.2.2" data-path="sound-devices-in-wildlifesystems.html"><a href="sound-devices-in-wildlifesystems.html#audioinjector-zero"><i class="fa fa-check"></i><b>8.2.2</b> AudioInjector Zero</a></li>
 <li class="chapter" data-level="8.2.3" data-path="sound-devices-in-wildlifesystems.html"><a href="sound-devices-in-wildlifesystems.html#audioinjector-octo"><i class="fa fa-check"></i><b>8.2.3</b> AudioInjector Octo</a></li>
 <li class="chapter" data-level="8.2.4" data-path="sound-devices-in-wildlifesystems.html"><a href="sound-devices-in-wildlifesystems.html#audioinjector-ultra"><i class="fa fa-check"></i><b>8.2.4</b> AudioInjector Ultra</a></li>
-<li class="chapter" data-level="8.2.5" data-path="sound-devices-in-wildlifesystems.html"><a href="sound-devices-in-wildlifesystems.html#i2c-microphone-e.g.-google-voice-hat-adafruit-i2c-microphone"><i class="fa fa-check"></i><b>8.2.5</b> I2C microphone (e.g. Google Voice Hat / Adafruit i2c microphone)</a></li>
+<li class="chapter" data-level="8.2.5" data-path="sound-devices-in-wildlifesystems.html"><a href="sound-devices-in-wildlifesystems.html#i2c-microphone-e.g.-google-voice-hat"><i class="fa fa-check"></i><b>8.2.5</b> I2C microphone (e.g. Google Voice Hat)</a></li>
 <li class="chapter" data-level="8.2.6" data-path="sound-devices-in-wildlifesystems.html"><a href="sound-devices-in-wildlifesystems.html#respeaker-6-mic-array"><i class="fa fa-check"></i><b>8.2.6</b> Respeaker 6 mic array</a></li>
 <li class="chapter" data-level="8.2.7" data-path="sound-devices-in-wildlifesystems.html"><a href="sound-devices-in-wildlifesystems.html#audio-dac"><i class="fa fa-check"></i><b>8.2.7</b> Audio+ DAC</a></li>
 <li class="chapter" data-level="8.2.8" data-path="sound-devices-in-wildlifesystems.html"><a href="sound-devices-in-wildlifesystems.html#wolfson-audio-card"><i class="fa fa-check"></i><b>8.2.8</b> Wolfson Audio Card</a></li>
 </ul></li>
+<li class="chapter" data-level="8.3" data-path="sound-devices-in-wildlifesystems.html"><a href="sound-devices-in-wildlifesystems.html#installing-a-sound-device"><i class="fa fa-check"></i><b>8.3</b> Installing a sound device</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="imaging-devices.html"><a href="imaging-devices.html"><i class="fa fa-check"></i><b>9</b> Imaging Devices</a>
 <ul>
@@ -309,15 +310,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">13.1.1</span> Monitoring custom sensors<a href="integration-with-monitoring-tools.html#monitoring-custom-sensors" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Some sensors attached to WildlifeSystems nodes may be used to monitor aspects of the devices themselves, rather than the environment. Using custom PRTG scripts it is possible to include these measurements in PRTG reports and alerts.</p>
 <p>The following example reports the humidity of the device enclosure measured by a DHT11 sensor. It makes use of the WildlifeSystems <code>sr</code> command to read the sensor in a standard JSON format, and converts the reading to a format expected by PRTG.</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb13-1"><a href="integration-with-monitoring-tools.html#cb13-1" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
-<span id="cb13-2"><a href="integration-with-monitoring-tools.html#cb13-2" tabindex="-1"></a></span>
-<span id="cb13-3"><a href="integration-with-monitoring-tools.html#cb13-3" tabindex="-1"></a><span class="va">HV</span><span class="op">=</span><span class="va">$(</span><span class="fu">sudo</span> sr dht11 <span class="kw">|</span> <span class="ex">jq</span> <span class="st">&#39;map(select(.sensor == &quot;dht11_humidity&quot;)) | .[][&quot;value&quot;]&#39;</span><span class="va">)</span></span>
-<span id="cb13-4"><a href="integration-with-monitoring-tools.html#cb13-4" tabindex="-1"></a></span>
-<span id="cb13-5"><a href="integration-with-monitoring-tools.html#cb13-5" tabindex="-1"></a><span class="cf">if</span> <span class="kw">((</span> <span class="va">$HV</span> <span class="op">&lt;</span> <span class="dv">75</span> <span class="kw">));</span> <span class="cf">then</span></span>
-<span id="cb13-6"><a href="integration-with-monitoring-tools.html#cb13-6" tabindex="-1"></a>  <span class="ex">/bin/echo</span> <span class="st">&quot;0:</span><span class="va">$HV</span><span class="st">:Acceptable humidity&quot;</span></span>
-<span id="cb13-7"><a href="integration-with-monitoring-tools.html#cb13-7" tabindex="-1"></a><span class="cf">else</span></span>
-<span id="cb13-8"><a href="integration-with-monitoring-tools.html#cb13-8" tabindex="-1"></a>  <span class="ex">/bin/echo</span> <span class="st">&quot;4:</span><span class="va">$HV</span><span class="st">:Too humid&quot;</span></span>
-<span id="cb13-9"><a href="integration-with-monitoring-tools.html#cb13-9" tabindex="-1"></a><span class="cf">fi</span></span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb15-1"><a href="integration-with-monitoring-tools.html#cb15-1" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
+<span id="cb15-2"><a href="integration-with-monitoring-tools.html#cb15-2" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="integration-with-monitoring-tools.html#cb15-3" tabindex="-1"></a><span class="va">HV</span><span class="op">=</span><span class="va">$(</span><span class="fu">sudo</span> sr dht11 <span class="kw">|</span> <span class="ex">jq</span> <span class="st">&#39;map(select(.sensor == &quot;dht11_humidity&quot;)) | .[][&quot;value&quot;]&#39;</span><span class="va">)</span></span>
+<span id="cb15-4"><a href="integration-with-monitoring-tools.html#cb15-4" tabindex="-1"></a></span>
+<span id="cb15-5"><a href="integration-with-monitoring-tools.html#cb15-5" tabindex="-1"></a><span class="cf">if</span> <span class="kw">((</span> <span class="va">$HV</span> <span class="op">&lt;</span> <span class="dv">75</span> <span class="kw">));</span> <span class="cf">then</span></span>
+<span id="cb15-6"><a href="integration-with-monitoring-tools.html#cb15-6" tabindex="-1"></a>  <span class="ex">/bin/echo</span> <span class="st">&quot;0:</span><span class="va">$HV</span><span class="st">:Acceptable humidity&quot;</span></span>
+<span id="cb15-7"><a href="integration-with-monitoring-tools.html#cb15-7" tabindex="-1"></a><span class="cf">else</span></span>
+<span id="cb15-8"><a href="integration-with-monitoring-tools.html#cb15-8" tabindex="-1"></a>  <span class="ex">/bin/echo</span> <span class="st">&quot;4:</span><span class="va">$HV</span><span class="st">:Too humid&quot;</span></span>
+<span id="cb15-9"><a href="integration-with-monitoring-tools.html#cb15-9" tabindex="-1"></a><span class="cf">fi</span></span></code></pre></div>
 
 </div>
 </div>

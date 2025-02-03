@@ -23,7 +23,7 @@
 <meta name="author" content="Ed Baker" />
 
 
-<meta name="date" content="2025-01-31" />
+<meta name="date" content="2025-02-03" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -222,11 +222,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.2.2" data-path="sound-devices-in-wildlifesystems.html"><a href="sound-devices-in-wildlifesystems.html#audioinjector-zero"><i class="fa fa-check"></i><b>8.2.2</b> AudioInjector Zero</a></li>
 <li class="chapter" data-level="8.2.3" data-path="sound-devices-in-wildlifesystems.html"><a href="sound-devices-in-wildlifesystems.html#audioinjector-octo"><i class="fa fa-check"></i><b>8.2.3</b> AudioInjector Octo</a></li>
 <li class="chapter" data-level="8.2.4" data-path="sound-devices-in-wildlifesystems.html"><a href="sound-devices-in-wildlifesystems.html#audioinjector-ultra"><i class="fa fa-check"></i><b>8.2.4</b> AudioInjector Ultra</a></li>
-<li class="chapter" data-level="8.2.5" data-path="sound-devices-in-wildlifesystems.html"><a href="sound-devices-in-wildlifesystems.html#i2c-microphone-e.g.-google-voice-hat-adafruit-i2c-microphone"><i class="fa fa-check"></i><b>8.2.5</b> I2C microphone (e.g. Google Voice Hat / Adafruit i2c microphone)</a></li>
+<li class="chapter" data-level="8.2.5" data-path="sound-devices-in-wildlifesystems.html"><a href="sound-devices-in-wildlifesystems.html#i2c-microphone-e.g.-google-voice-hat"><i class="fa fa-check"></i><b>8.2.5</b> I2C microphone (e.g. Google Voice Hat)</a></li>
 <li class="chapter" data-level="8.2.6" data-path="sound-devices-in-wildlifesystems.html"><a href="sound-devices-in-wildlifesystems.html#respeaker-6-mic-array"><i class="fa fa-check"></i><b>8.2.6</b> Respeaker 6 mic array</a></li>
 <li class="chapter" data-level="8.2.7" data-path="sound-devices-in-wildlifesystems.html"><a href="sound-devices-in-wildlifesystems.html#audio-dac"><i class="fa fa-check"></i><b>8.2.7</b> Audio+ DAC</a></li>
 <li class="chapter" data-level="8.2.8" data-path="sound-devices-in-wildlifesystems.html"><a href="sound-devices-in-wildlifesystems.html#wolfson-audio-card"><i class="fa fa-check"></i><b>8.2.8</b> Wolfson Audio Card</a></li>
 </ul></li>
+<li class="chapter" data-level="8.3" data-path="sound-devices-in-wildlifesystems.html"><a href="sound-devices-in-wildlifesystems.html#installing-a-sound-device"><i class="fa fa-check"></i><b>8.3</b> Installing a sound device</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="imaging-devices.html"><a href="imaging-devices.html"><i class="fa fa-check"></i><b>9</b> Imaging Devices</a>
 <ul>
@@ -322,8 +323,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="audioinjector-ultra" class="section level3 hasAnchor" number="8.2.4">
 <h3><span class="header-section-number">8.2.4</span> AudioInjector Ultra<a href="sound-devices-in-wildlifesystems.html#audioinjector-ultra" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 </div>
-<div id="i2c-microphone-e.g.-google-voice-hat-adafruit-i2c-microphone" class="section level3 hasAnchor" number="8.2.5">
-<h3><span class="header-section-number">8.2.5</span> I2C microphone (e.g. Google Voice Hat / Adafruit i2c microphone)<a href="sound-devices-in-wildlifesystems.html#i2c-microphone-e.g.-google-voice-hat-adafruit-i2c-microphone" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="i2c-microphone-e.g.-google-voice-hat" class="section level3 hasAnchor" number="8.2.5">
+<h3><span class="header-section-number">8.2.5</span> I2C microphone (e.g. Google Voice Hat)<a href="sound-devices-in-wildlifesystems.html#i2c-microphone-e.g.-google-voice-hat" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Limited to 48kHz sample rate, no record volume control.</p>
 </div>
 <div id="respeaker-6-mic-array" class="section level3 hasAnchor" number="8.2.6">
 <h3><span class="header-section-number">8.2.6</span> Respeaker 6 mic array<a href="sound-devices-in-wildlifesystems.html#respeaker-6-mic-array" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -333,8 +335,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="wolfson-audio-card" class="section level3 hasAnchor" number="8.2.8">
 <h3><span class="header-section-number">8.2.8</span> Wolfson Audio Card<a href="sound-devices-in-wildlifesystems.html#wolfson-audio-card" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-
 </div>
+</div>
+<div id="installing-a-sound-device" class="section level2 hasAnchor" number="8.3">
+<h2><span class="header-section-number">8.3</span> Installing a sound device<a href="sound-devices-in-wildlifesystems.html#installing-a-sound-device" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>To install support for a sound device, run the following command.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb10-1"><a href="sound-devices-in-wildlifesystems.html#cb10-1" tabindex="-1"></a><span class="ex">sdc-inst</span> <span class="op">&lt;</span>sound-device-name<span class="op">&gt;</span></span></code></pre></div>
+<p>To get a list of names of supported devices, run the following command.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb11-1"><a href="sound-devices-in-wildlifesystems.html#cb11-1" tabindex="-1"></a><span class="ex">sdc-inst</span> list</span></code></pre></div>
+
 </div>
 </div>
             </section>

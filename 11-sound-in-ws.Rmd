@@ -20,10 +20,26 @@ The WildlifeSystems platform supports several popular sound capture and playback
 
 ### AudioInjector Ultra
 
-### I2C microphone (e.g. Google Voice Hat / Adafruit i2c microphone)
+### I2C microphone (e.g. Google Voice Hat)
+
+Limited to 48kHz sample rate, no record volume control.
 
 ### Respeaker 6 mic array
 
 ### Audio+ DAC
 
 ### Wolfson Audio Card
+
+## Installing a sound device
+
+To install support for a sound device, run the following command.
+
+```{bash eval=FALSE}
+sdc-inst <sound-device-name>
+```
+
+To get a list of names of supported devices, run the following command.
+
+```{bash eval=FALSE}
+sdc-inst list
+```
