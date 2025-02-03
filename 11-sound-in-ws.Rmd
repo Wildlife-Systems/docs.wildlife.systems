@@ -8,6 +8,8 @@ Support for sound devices is installed as part of the node installation process,
 `wget -O - https://github.com/wildlife-systems/sound-device-control/raw/master/install | sudo bash`
 ```
 
+The installation will install the `alsa-utils` package on Ubuntu/Debian systems, and add the current user to the `audio` group.
+
 ## Supported sound devices
 
 The WildlifeSystems platform supports several popular sound capture and playback devices. 

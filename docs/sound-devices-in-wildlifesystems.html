@@ -307,6 +307,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">8.1</span> Installing sound device support<a href="sound-devices-in-wildlifesystems.html#installing-sound-device-support" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Support for sound devices is installed as part of the node installation process, however it is possible to install the <code>sound-device-control</code> abstraction layer onto any Raspberry Pi system using the command below.</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb9-1"><a href="sound-devices-in-wildlifesystems.html#cb9-1" tabindex="-1"></a><span class="kw">`</span><span class="fu">wget</span> <span class="at">-O</span> <span class="at">-</span> https://github.com/wildlife-systems/sound-device-control/raw/master/install <span class="kw">|</span> <span class="fu">sudo</span> bash<span class="kw">`</span></span></code></pre></div>
+<p>The installation will install the <code>alsa-utils</code> package on Ubuntu/Debian systems, and add the current user to the <code>audio</code> group.</p>
 </div>
 <div id="supported-sound-devices" class="section level2 hasAnchor" number="8.2">
 <h2><span class="header-section-number">8.2</span> Supported sound devices<a href="sound-devices-in-wildlifesystems.html#supported-sound-devices" class="anchor-section" aria-label="Anchor link to header"></a></h2>
