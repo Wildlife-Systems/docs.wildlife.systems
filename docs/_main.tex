@@ -120,7 +120,7 @@
 
 \title{WildlifeSystems - biodiversity technologies}
 \author{\href{https://ebaker.me.uk}{Ed Baker}}
-\date{2025-02-03}
+\date{2025-05-06}
 
 \begin{document}
 \maketitle
@@ -316,15 +316,19 @@ The sensor reading process in WildlifeSystems has five steps.
 
 \chapter{Supported sensors}\label{supported-sensors}
 
+\section{BME680}\label{bme680}
+
+4-in-1 sensor that provides humidity, temperature, pressure, and gas readings.
+
+\section{DS18B20}\label{ds18b20}
+
+The DS18B20 is a digital thermometer that provides Celsius measurements over a 1-Wire interface. It is a low-cost, low-power device that can be used for a variety of environmental monitoring applications. Waterproof versions are available, making it suitable for use in water and soils.
+
 \section{DHT11}\label{dht11}
 
 The DHT11 is a low-cost temperature and humidity sensor. It uses a capacitive humidity sensor and a thermistor to measure the surrounding air, and sends the data by digital signals on the data pin.
 
 The low-cost nature of the sensor makes it useful desp ite several shortcomings, e.g.~for monitoring the temperature and humidity inside electronics enclosures where accuracy is not critical but the sensor can provide critical early warning of overheating or condensation.
-
-\section{BME680}\label{bme680}
-
-4-in-1 sensor that provides humidity, temperature, pressure, and gas readings.
 
 \chapter{Implementing new sensors}\label{implementing-new-sensors}
 
