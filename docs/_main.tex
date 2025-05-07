@@ -120,7 +120,7 @@
 
 \title{WildlifeSystems - biodiversity technologies}
 \author{\href{https://ebaker.me.uk}{Ed Baker}}
-\date{2025-05-06}
+\date{2025-05-07}
 
 \begin{document}
 \maketitle
@@ -316,15 +316,27 @@ The sensor reading process in WildlifeSystems has five steps.
 
 \chapter{Supported sensors}\label{supported-sensors}
 
-\section{BME680}\label{bme680}
+\section{Installing supported sensors}\label{installing-supported-sensors}
+
+The \texttt{sc-inst} command can be used to install support for a sensor. The command takes the name of the sensor as an argument, and will install the necessary scripts and packages to support the sensor.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{sc{-}inst} \OperatorTok{\textless{}}\NormalTok{sensor{-}name}\OperatorTok{\textgreater{}}
+\end{Highlighting}
+\end{Shaded}
+
+\section{List of supported sensors}\label{list-of-supported-sensors}
+
+\subsection{BME680}\label{bme680}
 
 4-in-1 sensor that provides humidity, temperature, pressure, and gas readings.
 
-\section{DS18B20}\label{ds18b20}
+\subsection{DS18B20}\label{ds18b20}
 
 The DS18B20 is a digital thermometer that provides Celsius measurements over a 1-Wire interface. It is a low-cost, low-power device that can be used for a variety of environmental monitoring applications. Waterproof versions are available, making it suitable for use in water and soils.
 
-\section{DHT11}\label{dht11}
+\subsection{DHT11}\label{dht11}
 
 The DHT11 is a low-cost temperature and humidity sensor. It uses a capacitive humidity sensor and a thermistor to measure the surrounding air, and sends the data by digital signals on the data pin.
 

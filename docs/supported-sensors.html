@@ -23,7 +23,7 @@
 <meta name="author" content="Ed Baker" />
 
 
-<meta name="date" content="2025-05-06" />
+<meta name="date" content="2025-05-07" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -194,9 +194,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="5" data-path="supported-sensors.html"><a href="supported-sensors.html"><i class="fa fa-check"></i><b>5</b> Supported sensors</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="supported-sensors.html"><a href="supported-sensors.html#bme680"><i class="fa fa-check"></i><b>5.1</b> BME680</a></li>
-<li class="chapter" data-level="5.2" data-path="supported-sensors.html"><a href="supported-sensors.html#ds18b20"><i class="fa fa-check"></i><b>5.2</b> DS18B20</a></li>
-<li class="chapter" data-level="5.3" data-path="supported-sensors.html"><a href="supported-sensors.html#dht11"><i class="fa fa-check"></i><b>5.3</b> DHT11</a></li>
+<li class="chapter" data-level="5.1" data-path="supported-sensors.html"><a href="supported-sensors.html#installing-supported-sensors"><i class="fa fa-check"></i><b>5.1</b> Installing supported sensors</a></li>
+<li class="chapter" data-level="5.2" data-path="supported-sensors.html"><a href="supported-sensors.html#list-of-supported-sensors"><i class="fa fa-check"></i><b>5.2</b> List of supported sensors</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="supported-sensors.html"><a href="supported-sensors.html#bme680"><i class="fa fa-check"></i><b>5.2.1</b> BME680</a></li>
+<li class="chapter" data-level="5.2.2" data-path="supported-sensors.html"><a href="supported-sensors.html#ds18b20"><i class="fa fa-check"></i><b>5.2.2</b> DS18B20</a></li>
+<li class="chapter" data-level="5.2.3" data-path="supported-sensors.html"><a href="supported-sensors.html#dht11"><i class="fa fa-check"></i><b>5.2.3</b> DHT11</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="implementing-new-sensors.html"><a href="implementing-new-sensors.html"><i class="fa fa-check"></i><b>6</b> Implementing new sensors</a>
 <ul>
@@ -304,19 +308,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="supported-sensors" class="section level1 hasAnchor" number="5">
 <h1><span class="header-section-number">Chapter 5</span> Supported sensors<a href="supported-sensors.html#supported-sensors" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div id="bme680" class="section level2 hasAnchor" number="5.1">
-<h2><span class="header-section-number">5.1</span> BME680<a href="supported-sensors.html#bme680" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="installing-supported-sensors" class="section level2 hasAnchor" number="5.1">
+<h2><span class="header-section-number">5.1</span> Installing supported sensors<a href="supported-sensors.html#installing-supported-sensors" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The <code>sc-inst</code> command can be used to install support for a sensor. The command takes the name of the sensor as an argument, and will install the necessary scripts and packages to support the sensor.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="supported-sensors.html#cb6-1" tabindex="-1"></a><span class="ex">sc-inst</span> <span class="op">&lt;</span>sensor-name<span class="op">&gt;</span></span></code></pre></div>
+</div>
+<div id="list-of-supported-sensors" class="section level2 hasAnchor" number="5.2">
+<h2><span class="header-section-number">5.2</span> List of supported sensors<a href="supported-sensors.html#list-of-supported-sensors" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="bme680" class="section level3 hasAnchor" number="5.2.1">
+<h3><span class="header-section-number">5.2.1</span> BME680<a href="supported-sensors.html#bme680" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>4-in-1 sensor that provides humidity, temperature, pressure, and gas readings.</p>
 </div>
-<div id="ds18b20" class="section level2 hasAnchor" number="5.2">
-<h2><span class="header-section-number">5.2</span> DS18B20<a href="supported-sensors.html#ds18b20" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="ds18b20" class="section level3 hasAnchor" number="5.2.2">
+<h3><span class="header-section-number">5.2.2</span> DS18B20<a href="supported-sensors.html#ds18b20" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The DS18B20 is a digital thermometer that provides Celsius measurements over a 1-Wire interface. It is a low-cost, low-power device that can be used for a variety of environmental monitoring applications. Waterproof versions are available, making it suitable for use in water and soils.</p>
 </div>
-<div id="dht11" class="section level2 hasAnchor" number="5.3">
-<h2><span class="header-section-number">5.3</span> DHT11<a href="supported-sensors.html#dht11" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="dht11" class="section level3 hasAnchor" number="5.2.3">
+<h3><span class="header-section-number">5.2.3</span> DHT11<a href="supported-sensors.html#dht11" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The DHT11 is a low-cost temperature and humidity sensor. It uses a capacitive humidity sensor and a thermistor to measure the surrounding air, and sends the data by digital signals on the data pin.</p>
 <p>The low-cost nature of the sensor makes it useful desp ite several shortcomings, e.g. for monitoring the temperature and humidity inside electronics enclosures where accuracy is not critical but the sensor can provide critical early warning of overheating or condensation.</p>
 
+</div>
 </div>
 </div>
             </section>

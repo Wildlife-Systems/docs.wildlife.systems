@@ -28,6 +28,8 @@ reading-data-from-a-device
 the-sensor-reading-process
 installing-new-sensors
 supported-sensors
+installing-supported-sensors
+list-of-supported-sensors
 bme680
 ds18b20
 dht11

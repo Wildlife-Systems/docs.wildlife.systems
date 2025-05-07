@@ -23,7 +23,7 @@
 <meta name="author" content="Ed Baker" />
 
 
-<meta name="date" content="2025-05-06" />
+<meta name="date" content="2025-05-07" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -194,9 +194,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="5" data-path="supported-sensors.html"><a href="supported-sensors.html"><i class="fa fa-check"></i><b>5</b> Supported sensors</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="supported-sensors.html"><a href="supported-sensors.html#bme680"><i class="fa fa-check"></i><b>5.1</b> BME680</a></li>
-<li class="chapter" data-level="5.2" data-path="supported-sensors.html"><a href="supported-sensors.html#ds18b20"><i class="fa fa-check"></i><b>5.2</b> DS18B20</a></li>
-<li class="chapter" data-level="5.3" data-path="supported-sensors.html"><a href="supported-sensors.html#dht11"><i class="fa fa-check"></i><b>5.3</b> DHT11</a></li>
+<li class="chapter" data-level="5.1" data-path="supported-sensors.html"><a href="supported-sensors.html#installing-supported-sensors"><i class="fa fa-check"></i><b>5.1</b> Installing supported sensors</a></li>
+<li class="chapter" data-level="5.2" data-path="supported-sensors.html"><a href="supported-sensors.html#list-of-supported-sensors"><i class="fa fa-check"></i><b>5.2</b> List of supported sensors</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="supported-sensors.html"><a href="supported-sensors.html#bme680"><i class="fa fa-check"></i><b>5.2.1</b> BME680</a></li>
+<li class="chapter" data-level="5.2.2" data-path="supported-sensors.html"><a href="supported-sensors.html#ds18b20"><i class="fa fa-check"></i><b>5.2.2</b> DS18B20</a></li>
+<li class="chapter" data-level="5.2.3" data-path="supported-sensors.html"><a href="supported-sensors.html#dht11"><i class="fa fa-check"></i><b>5.2.3</b> DHT11</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="implementing-new-sensors.html"><a href="implementing-new-sensors.html"><i class="fa fa-check"></i><b>6</b> Implementing new sensors</a>
 <ul>
@@ -312,9 +316,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="indicators" class="section level2 hasAnchor" number="12.2">
 <h2><span class="header-section-number">12.2</span> Indicators<a href="indicators-and-heartbeats.html#indicators" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Internally <code>ws-inidicate</code> makes repeated calls to <code>pi-pwr</code> to control the LED(s). There are three indicator routines, heartbeat (quick flash of LEDs in order to show device is functioning), countdown (flashes power LED), and record (power LED on, action LED off).</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb13-1"><a href="indicators-and-heartbeats.html#cb13-1" tabindex="-1"></a><span class="fu">sudo</span> ws-indicate</span>
-<span id="cb13-2"><a href="indicators-and-heartbeats.html#cb13-2" tabindex="-1"></a><span class="fu">sudo</span> ws-indicate countdown 5   <span class="co"># counts down from 5</span></span>
-<span id="cb13-3"><a href="indicators-and-heartbeats.html#cb13-3" tabindex="-1"></a><span class="fu">sudo</span> ws-indicate record action <span class="co"># record light is on while action is executed</span></span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb14-1"><a href="indicators-and-heartbeats.html#cb14-1" tabindex="-1"></a><span class="fu">sudo</span> ws-indicate</span>
+<span id="cb14-2"><a href="indicators-and-heartbeats.html#cb14-2" tabindex="-1"></a><span class="fu">sudo</span> ws-indicate countdown 5   <span class="co"># counts down from 5</span></span>
+<span id="cb14-3"><a href="indicators-and-heartbeats.html#cb14-3" tabindex="-1"></a><span class="fu">sudo</span> ws-indicate record action <span class="co"># record light is on while action is executed</span></span></code></pre></div>
 <div id="a-note-on-sudo-1" class="section level3 hasAnchor" number="12.2.1">
 <h3><span class="header-section-number">12.2.1</span> A note on <code>sudo</code><a href="indicators-and-heartbeats.html#a-note-on-sudo-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Raspberry Pi OS (and previously Raspbian) allows the default user to run sudo without a password. This is not true for other Linux distributions, such as Ubuntu. This could lead to a password prompt when using <code>ws-indicate</code>. As nodes are designed to run autonomously, the installation process for <code>ws-node</code> will configure <code>ws-indicate</code> to not require a <code>sudo</code> password.</p>
@@ -324,7 +328,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">12.3</span> Heartbeat<a href="indicators-and-heartbeats.html#heartbeat" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The script <code>ws-heartbeat</code> is used to send a heartbeat signal to the devices.wildlife.systems server to indicate that the node is alive and connected, as well as to provide some information to assist problem diagnosis. The data sent comes from the onboard sensor readings (<code>sr onboard</code>) and the server stores the node ID, timestamp, CPU and GPU temperatures, and the amount of memory and storage used. The node must be registered with WildlifeSystems for this data to be stored.</p>
 <p>The script may be run for debugging purposes at any time as follows.</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb14-1"><a href="indicators-and-heartbeats.html#cb14-1" tabindex="-1"></a><span class="ex">ws-heartbeat</span></span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb15-1"><a href="indicators-and-heartbeats.html#cb15-1" tabindex="-1"></a><span class="ex">ws-heartbeat</span></span></code></pre></div>
 <p>The script will exit silently on success.</p>
 
 </div>
