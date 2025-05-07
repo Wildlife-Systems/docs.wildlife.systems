@@ -16,10 +16,6 @@ sudo ws-indicate countdown 5   # counts down from 5
 sudo ws-indicate record action # record light is on while action is executed
 ````
 
-### A note on `sudo`
-
-Raspberry Pi OS (and previously Raspbian) allows the default user to run sudo without a password. This is not true for other Linux distributions, such as Ubuntu. This could lead to a password prompt when using `ws-indicate`. As nodes are designed to run autonomously, the installation process for `ws-node` will configure `ws-indicate` to not require a `sudo` password.
-
 ## Heartbeat
 The script `ws-heartbeat` is used to send a heartbeat signal to the devices.wildlife.systems server to indicate that the node is alive and connected, as well as to provide some information to assist problem diagnosis. The data sent comes from the onboard sensor readings (`sr onboard`) and the server stores the node ID, timestamp, CPU and GPU temperatures, and the amount of memory and storage used. The node must be registered with WildlifeSystems for this data to be stored.
 

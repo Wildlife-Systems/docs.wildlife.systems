@@ -66,7 +66,6 @@ a-note-on-sudo
 indicators-and-heartbeats
 installation-of-ws-indcate-and-ws-heartbeat
 indicators
-a-note-on-sudo-1
 heartbeat
 integration-with-monitoring-tools
 prtg
@@ -77,6 +76,7 @@ server-tools
 installation
 adding-nodes-and-receieving-a-token
 removing-a-node
+a-note-on-sudo-1
 return-codes
 script-functionality
 parameter-problems

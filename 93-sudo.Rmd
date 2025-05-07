@@ -1,0 +1,5 @@
+# A note on `sudo`
+
+Raspberry Pi OS (and previously Raspbian) allows the default user to run sudo without a password. This is not true for other Linux distributions, such as Ubuntu. This could lead to a password prompt when using scripts such as `sr` and `ws-indicate`. As nodes are designed to run autonomously, the installation process for `ws-node` will configure  these scripts to not require a `sudo` password.
+
+In some installations (generally where the devices are managed by organisations) the `sudo` group will not be present. To allow running without a password the file `/etc/sudoers.d/ws` can be renamed (to avoid changes being undone if `ws-node` is re-installed) and the `%sudo` group modified to an appropriate group present on the system.

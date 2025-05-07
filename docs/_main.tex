@@ -575,10 +575,6 @@ Internally \texttt{ws-inidicate} makes repeated calls to \texttt{pi-pwr} to cont
 \end{Highlighting}
 \end{Shaded}
 
-\subsection{\texorpdfstring{A note on \texttt{sudo}}{A note on sudo}}\label{a-note-on-sudo-1}
-
-Raspberry Pi OS (and previously Raspbian) allows the default user to run sudo without a password. This is not true for other Linux distributions, such as Ubuntu. This could lead to a password prompt when using \texttt{ws-indicate}. As nodes are designed to run autonomously, the installation process for \texttt{ws-node} will configure \texttt{ws-indicate} to not require a \texttt{sudo} password.
-
 \section{Heartbeat}\label{heartbeat}
 
 The script \texttt{ws-heartbeat} is used to send a heartbeat signal to the devices.wildlife.systems server to indicate that the node is alive and connected, as well as to provide some information to assist problem diagnosis. The data sent comes from the onboard sensor readings (\texttt{sr\ onboard}) and the server stores the node ID, timestamp, CPU and GPU temperatures, and the amount of memory and storage used. The node must be registered with WildlifeSystems for this data to be stored.
@@ -672,6 +668,12 @@ Adding a node by it's ID (serial number of the Raspberry Pi) will add the device
 
 \appendix
 
+
+\chapter{\texorpdfstring{A note on \texttt{sudo}}{A note on sudo}}\label{a-note-on-sudo-1}
+
+Raspberry Pi OS (and previously Raspbian) allows the default user to run sudo without a password. This is not true for other Linux distributions, such as Ubuntu. This could lead to a password prompt when using scripts such as \texttt{sr} and \texttt{ws-indicate}. As nodes are designed to run autonomously, the installation process for \texttt{ws-node} will configure these scripts to not require a \texttt{sudo} password.
+
+In some installations (generally where the devices are managed by organisations) the \texttt{sudo} group will not be present. To allow running without a password the file \texttt{/etc/sudoers.d/ws} can be renamed (to avoid changes being undone if \texttt{ws-node} is re-installed) and the \texttt{\%sudo} group modified to an appropriate group present on the system.
 
 \chapter{Return codes}\label{return-codes}
 
