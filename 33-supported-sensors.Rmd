@@ -1,13 +1,5 @@
 # Supported sensors
 
-## Installing supported sensors
-
-The `sc-inst` command can be used to install support for a sensor. The command takes the name of the sensor as an argument, and will install the necessary scripts and packages to support the sensor.
-
-```{bash eval=FALSE}
-sc-inst <sensor-name>
-```
-
 ## List of supported sensors
 
 ### BME680
@@ -18,9 +10,30 @@ sc-inst <sensor-name>
 
 The DS18B20 is a digital thermometer that provides Celsius measurements over a 1-Wire interface. It is a low-cost, low-power device that can be used for a variety of environmental monitoring applications. Waterproof versions are available, making it suitable for use in water and soils.
 
+````{bash eval=FALSE}
+sudo apt install sensor-ds18b20
+
+sudo sr ds18b20
+````
+
 ### DHT11
 
 The DHT11 is a low-cost  temperature and humidity sensor. It uses a capacitive humidity sensor and a thermistor to measure the surrounding air, and sends the data by digital signals on the data pin.
 
 The low-cost nature of the sensor makes it useful desp ite several shortcomings, e.g. for monitoring the temperature and humidity inside electronics enclosures where accuracy is not critical but the sensor can provide critical early warning of overheating or condensation.
 
+````{bash eval=FALSE}
+sudo apt install sensor-dht11
+
+sudo sr dht11
+````
+
+### LV-MaxSonar-EZ
+
+A series of ultrasonic distance sensors that can measure distances from 2 cm to 4 m with high accuracy. They are commonly used in robotics and automation applications, but can also be used for environmental monitoring.
+
+````{bash eval=FALSE}
+sudo apt install sensor-hrlv
+
+sudo sr hrlv
+````

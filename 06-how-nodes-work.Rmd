@@ -1,0 +1,23 @@
+# How nodes work
+
+After instllation configuration files are placed in `/etc/ws` that define the operation of the node.
+
+On startup, WildelifeSystems nodes run three systemd services that are responsible for processing audio, images, and environmental sensors. These sensors read the appropriate configuration files, and start collecting and recording data.
+
+## Audio
+
+The service `ws-run-audio` is configured by `/etc/ws/audio.conf` and is responsible for running the audio processing pipeline. The blocks in the pipeline are `record`, `sleep`, `upload-delete`, and `clearup`.
+
+### `init`
+
+### `run`
+
+#### `record`
+
+#### `sleep`
+
+#### `upload-delete`
+
+#### `clearup`
+
+In situations where network connection is temporarily unavailable it is possible that audio files will collect on the advice. These are not automatically processed during `upload-delete` and their processing must be handled manually, or by creating a processing scipt in `clearup`.

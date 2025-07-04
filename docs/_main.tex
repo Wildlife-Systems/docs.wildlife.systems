@@ -88,15 +88,17 @@
 \makesavenoteenv{longtable}
 \usepackage{graphicx}
 \makeatletter
-\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
-\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
-\makeatother
-% Scale images if necessary, so that they will not overflow the page
-% margins by default, and it is still possible to overwrite the defaults
-% using explicit options in \includegraphics[width, height, ...]{}
-\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
 % Set default figure placement to htbp
-\makeatletter
 \def\fps@figure{htbp}
 \makeatother
 \setlength{\emergencystretch}{3em} % prevent overfull lines
@@ -104,9 +106,6 @@
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 \setcounter{secnumdepth}{5}
 \usepackage{booktabs}
-\ifLuaTeX
-  \usepackage{selnolig}  % disable illegal ligatures
-\fi
 \usepackage[]{natbib}
 \bibliographystyle{plainnat}
 \usepackage{bookmark}
@@ -120,7 +119,7 @@
 
 \title{WildlifeSystems - biodiversity technologies}
 \author{\href{https://ebaker.me.uk}{Ed Baker}}
-\date{2025-05-07}
+\date{2025-07-04}
 
 \begin{document}
 \maketitle
@@ -158,7 +157,7 @@ This has been accompanied by a decline in the cost of these technologies (e.g.~F
 
 \begin{figure}
 \centering
-\includegraphics{_main_files/figure-latex/storage-costs-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{_main_files/figure-latex/storage-costs-1.pdf}}
 \caption{\label{fig:storage-costs}The decline in storage costs per megabyte in consumer hard drives.}
 \end{figure}
 
@@ -214,6 +213,72 @@ Defined interfaces between components allow for easy integration of new technolo
 
 \subsection{Packages}\label{packages}
 
+\chapter{Nodes}\label{nodes}
+
+The fundamental unit of the WildlifeSystems platform is the node. A node is a physical device that can be used to collect data from sensors, control devices, and communicate with other nodes. Nodes are (typically) Raspberry Pi computers, packaged with an array of environmental sensors, microphone(s), and/or camera(s).
+
+The WildlifeSystems software is used to configure a node to collect data from the sensors and what to do with the data collected. Typically this will be to send the data for external storage and analysis, but it is also possible to store the data locally on the node. Data can also be processed locally on the node, for example to detect a specific event (e.g.~a sound or image) and then send a notification to the user. The WildlifeSystems software is designed to be modular, so that new sensors and devices can be added easily, and the data processing can be configured to suit the user's needs.
+
+\section{Standard node}\label{standard-node}
+
+There is no such thing as a `standard node', apart from the core software interfaces. In some deployments, however, there will be a great deal of standardisation. The Urban Research Station deployment at the Natural History Museum, London, for example, has a number of nodes that are identically configured. Although even here, there are differences in the sensors used, and the data processing that is done. The nodes are all configured to send data to the same server (the Data Ecosystem) but the exact configuration of each node is driven by current research needs. In this way a network of WildlifeSystems nodes can be seen as a platform for facilitating research, rather than as a single-purpose device.
+
+To make it easier to deploy and work with individual nodes, it is recommended that some commonly used sensors are deployed in the stadard fashion described below.
+
+\subsection{Self-monitoring}\label{self-monitoring}
+
+Electricity and water should not mix. While suitable enclosures go a long way to preventing an unfortunate meeting, many nodes are deployed outside in the elements. The addition of a cheap DHT11 sensor internally to monitor the humidity and temperature of the enclosure may help identify a potentially damaging situation before it becomes problematic. {[}TODO: See PRTG integration{]}.
+
+This sensor is recommended to be attached to GPIO pin 4.
+
+\subsection{i2s microphones}\label{i2s-microphones}
+
+TODO
+
+\subsection{1-Wire bus}\label{wire-bus}
+
+GPIO 17
+
+\section{Enclosures}\label{enclosures}
+
+\subsection{Fixing inside enclosures}\label{fixing-inside-enclosures}
+
+\subsection{Attaching sensors}\label{attaching-sensors}
+
+TODO: to sockets, not directly
+
+TODO: breakout boards
+
+TODO: custom boards
+
+\subsection{Power solutions}\label{power-solutions}
+
+TODO: PoE
+
+\chapter{How nodes work}\label{how-nodes-work}
+
+After instllation configuration files are placed in \texttt{/etc/ws} that define the operation of the node.
+
+On startup, WildelifeSystems nodes run three systemd services that are responsible for processing audio, images, and environmental sensors. These sensors read the appropriate configuration files, and start collecting and recording data.
+
+\section{Audio}\label{audio}
+
+The service \texttt{ws-run-audio} is configured by \texttt{/etc/ws/audio.conf} and is responsible for running the audio processing pipeline. The blocks in the pipeline are \texttt{record}, \texttt{sleep}, \texttt{upload-delete}, and \texttt{clearup}.
+
+\subsection{\texorpdfstring{\texttt{init}}{init}}\label{init}
+
+\subsection{\texorpdfstring{\texttt{run}}{run}}\label{run}
+
+\subsubsection{\texorpdfstring{\texttt{record}}{record}}\label{record}
+
+\subsubsection{\texorpdfstring{\texttt{sleep}}{sleep}}\label{sleep}
+
+\subsubsection{\texorpdfstring{\texttt{upload-delete}}{upload-delete}}\label{upload-delete}
+
+\subsubsection{\texorpdfstring{\texttt{clearup}}{clearup}}\label{clearup}
+
+In situations where network connection is temporarily unavailable it is possible that audio files will collect on the advice. These are not automatically processed during \texttt{upload-delete} and their processing must be handled manually, or by creating a processing scipt in \texttt{clearup}.
+
 \chapter{Sensor Networks}\label{sensor-networks}
 
 \chapter{Environmental Sensors}\label{environmental-sensors}
@@ -260,7 +325,7 @@ Support for sensors is installed as part of the node installation process, howev
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{wget} \AttributeTok{{-}O} \AttributeTok{{-}}\NormalTok{ https://raw.githubusercontent.com/Wildlife{-}Systems/sensor{-}control/main/install }\KeywordTok{|} \FunctionTok{sudo}\NormalTok{ bash}
+\FunctionTok{sudo}\NormalTok{ apt install sensor{-}control}
 \end{Highlighting}
 \end{Shaded}
 
@@ -314,17 +379,15 @@ The sensor reading process in WildlifeSystems has five steps.
 
 \section{Installing new sensors}\label{installing-new-sensors}
 
-\chapter{Supported sensors}\label{supported-sensors}
-
-\section{Installing supported sensors}\label{installing-supported-sensors}
-
-The \texttt{sc-inst} command can be used to install support for a sensor. The command takes the name of the sensor as an argument, and will install the necessary scripts and packages to support the sensor.
+New sensors can be installed using the apt package manager once the Wildlife Systems APT repository has been added to the system. Instructions can be found on the webpage \href{https://wildlife.systems/apt-configuration.html}{Configuring APT for Wildlife Systems.}.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\ExtensionTok{sc{-}inst} \OperatorTok{\textless{}}\NormalTok{sensor{-}name}\OperatorTok{\textgreater{}}
+\FunctionTok{sudo}\NormalTok{ apt install sensor{-}}\OperatorTok{\textless{}}\NormalTok{sensor{-}name}\OperatorTok{\textgreater{}}
 \end{Highlighting}
 \end{Shaded}
+
+\chapter{Supported sensors}\label{supported-sensors}
 
 \section{List of supported sensors}\label{list-of-supported-sensors}
 
@@ -336,37 +399,43 @@ The \texttt{sc-inst} command can be used to install support for a sensor. The co
 
 The DS18B20 is a digital thermometer that provides Celsius measurements over a 1-Wire interface. It is a low-cost, low-power device that can be used for a variety of environmental monitoring applications. Waterproof versions are available, making it suitable for use in water and soils.
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{sudo}\NormalTok{ apt install sensor{-}ds18b20}
+
+\FunctionTok{sudo}\NormalTok{ sr ds18b20}
+\end{Highlighting}
+\end{Shaded}
+
 \subsection{DHT11}\label{dht11}
 
 The DHT11 is a low-cost temperature and humidity sensor. It uses a capacitive humidity sensor and a thermistor to measure the surrounding air, and sends the data by digital signals on the data pin.
 
 The low-cost nature of the sensor makes it useful desp ite several shortcomings, e.g.~for monitoring the temperature and humidity inside electronics enclosures where accuracy is not critical but the sensor can provide critical early warning of overheating or condensation.
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{sudo}\NormalTok{ apt install sensor{-}dht11}
+
+\FunctionTok{sudo}\NormalTok{ sr dht11}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{LV-MaxSonar-EZ}\label{lv-maxsonar-ez}
+
+A series of ultrasonic distance sensors that can measure distances from 2 cm to 4 m with high accuracy. They are commonly used in robotics and automation applications, but can also be used for environmental monitoring.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{sudo}\NormalTok{ apt install sensor{-}hrlv}
+
+\FunctionTok{sudo}\NormalTok{ sr hrlv}
+\end{Highlighting}
+\end{Shaded}
+
 \chapter{Implementing new sensors}\label{implementing-new-sensors}
 
-New sensors should be implemented as new packages (i.e, a new GitHub repository). Packages have a standard format, and should be named \texttt{sensor-\textless{}sensor-name\textgreater{}} where \texttt{\textless{}sensor-name\textgreater{}} is short, descriptive of the sensor (e.g.~model number), and unique within the WildlifeSystems ecosystem.
-
-The structure of a basic package is given below.
-
-\begin{verbatim}
-.
-+-- inst
-|   +-- files that are not part of the package structure
-|       used during installation (e.g. 3rd party scripts 
-|       to be copied to /usr/bin/)
-|
-+-- sensor-<sensor-name>
-|     Executable to read sensor and print JSON of readings
-|     (copied on install to /usr/bin/)
-|
-+-- <sensor-name>
-|     Configuration file 
-|     (copied on install to /var/aao/sensors/)
-|
-+-- install
-|     Bash file run once on install - used to install packaged
-|     dependencies, etc.
-\end{verbatim}
+New sensors should be implemented as new Debian packages, and submitted via GitHub. Packages have a standard format, and should be named \texttt{sensor-\textless{}sensor-name\textgreater{}} where \texttt{\textless{}sensor-name\textgreater{}} is short, descriptive of the sensor (e.g.~model number), and unique within the WildlifeSystems ecosystem.
 
 As many people implement various sensors on the Raspberry Pi, it is likely that some sort of solution is already available, that can be tweaked to output readings in the standard format required. However, you must ensure that any licensing conditions are met. In particular, an open license is required if submitting your sensor package to WildlifeSystems for inclusion in the ecosystem.
 
@@ -422,38 +491,6 @@ The file can be written in any programming or scripting language, but to prevent
 \BuiltInTok{print}\NormalTok{(}\StringTok{"["}\NormalTok{,json.dumps(temperature),}\StringTok{"]"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
-
-\section{Setting the environment}\label{setting-the-environment}
-
-The file \texttt{\textless{}sensor-name\textgreater{}} in the package specifies information that modify the environment of the Raspberry Pi (e.g.~if the i2c interface should be enabled) before the \texttt{sensor-\textless{}sensor-name\textgreater{}} script is run. This allows sensors with different requirements to run sequentially on the same node.
-
-The file must always be present, even if it is empty. During installation the file is moved to \texttt{/var/aao/sensors/} and the list of files in this directory indicates to the system which sensors are installed.
-
-TODO: i2c
-
-\section{Install}\label{install}
-
-The file \texttt{install} in the directory is run once, when the sensor package is installed. This allows for the installation of packages and scripts necessary for the functioning of the package.
-
-The file is executed by \texttt{bash} and the use of \texttt{sudo} is allowed.
-
-\section{\texorpdfstring{The installation process with \texttt{si}}{The installation process with si}}\label{the-installation-process-with-si}
-
-The sensor install script, \texttt{si}, from \texttt{sensor-control} is used to install sensor packages. For developer reference the installation process is described below.
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\item
-  \texttt{si} clones the \texttt{Wildlife-Systems/sensor-\textless{}sensor-name\textgreater{}} repository from GitHub.
-\item
-  The \texttt{install} script is executed.
-\item
-  \texttt{sensor-\textless{}sensor-name} is marked as executable and move to /usr/bin/.
-\item
-  \texttt{\textless{}sensor-name\textgreater{}} is moved to /var/aao/sensors/.
-\item
-  The cloned repository is removed from the local filesystem.
-\end{enumerate}
 
 \section{Submitting packages to WildlifeSystems}\label{submitting-packages-to-wildlifesystems}
 

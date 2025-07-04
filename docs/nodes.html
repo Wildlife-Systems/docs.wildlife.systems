@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 12 Imaging devices in WildlifeSystems | WildlifeSystems - biodiversity technologies</title>
+  <title>Chapter 2 Nodes | WildlifeSystems - biodiversity technologies</title>
   <meta name="description" content="Manual for using WildlifeSystems technologies for monitoring biodiversity." />
   <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 12 Imaging devices in WildlifeSystems | WildlifeSystems - biodiversity technologies" />
+  <meta property="og:title" content="Chapter 2 Nodes | WildlifeSystems - biodiversity technologies" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="Manual for using WildlifeSystems technologies for monitoring biodiversity." />
   <meta name="github-repo" content="wildlife-systems/docs.wildlife.systems" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 12 Imaging devices in WildlifeSystems | WildlifeSystems - biodiversity technologies" />
+  <meta name="twitter:title" content="Chapter 2 Nodes | WildlifeSystems - biodiversity technologies" />
   
   <meta name="twitter:description" content="Manual for using WildlifeSystems technologies for monitoring biodiversity." />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="imaging-devices.html"/>
-<link rel="next" href="power-management.html"/>
+<link rel="prev" href="biodiversity-technologies.html"/>
+<link rel="next" href="how-nodes-work.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -324,17 +324,53 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="imaging-devices-in-wildlifesystems" class="section level1 hasAnchor" number="12">
-<h1><span class="header-section-number">Chapter 12</span> Imaging devices in WildlifeSystems<a href="imaging-devices-in-wildlifesystems.html#imaging-devices-in-wildlifesystems" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="nodes" class="section level1 hasAnchor" number="2">
+<h1><span class="header-section-number">Chapter 2</span> Nodes<a href="nodes.html#nodes" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>The fundamental unit of the WildlifeSystems platform is the node. A node is a physical device that can be used to collect data from sensors, control devices, and communicate with other nodes. Nodes are (typically) Raspberry Pi computers, packaged with an array of environmental sensors, microphone(s), and/or camera(s).</p>
+<p>The WildlifeSystems software is used to configure a node to collect data from the sensors and what to do with the data collected. Typically this will be to send the data for external storage and analysis, but it is also possible to store the data locally on the node. Data can also be processed locally on the node, for example to detect a specific event (e.g. a sound or image) and then send a notification to the user. The WildlifeSystems software is designed to be modular, so that new sensors and devices can be added easily, and the data processing can be configured to suit the user’s needs.</p>
+<div id="standard-node" class="section level2 hasAnchor" number="2.1">
+<h2><span class="header-section-number">2.1</span> Standard node<a href="nodes.html#standard-node" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>There is no such thing as a ‘standard node’, apart from the core software interfaces. In some deployments, however, there will be a great deal of standardisation. The Urban Research Station deployment at the Natural History Museum, London, for example, has a number of nodes that are identically configured. Although even here, there are differences in the sensors used, and the data processing that is done. The nodes are all configured to send data to the same server (the Data Ecosystem) but the exact configuration of each node is driven by current research needs. In this way a network of WildlifeSystems nodes can be seen as a platform for facilitating research, rather than as a single-purpose device.</p>
+<p>To make it easier to deploy and work with individual nodes, it is recommended that some commonly used sensors are deployed in the stadard fashion described below.</p>
+<div id="self-monitoring" class="section level3 hasAnchor" number="2.1.1">
+<h3><span class="header-section-number">2.1.1</span> Self-monitoring<a href="nodes.html#self-monitoring" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Electricity and water should not mix. While suitable enclosures go a long way to preventing an unfortunate meeting, many nodes are deployed outside in the elements. The addition of a cheap DHT11 sensor internally to monitor the humidity and temperature of the enclosure may help identify a potentially damaging situation before it becomes problematic. [TODO: See PRTG integration].</p>
+<p>This sensor is recommended to be attached to GPIO pin 4.</p>
+</div>
+<div id="i2s-microphones" class="section level3 hasAnchor" number="2.1.2">
+<h3><span class="header-section-number">2.1.2</span> i2s microphones<a href="nodes.html#i2s-microphones" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>TODO</p>
+</div>
+<div id="wire-bus" class="section level3 hasAnchor" number="2.1.3">
+<h3><span class="header-section-number">2.1.3</span> 1-Wire bus<a href="nodes.html#wire-bus" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>GPIO 17</p>
+</div>
+</div>
+<div id="enclosures" class="section level2 hasAnchor" number="2.2">
+<h2><span class="header-section-number">2.2</span> Enclosures<a href="nodes.html#enclosures" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="fixing-inside-enclosures" class="section level3 hasAnchor" number="2.2.1">
+<h3><span class="header-section-number">2.2.1</span> Fixing inside enclosures<a href="nodes.html#fixing-inside-enclosures" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div id="attaching-sensors" class="section level3 hasAnchor" number="2.2.2">
+<h3><span class="header-section-number">2.2.2</span> Attaching sensors<a href="nodes.html#attaching-sensors" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>TODO: to sockets, not directly</p>
+<p>TODO: breakout boards</p>
+<p>TODO: custom boards</p>
+</div>
+<div id="power-solutions" class="section level3 hasAnchor" number="2.2.3">
+<h3><span class="header-section-number">2.2.3</span> Power solutions<a href="nodes.html#power-solutions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>TODO: PoE</p>
 
+</div>
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="imaging-devices.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="power-management.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="biodiversity-technologies.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="how-nodes-work.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -365,7 +401,7 @@ gitbook.start({
     "size": 2
   },
   "edit": {
-    "link": "https://github.com/Wildlife-Systems/docs.wildlife.systems/edit/master/50-image-in-ws.Rmd",
+    "link": "https://github.com/Wildlife-Systems/docs.wildlife.systems/edit/master/05-nodes.Rmd",
     "text": "Edit"
   },
   "history": {

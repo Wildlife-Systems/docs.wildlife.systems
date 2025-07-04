@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 12 Imaging devices in WildlifeSystems | WildlifeSystems - biodiversity technologies</title>
+  <title>Chapter 3 How nodes work | WildlifeSystems - biodiversity technologies</title>
   <meta name="description" content="Manual for using WildlifeSystems technologies for monitoring biodiversity." />
   <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 12 Imaging devices in WildlifeSystems | WildlifeSystems - biodiversity technologies" />
+  <meta property="og:title" content="Chapter 3 How nodes work | WildlifeSystems - biodiversity technologies" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="Manual for using WildlifeSystems technologies for monitoring biodiversity." />
   <meta name="github-repo" content="wildlife-systems/docs.wildlife.systems" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 12 Imaging devices in WildlifeSystems | WildlifeSystems - biodiversity technologies" />
+  <meta name="twitter:title" content="Chapter 3 How nodes work | WildlifeSystems - biodiversity technologies" />
   
   <meta name="twitter:description" content="Manual for using WildlifeSystems technologies for monitoring biodiversity." />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="imaging-devices.html"/>
-<link rel="next" href="power-management.html"/>
+<link rel="prev" href="nodes.html"/>
+<link rel="next" href="sensor-networks.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -324,17 +324,42 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="imaging-devices-in-wildlifesystems" class="section level1 hasAnchor" number="12">
-<h1><span class="header-section-number">Chapter 12</span> Imaging devices in WildlifeSystems<a href="imaging-devices-in-wildlifesystems.html#imaging-devices-in-wildlifesystems" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="how-nodes-work" class="section level1 hasAnchor" number="3">
+<h1><span class="header-section-number">Chapter 3</span> How nodes work<a href="how-nodes-work.html#how-nodes-work" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>After instllation configuration files are placed in <code>/etc/ws</code> that define the operation of the node.</p>
+<p>On startup, WildelifeSystems nodes run three systemd services that are responsible for processing audio, images, and environmental sensors. These sensors read the appropriate configuration files, and start collecting and recording data.</p>
+<div id="audio" class="section level2 hasAnchor" number="3.1">
+<h2><span class="header-section-number">3.1</span> Audio<a href="how-nodes-work.html#audio" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The service <code>ws-run-audio</code> is configured by <code>/etc/ws/audio.conf</code> and is responsible for running the audio processing pipeline. The blocks in the pipeline are <code>record</code>, <code>sleep</code>, <code>upload-delete</code>, and <code>clearup</code>.</p>
+<div id="init" class="section level3 hasAnchor" number="3.1.1">
+<h3><span class="header-section-number">3.1.1</span> <code>init</code><a href="how-nodes-work.html#init" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div id="run" class="section level3 hasAnchor" number="3.1.2">
+<h3><span class="header-section-number">3.1.2</span> <code>run</code><a href="how-nodes-work.html#run" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="record" class="section level4 hasAnchor" number="3.1.2.1">
+<h4><span class="header-section-number">3.1.2.1</span> <code>record</code><a href="how-nodes-work.html#record" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+</div>
+<div id="sleep" class="section level4 hasAnchor" number="3.1.2.2">
+<h4><span class="header-section-number">3.1.2.2</span> <code>sleep</code><a href="how-nodes-work.html#sleep" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+</div>
+<div id="upload-delete" class="section level4 hasAnchor" number="3.1.2.3">
+<h4><span class="header-section-number">3.1.2.3</span> <code>upload-delete</code><a href="how-nodes-work.html#upload-delete" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+</div>
+<div id="clearup" class="section level4 hasAnchor" number="3.1.2.4">
+<h4><span class="header-section-number">3.1.2.4</span> <code>clearup</code><a href="how-nodes-work.html#clearup" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>In situations where network connection is temporarily unavailable it is possible that audio files will collect on the advice. These are not automatically processed during <code>upload-delete</code> and their processing must be handled manually, or by creating a processing scipt in <code>clearup</code>.</p>
 
+</div>
+</div>
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="imaging-devices.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="power-management.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="nodes.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="sensor-networks.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -365,7 +390,7 @@ gitbook.start({
     "size": 2
   },
   "edit": {
-    "link": "https://github.com/Wildlife-Systems/docs.wildlife.systems/edit/master/50-image-in-ws.Rmd",
+    "link": "https://github.com/Wildlife-Systems/docs.wildlife.systems/edit/master/06-how-nodes-work.Rmd",
     "text": "Edit"
   },
   "history": {

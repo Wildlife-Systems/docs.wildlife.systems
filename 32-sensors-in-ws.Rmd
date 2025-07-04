@@ -16,7 +16,7 @@ The Raspberry Pi does not come with environmental sensors, however there are sev
 Support for sensors is installed as part of the node installation process, however it is possible to install the `sensor-control` abstraction layer onto any Raspberry Pi system using the command below.
 
 ````{bash eval=FALSE}
-wget -O - https://raw.githubusercontent.com/Wildlife-Systems/sensor-control/main/install | sudo bash
+sudo apt install sensor-control
 ````
 
 This will install the `sensor-control` and `sensor-onboard` scripts into the system, as well as installing a small of number of supporting packages if they are not already installed.
@@ -58,4 +58,10 @@ The sensor reading process in WildlifeSystems has five steps.
 5. `sr` returns the finalised JSON array to the user.
 
 ## Installing new sensors
+
+New sensors can be installed using the apt package manager once the Wildlife Systems APT repository has been added to the system. Instructions can be found on the webpage [Configuring APT for Wildlife Systems.](https://wildlife.systems/apt-configuration.html).
+
+````{bash eval=FALSE}
+sudo apt install sensor-<sensor-name>
+````
 

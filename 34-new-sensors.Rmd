@@ -1,28 +1,6 @@
 # Implementing new sensors
 
-New sensors should be implemented as new packages (i.e, a new GitHub repository). Packages have a standard format, and should be named `sensor-<sensor-name>` where `<sensor-name>` is short, descriptive of the sensor (e.g. model number), and unique within the WildlifeSystems ecosystem.
-
-The structure of a basic package is given below.
-
-````
-.
-+-- inst
-|   +-- files that are not part of the package structure
-|       used during installation (e.g. 3rd party scripts 
-|       to be copied to /usr/bin/)
-|
-+-- sensor-<sensor-name>
-|     Executable to read sensor and print JSON of readings
-|     (copied on install to /usr/bin/)
-|
-+-- <sensor-name>
-|     Configuration file 
-|     (copied on install to /var/aao/sensors/)
-|
-+-- install
-|     Bash file run once on install - used to install packaged
-|     dependencies, etc.
-````
+New sensors should be implemented as new Debian packages, and submitted via GitHub. Packages have a standard format, and should be named `sensor-<sensor-name>` where `<sensor-name>` is short, descriptive of the sensor (e.g. model number), and unique within the WildlifeSystems ecosystem.
 
 As many people implement various sensors on the Raspberry Pi, it is likely that some sort of solution is already available, that can be tweaked to output readings in the standard format required. However, you must ensure that any licensing conditions are met. In particular, an open license is required if submitting your sensor package to WildlifeSystems for inclusion in the ecosystem.
 
@@ -74,34 +52,6 @@ temperature["value"] = sensor_reading
 # Output the JSON in an array
 print("[",json.dumps(temperature),"]")
 ````
-
-## Setting the environment
-
-The file `<sensor-name>` in the package specifies information that modify the environment of the Raspberry Pi (e.g. if the i2c interface should be enabled) before the `sensor-<sensor-name>` script is run. This allows sensors with different requirements to run sequentially on the same node.
-
-The file must always be present, even if it is empty. During installation the file is moved to `/var/aao/sensors/` and the list of files in this directory indicates to the system which sensors are installed.
-
-TODO: i2c
-
-## Install
-
-The file `install` in the directory is run once, when the sensor package is installed. This allows for the installation of packages and scripts necessary for the functioning of the package.
-
-The file is executed by `bash` and the use of `sudo` is allowed.
-
-## The installation process with `si`
-
-The sensor install script, `si`, from `sensor-control` is used to install sensor packages. For developer reference the installation process is described below.
-
-1. `si` clones the `Wildlife-Systems/sensor-<sensor-name>` repository from GitHub.
-
-2. The `install` script is executed.
-
-3. `sensor-<sensor-name` is marked as executable and move to /usr/bin/.
-
-4. `<sensor-name>` is moved to /var/aao/sensors/.
-
-5. The cloned repository is removed from the local filesystem.
 
 
 ## Submitting packages to WildlifeSystems
