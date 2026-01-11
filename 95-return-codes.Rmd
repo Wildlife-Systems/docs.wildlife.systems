@@ -5,16 +5,18 @@ The various scripts that form the WildlifeSystems ecosystem use a standard set o
 ## 00-09 Script functionality
 
 ````{r, echo=FALSE}
-Code <- seq(from=0, to=2)
+Code <- seq(from=0, to=3)
 Label <- c(
   "OK",
   "Already running",
-  "No arguments"
+  "No arguments",
+  "Config file error"
 )
 Description <- c(
   "Terminated normally. No error.",
   "The script determined it was already running and terminated.",
-  "The script requires arguments but none given. Will give help text."
+  "The script requires arguments but none given. Will give help text.",
+  "The config file is missing or malformed."
 )
 t <- cbind(Code, Label, Description)
 knitr::kable(t)
