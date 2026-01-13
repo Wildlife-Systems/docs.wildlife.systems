@@ -1,10 +1,11 @@
 % Options for packages loaded elsewhere
 \PassOptionsToPackage{unicode}{hyperref}
 \PassOptionsToPackage{hyphens}{url}
-%
 \documentclass[
 ]{book}
+\usepackage{xcolor}
 \usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{5}
 \usepackage{iftex}
 \ifPDFTeX
   \usepackage[T1]{fontenc}
@@ -35,7 +36,6 @@
 }{% if KOMA class
   \KOMAoptions{parskip=half}}
 \makeatother
-\usepackage{xcolor}
 \usepackage{color}
 \usepackage{fancyvrb}
 \newcommand{\VerbBar}{|}
@@ -104,10 +104,9 @@
 \setlength{\emergencystretch}{3em} % prevent overfull lines
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
-\setcounter{secnumdepth}{5}
-\usepackage{booktabs}
 \usepackage[]{natbib}
 \bibliographystyle{plainnat}
+\usepackage{booktabs}
 \usepackage{bookmark}
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \urlstyle{same}
@@ -119,7 +118,7 @@
 
 \title{WildlifeSystems - biodiversity technologies}
 \author{\href{https://ebaker.me.uk}{Ed Baker}}
-\date{2025-07-04}
+\date{2026-01-13}
 
 \begin{document}
 \maketitle
@@ -157,7 +156,7 @@ This has been accompanied by a decline in the cost of these technologies (e.g.~F
 
 \begin{figure}
 \centering
-\pandocbounded{\includegraphics[keepaspectratio]{_main_files/figure-latex/storage-costs-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio,alt={\label{fig:storage-costs}The decline in storage costs per megabyte in consumer hard drives.}]{_main_files/figure-latex/storage-costs-1.pdf}}
 \caption{\label{fig:storage-costs}The decline in storage costs per megabyte in consumer hard drives.}
 \end{figure}
 
@@ -182,13 +181,13 @@ Where suitable technological solutions already exist, use them. Limit technologi
 \centering
 \begin{tabular}[t]{l|l|l}
 \hline
-Technology & Year Introduced & Age in  2025\\
+Technology & Year Introduced & Age in  2026\\
 \hline
-Ethernet & 1973 & 52\\
+Ethernet & 1973 & 53\\
 \hline
-BASH & 1989 & 36\\
+BASH & 1989 & 37\\
 \hline
-Linux & 1991 & 34\\
+Linux & 1991 & 35\\
 \hline
 \end{tabular}
 \end{table}
@@ -728,6 +727,8 @@ Code & Label & Description\\
 \hline
 2 & No arguments & The script requires arguments but none given. Will give help text.\\
 \hline
+3 & Config file error & The config file is missing or malformed.\\
+\hline
 \end{tabular}
 
 \section{10-19 Parameter problems}\label{parameter-problems}
@@ -804,6 +805,6 @@ Code & Label & Description\\
 \hline
 \end{tabular}
 
-  \bibliography{book.bib,packages.bib}
+\bibliography{book.bib,packages.bib}
 
 \end{document}
