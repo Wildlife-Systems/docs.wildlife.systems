@@ -9,3 +9,13 @@ There are three main kinds of documentation in the WildlifeSystems project.
 2. __Package documentation__: Describes what your package does, how it interacts with the larger system. _What will this package do for me?_
 
 3. __Overall project documentation__: This manual. _How do I use the entire system for my research?_
+
+## File system layout
+
+````{}
+|- /etc/ws              # Configuration files (editable by end user)
+|- /usr/bin             # Main scripts        (do not edit)
+|- /var/ws              # Data storage        (do not edit)
+   |- audio             # Audio data
+   |- bluetooth         # Bluetooth data
+````

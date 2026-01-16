@@ -86,6 +86,7 @@ prtg
 monitoring-custom-sensors
 developer-guidelines
 documentation
+file-system-layout
 server-tools
 installation
 adding-nodes-and-receieving-a-token

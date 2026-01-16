@@ -29,6 +29,8 @@ Many of the tools that are needed to monitor biodiversity already exist, and the
 “Technology is stuff that doesn’t work yet.”
 `r tufte::quote_footer('--- Bran Ferren')`  
 
+<br>
+
 Where suitable technological solutions already exist, use them. Limit technological research to what needs to be new. Most of the time it's OK to use existing technology, and focus development on the biodiversity related problem you're trying to solve. Older technologies are often better understood and more stable. Some of the technologies WildlifeSystems leverages to innovate in the biodiversity sphere are given in Table \@ref(tab:tech-age).
 
 ```{r tech-age, echo=FALSE, tab.cap="Age of technologies underpinning WildlifeSystems."}

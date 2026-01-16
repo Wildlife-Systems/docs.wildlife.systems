@@ -118,7 +118,7 @@
 
 \title{WildlifeSystems - biodiversity technologies}
 \author{\href{https://ebaker.me.uk}{Ed Baker}}
-\date{2026-01-13}
+\date{2026-01-16}
 
 \begin{document}
 \maketitle
@@ -222,7 +222,7 @@ The WildlifeSystems software is used to configure a node to collect data from th
 
 There is no such thing as a `standard node', apart from the core software interfaces. In some deployments, however, there will be a great deal of standardisation. The Urban Research Station deployment at the Natural History Museum, London, for example, has a number of nodes that are identically configured. Although even here, there are differences in the sensors used, and the data processing that is done. The nodes are all configured to send data to the same server (the Data Ecosystem) but the exact configuration of each node is driven by current research needs. In this way a network of WildlifeSystems nodes can be seen as a platform for facilitating research, rather than as a single-purpose device.
 
-To make it easier to deploy and work with individual nodes, it is recommended that some commonly used sensors are deployed in the stadard fashion described below.
+To make it easier to deploy and work with individual nodes, it is recommended that some commonly used sensors are deployed in the standard fashion described below.
 
 \subsection{Self-monitoring}\label{self-monitoring}
 
@@ -667,6 +667,16 @@ There are three main kinds of documentation in the WildlifeSystems project.
   \textbf{Overall project documentation}: This manual. \emph{How do I use the entire system for my research?}
 \end{enumerate}
 
+\section{File system layout}\label{file-system-layout}
+
+\begin{verbatim}
+|- /etc/ws              # Configuration files (editable by end user)
+|- /usr/bin             # Main scripts        (do not edit)
+|- /var/ws              # Data storage        (do not edit)
+   |- audio             # Audio data
+   |- bluetooth         # Bluetooth data
+\end{verbatim}
+
 \chapter{Server Tools}\label{server-tools}
 
 These tools are only needed for running and maintaining the \href{https://wildlife.systems}{wildlife.systems} webserver.
@@ -707,9 +717,9 @@ Adding a node by it's ID (serial number of the Raspberry Pi) will add the device
 
 \chapter{\texorpdfstring{A note on \texttt{sudo}}{A note on sudo}}\label{a-note-on-sudo-1}
 
-Raspberry Pi OS (and previously Raspbian) allows the default user to run sudo without a password. This is not true for other Linux distributions, such as Ubuntu. This could lead to a password prompt when using scripts such as \texttt{sr} and \texttt{ws-indicate}. As nodes are designed to run autonomously, the installation process for \texttt{ws-node} will configure these scripts to not require a \texttt{sudo} password.
+Raspberry Pi OS (and previously Raspbian) allows the default user to run sudo without a password. This is not true for other Linux distributions, such as Ubuntu. This could lead to a password prompt when using scripts such as \texttt{sr} and \texttt{ws-indicate}.
 
-In some installations (generally where the devices are managed by organisations) the \texttt{sudo} group will not be present. To allow running without a password the file \texttt{/etc/sudoers.d/ws} can be renamed (to avoid changes being undone if \texttt{ws-node} is re-installed) and the \texttt{\%sudo} group modified to an appropriate group present on the system.
+When using a standard node configuration this is not an issue as the systemd services that launch these scripts are configured to run as root. However, if you are using these scripts manually you may need to run them with sudo (e.g.~\texttt{sudo\ sr\ onboard}) to get expected behaviour.
 
 \chapter{Return codes}\label{return-codes}
 

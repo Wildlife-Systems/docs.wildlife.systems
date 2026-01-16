@@ -1,0 +1,745 @@
+<div id="about" class="section level1 unnumbered">
+<h1 class="unnumbered">About</h1>
+<p>This book explains the technologies developed as part of <a href="https://wildlife.systems">WildlifeSystems</a> and how they can be implemented in real-world scenarios.</p>
+<div id="support" class="section level2 unnumbered">
+<h2 class="unnumbered">Support</h2>
+<p>WildlifeSystems nodes were originally developed and used as part of the Leverhulme Trust funded <a href="https://ebaker.me.uk/aao">Automated Acoustic Observatories</a> project at the University of York. Additional development is undertaken as part of the <a href="https://www.nhm.ac.uk/about-us/urban-nature-project.html">Urban Nature Project</a> at the Natural History Museum, London.</p>
+<!--chapter:end:index.Rmd-->
+</div>
+</div>
+<div id="biodiversity-technologies" class="section level1" number="1">
+<h1><span class="header-section-number">1</span> Biodiversity Technologies</h1>
+<div id="what-are-biodiversity-technologies" class="section level2" number="1.1">
+<h2><span class="header-section-number">1.1</span> What are Biodiversity Technologies?</h2>
+<p>Biodiversity technologies are tools that allow researchers and others to study, monitor and
+conserve biodiversity. These tools can be used to monitor a wide range of species, habitats, and ecosystems, potentially in (near) real-time and/or from a great distance away.</p>
+<div id="what-has-enabled-biodiversity-technologies" class="section level3" number="1.1.1">
+<h3><span class="header-section-number">1.1.1</span> What has enabled Biodiversity Technologies?</h3>
+<p>The development of biodiversity technologies has been enabled by the rapid advances in sensor technology, data processing, and communication networks. These technologies have made it possible to collect, store, and analyse large amounts of data from a wide range of sources, including remote sensors, cameras, and acoustic recorders.</p>
+<p>This has been accompanied by a decline in the cost of these technologies (e.g. Figure @ref(fig:storage-costs)), making them more accessible to researchers, conservationists, and others interested in monitoring biodiversity.</p>
+<pre><code>## Warning in xy.coords(x, y, xlabel, ylabel, log): NAs introduced by coercion</code></pre>
+<div class="figure">
+<img src="_main_files/figure-epub3/storage-costs-1.png" alt="The decline in storage costs per megabyte in consumer hard drives."  />
+<p class="caption">
+(#fig:storage-costs)The decline in storage costs per megabyte in consumer hard drives.
+</p>
+</div>
+<p>These technologies can potentially create vast datasets, and in order to adhere to the FAIR principles (Findable, Accessible, Interoperable, Reusable), it is important for the data to be accompanied by an appropriate suite of data standards, such as those developed by TDWG.</p>
+</div>
+</div>
+<div id="overall-philosophy" class="section level2" number="1.2">
+<h2><span class="header-section-number">1.2</span> Overall Philosophy</h2>
+<div id="leverage-what-already-exists" class="section level3" number="1.2.1">
+<h3><span class="header-section-number">1.2.1</span> Leverage what already exists</h3>
+<p>Many of the tools that are needed to monitor biodiversity already exist, and the goal of WildlifeSystems is to bring these tools together in a coherent and integrated way. This will allow researchers and others to build on existing technologies to develop new tools and applications that can be used to monitor biodiversity in a wide range of environments.These tools are designed to be flexible, scalable, and easy to use, and to provide a platform for the development of new technologies and applications.</p>
+</div>
+<div id="innovate-where-necessary" class="section level3" number="1.2.2">
+<h3><span class="header-section-number">1.2.2</span> Innovate where necessary</h3>
+“Technology is stuff that doesn’t work yet.”
+<footer>
+— Bran Ferren
+</footer>
+<p><br></p>
+<p>Where suitable technological solutions already exist, use them. Limit technological research to what needs to be new. Most of the time it’s OK to use existing technology, and focus development on the biodiversity related problem you’re trying to solve. Older technologies are often better understood and more stable. Some of the technologies WildlifeSystems leverages to innovate in the biodiversity sphere are given in Table @ref(tab:tech-age).</p>
+<table>
+<caption>(#tab:tech-age)Age of technologies underpinning WildlifeSystems.</caption>
+<thead>
+<tr>
+<th align="left">Technology</th>
+<th align="left">Year Introduced</th>
+<th align="left">Age in 2026</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">Ethernet</td>
+<td align="left">1973</td>
+<td align="left">53</td>
+</tr>
+<tr>
+<td align="left">BASH</td>
+<td align="left">1989</td>
+<td align="left">37</td>
+</tr>
+<tr>
+<td align="left">Linux</td>
+<td align="left">1991</td>
+<td align="left">35</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="plan-for-heterogeneity" class="section level3" number="1.2.3">
+<h3><span class="header-section-number">1.2.3</span> Plan for heterogeneity</h3>
+<p><a href="https://medium.ebaker.me.uk/sensor-networks1-abstracting-heterogeneity-319c0c41c9fa">Any network of devices will become heterogeneous given sufficient time</a>. The primary driver of this shift to heterogeneity is continuous technological innovation combined with obsolescence of technical components.</p>
+<p>Secondary drivers are changes in the purpose, capabilities, and/or scale of the network over time.</p>
+<p>The WildlifeSystems ecosystem is designed to be able to handle this heterogeneity, and to allow for the easy integration of new technologies as they become available.</p>
+</div>
+<div id="modularise" class="section level3" number="1.2.4">
+<h3><span class="header-section-number">1.2.4</span> Modularise</h3>
+<p>The WildlifeSystems ecosystem is designed to be modular, with each component able to be used independently or in combination with other components. This allows users to build custom solutions that meet their specific needs, and to easily add or remove components as required.</p>
+<p>Defined interfaces between components allow for easy integration of new technologies, and for components to be replaced or upgraded without affecting the rest of the system. This also lets contributors to focus on what they are best at.</p>
+</div>
+<div id="open-source" class="section level3" number="1.2.5">
+<h3><span class="header-section-number">1.2.5</span> Open Source</h3>
+</div>
+</div>
+<div id="structure-of-wildlife-systems" class="section level2" number="1.3">
+<h2><span class="header-section-number">1.3</span> Structure of Wildlife Systems</h2>
+<div id="packages" class="section level3" number="1.3.1">
+<h3><span class="header-section-number">1.3.1</span> Packages</h3>
+<!--chapter:end:01-intro.Rmd-->
+</div>
+</div>
+</div>
+<div id="nodes" class="section level1" number="2">
+<h1><span class="header-section-number">2</span> Nodes</h1>
+<p>The fundamental unit of the WildlifeSystems platform is the node. A node is a physical device that can be used to collect data from sensors, control devices, and communicate with other nodes. Nodes are (typically) Raspberry Pi computers, packaged with an array of environmental sensors, microphone(s), and/or camera(s).</p>
+<p>The WildlifeSystems software is used to configure a node to collect data from the sensors and what to do with the data collected. Typically this will be to send the data for external storage and analysis, but it is also possible to store the data locally on the node. Data can also be processed locally on the node, for example to detect a specific event (e.g. a sound or image) and then send a notification to the user. The WildlifeSystems software is designed to be modular, so that new sensors and devices can be added easily, and the data processing can be configured to suit the user’s needs.</p>
+<div id="standard-node" class="section level2" number="2.1">
+<h2><span class="header-section-number">2.1</span> Standard node</h2>
+<p>There is no such thing as a ‘standard node’, apart from the core software interfaces. In some deployments, however, there will be a great deal of standardisation. The Urban Research Station deployment at the Natural History Museum, London, for example, has a number of nodes that are identically configured. Although even here, there are differences in the sensors used, and the data processing that is done. The nodes are all configured to send data to the same server (the Data Ecosystem) but the exact configuration of each node is driven by current research needs. In this way a network of WildlifeSystems nodes can be seen as a platform for facilitating research, rather than as a single-purpose device.</p>
+<p>To make it easier to deploy and work with individual nodes, it is recommended that some commonly used sensors are deployed in the standard fashion described below.</p>
+<div id="self-monitoring" class="section level3" number="2.1.1">
+<h3><span class="header-section-number">2.1.1</span> Self-monitoring</h3>
+<p>Electricity and water should not mix. While suitable enclosures go a long way to preventing an unfortunate meeting, many nodes are deployed outside in the elements. The addition of a cheap DHT11 sensor internally to monitor the humidity and temperature of the enclosure may help identify a potentially damaging situation before it becomes problematic. [TODO: See PRTG integration].</p>
+<p>This sensor is recommended to be attached to GPIO pin 4.</p>
+</div>
+<div id="i2s-microphones" class="section level3" number="2.1.2">
+<h3><span class="header-section-number">2.1.2</span> i2s microphones</h3>
+<p>TODO</p>
+</div>
+<div id="wire-bus" class="section level3" number="2.1.3">
+<h3><span class="header-section-number">2.1.3</span> 1-Wire bus</h3>
+<p>GPIO 17</p>
+</div>
+</div>
+<div id="enclosures" class="section level2" number="2.2">
+<h2><span class="header-section-number">2.2</span> Enclosures</h2>
+<div id="fixing-inside-enclosures" class="section level3" number="2.2.1">
+<h3><span class="header-section-number">2.2.1</span> Fixing inside enclosures</h3>
+</div>
+<div id="attaching-sensors" class="section level3" number="2.2.2">
+<h3><span class="header-section-number">2.2.2</span> Attaching sensors</h3>
+<p>TODO: to sockets, not directly</p>
+<p>TODO: breakout boards</p>
+<p>TODO: custom boards</p>
+</div>
+<div id="power-solutions" class="section level3" number="2.2.3">
+<h3><span class="header-section-number">2.2.3</span> Power solutions</h3>
+<p>TODO: PoE</p>
+<!--chapter:end:05-nodes.Rmd-->
+</div>
+</div>
+</div>
+<div id="how-nodes-work" class="section level1" number="3">
+<h1><span class="header-section-number">3</span> How nodes work</h1>
+<p>After instllation configuration files are placed in <code>/etc/ws</code> that define the operation of the node.</p>
+<p>On startup, WildelifeSystems nodes run three systemd services that are responsible for processing audio, images, and environmental sensors. These sensors read the appropriate configuration files, and start collecting and recording data.</p>
+<div id="audio" class="section level2" number="3.1">
+<h2><span class="header-section-number">3.1</span> Audio</h2>
+<p>The service <code>ws-run-audio</code> is configured by <code>/etc/ws/audio.conf</code> and is responsible for running the audio processing pipeline. The blocks in the pipeline are <code>record</code>, <code>sleep</code>, <code>upload-delete</code>, and <code>clearup</code>.</p>
+<div id="init" class="section level3" number="3.1.1">
+<h3><span class="header-section-number">3.1.1</span> <code>init</code></h3>
+</div>
+<div id="run" class="section level3" number="3.1.2">
+<h3><span class="header-section-number">3.1.2</span> <code>run</code></h3>
+<div id="record" class="section level4" number="3.1.2.1">
+<h4><span class="header-section-number">3.1.2.1</span> <code>record</code></h4>
+</div>
+<div id="sleep" class="section level4" number="3.1.2.2">
+<h4><span class="header-section-number">3.1.2.2</span> <code>sleep</code></h4>
+</div>
+<div id="upload-delete" class="section level4" number="3.1.2.3">
+<h4><span class="header-section-number">3.1.2.3</span> <code>upload-delete</code></h4>
+</div>
+<div id="clearup" class="section level4" number="3.1.2.4">
+<h4><span class="header-section-number">3.1.2.4</span> <code>clearup</code></h4>
+<p>In situations where network connection is temporarily unavailable it is possible that audio files will collect on the advice. These are not automatically processed during <code>upload-delete</code> and their processing must be handled manually, or by creating a processing scipt in <code>clearup</code>.</p>
+<!--chapter:end:06-how-nodes-work.Rmd-->
+</div>
+</div>
+</div>
+</div>
+<div id="sensor-networks" class="section level1" number="4">
+<h1><span class="header-section-number">4</span> Sensor Networks</h1>
+<!--chapter:end:30-sensor-networks.Rmd-->
+</div>
+<div id="environmental-sensors" class="section level1" number="5">
+<h1><span class="header-section-number">5</span> Environmental Sensors</h1>
+<div id="how-sensors-work" class="section level2" number="5.1">
+<h2><span class="header-section-number">5.1</span> How sensors work</h2>
+<div id="temperature" class="section level3" number="5.1.1">
+<h3><span class="header-section-number">5.1.1</span> Temperature</h3>
+<div id="thermistors" class="section level4" number="5.1.1.1">
+<h4><span class="header-section-number">5.1.1.1</span> Thermistors</h4>
+<p>A thermistor is a type of resistor whose resistance changes significantly with temperature. The word is a portmanteau of thermal and resistor.</p>
+</div>
+</div>
+<div id="humidity" class="section level3" number="5.1.2">
+<h3><span class="header-section-number">5.1.2</span> Humidity</h3>
+<div id="capacitive-humidity-sensors" class="section level4" number="5.1.2.1">
+<h4><span class="header-section-number">5.1.2.1</span> Capacitive Humidity Sensors</h4>
+<p>A capacitative humidity sensor consists of a small capacitor with a hygroscopic dielectric material between two electrodes. The dielectric material, usually a plastic or polymer, has a low dielectric constant when dry. In the presence of moisture, the dielectric constant increases due to water vapor, which has a much higher dielectric constant. As moisture is absorbed, the sensor’s capacitance increases. The amount of moisture absorbed depends on the surrounding temperature and water vapour pressure, which also affects the hygroscopic dielectric material used in the sensor.</p>
+</div>
+</div>
+<div id="air-pressure" class="section level3" number="5.1.3">
+<h3><span class="header-section-number">5.1.3</span> Air Pressure</h3>
+</div>
+<div id="gases" class="section level3" number="5.1.4">
+<h3><span class="header-section-number">5.1.4</span> Gases</h3>
+<div id="heated-gas-resistance" class="section level4" number="5.1.4.1">
+<h4><span class="header-section-number">5.1.4.1</span> Heated Gas Resistance</h4>
+<p>Heated gas sensors are used to detect gases in the air. The sensor consists of a metal oxide semiconductor that is heated to a high temperature. Volatile organic compounds (VOCs) in the air change the resistance of the sensor.</p>
+<p>These sensors are typically used indoors and have a short lifespan (perhaps two years). As such they are rarely used in environmental sensing applications, but are included on some common sensors such as the BME680.</p>
+<!--chapter:end:31-environmental-sensors.Rmd-->
+</div>
+</div>
+</div>
+</div>
+<div id="sensors-in-wildlifesystems" class="section level1" number="6">
+<h1><span class="header-section-number">6</span> Sensors in WildlifeSystems</h1>
+<p>The WildlifeSystems platform comes with support for some popular existing environmental sensors, although there are many on the market and the range available is subject to constant change. The modular nature of WildlifeSystems allows for new sensors to be easily integrated if the need arises.</p>
+<p>WildlifeSystems takes an abstracted approach to sensors. Interface modules are provided for each sensor, which can be used to read the sensor data into a standard format.</p>
+<p>As many physical packages contain multiple sensors (e.g. the supported BME680 can monitor temperature, humidity, air pressure and air quality) there is a conceptual difference between a “device” and the one or more sensors on a device.</p>
+<div id="devices-included-in-the-base-system" class="section level2" number="6.1">
+<h2><span class="header-section-number">6.1</span> Devices included in the base system</h2>
+<p>The Raspberry Pi does not come with environmental sensors, however there are several onboard sensors that are used to monitor the operation of the hardware, to prevent crucial components from overheating, including the temperature of the CPU and GPU chips. WildlifeSystems provides access to these sensors through the <code>sensor-onboard</code> package, as well as providing some <em>software sensors</em> that report the free memory and free SD storage available. These can be useful for detecting and resolving possible issues on a sensor node before a serious problem arises.</p>
+</div>
+<div id="installing-sensor-support" class="section level2" number="6.2">
+<h2><span class="header-section-number">6.2</span> Installing sensor support</h2>
+<p>Support for sensors is installed as part of the node installation process, however it is possible to install the <code>sensor-control</code> abstraction layer onto any Raspberry Pi system using the command below.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="fu">sudo</span> apt install sensor-control</span></code></pre></div>
+<p>This will install the <code>sensor-control</code> and <code>sensor-onboard</code> scripts into the system, as well as installing a small of number of supporting packages if they are not already installed.</p>
+</div>
+<div id="reading-data-from-a-device" class="section level2" number="6.3">
+<h2><span class="header-section-number">6.3</span> Reading data from a device</h2>
+<p>The sensor read command, <code>sr</code>, can be used to list the available devices on a given sensor.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="ex">sr</span> onboard list</span></code></pre></div>
+<p>The sensor read command, <code>sr</code>, can also be used to read data from a named sensor. Not specifying a sensor is equivalent to reading all sensors on that device (i.e. using the wildcard”*“).</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="ex">sr</span> onboard</span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="ex">sr</span> onboard <span class="pp">*</span></span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a><span class="ex">sr</span> onboard onboard_gpu</span></code></pre></div>
+<p>This will give a JSON string listing information about each sensor (or just the specified sensor), and the current reading. This information can be presented in a more human readable form by piping the output to the program <code>jq</code>, a command line JSON processor.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="ex">sr</span> onboard <span class="kw">|</span> <span class="ex">jq</span></span></code></pre></div>
+</div>
+<div id="the-sensor-reading-process" class="section level2" number="6.4">
+<h2><span class="header-section-number">6.4</span> The sensor reading process</h2>
+<p>The sensor reading process in WildlifeSystems has five steps.</p>
+<ol style="list-style-type: decimal">
+<li><p>The <code>sr</code> command identifies which device script to route the request to.</p></li>
+<li><p>The sensor script calls the <code>sc-prototype</code> script to obtain a template (“prototype”) of the JSON request.</p></li>
+<li><p>The sensor script accesses the relevant sensor(s) and populates the values in a template for each sensor reading, before returning a JSON array of populated readings to <code>sr</code>.</p></li>
+<li><p>The <code>sr</code> script populates additional information for each reading, providing the <code>node_id</code> and a <code>timestamp</code> for each.</p></li>
+<li><p><code>sr</code> returns the finalised JSON array to the user.</p></li>
+</ol>
+</div>
+<div id="installing-new-sensors" class="section level2" number="6.5">
+<h2><span class="header-section-number">6.5</span> Installing new sensors</h2>
+<p>New sensors can be installed using the apt package manager once the Wildlife Systems APT repository has been added to the system. Instructions can be found on the webpage <a href="https://wildlife.systems/apt-configuration.html">Configuring APT for Wildlife Systems.</a>.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="fu">sudo</span> apt install sensor-<span class="op">&lt;</span>sensor-name<span class="op">&gt;</span></span></code></pre></div>
+<!--chapter:end:32-sensors-in-ws.Rmd-->
+</div>
+</div>
+<div id="supported-sensors" class="section level1" number="7">
+<h1><span class="header-section-number">7</span> Supported sensors</h1>
+<div id="list-of-supported-sensors" class="section level2" number="7.1">
+<h2><span class="header-section-number">7.1</span> List of supported sensors</h2>
+<div id="bme680" class="section level3" number="7.1.1">
+<h3><span class="header-section-number">7.1.1</span> BME680</h3>
+<p>4-in-1 sensor that provides humidity, temperature, pressure, and gas readings.</p>
+</div>
+<div id="ds18b20" class="section level3" number="7.1.2">
+<h3><span class="header-section-number">7.1.2</span> DS18B20</h3>
+<p>The DS18B20 is a digital thermometer that provides Celsius measurements over a 1-Wire interface. It is a low-cost, low-power device that can be used for a variety of environmental monitoring applications. Waterproof versions are available, making it suitable for use in water and soils.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="fu">sudo</span> apt install sensor-ds18b20</span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a><span class="fu">sudo</span> sr ds18b20</span></code></pre></div>
+</div>
+<div id="dht11" class="section level3" number="7.1.3">
+<h3><span class="header-section-number">7.1.3</span> DHT11</h3>
+<p>The DHT11 is a low-cost temperature and humidity sensor. It uses a capacitive humidity sensor and a thermistor to measure the surrounding air, and sends the data by digital signals on the data pin.</p>
+<p>The low-cost nature of the sensor makes it useful desp ite several shortcomings, e.g. for monitoring the temperature and humidity inside electronics enclosures where accuracy is not critical but the sensor can provide critical early warning of overheating or condensation.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="fu">sudo</span> apt install sensor-dht11</span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a><span class="fu">sudo</span> sr dht11</span></code></pre></div>
+</div>
+<div id="lv-maxsonar-ez" class="section level3" number="7.1.4">
+<h3><span class="header-section-number">7.1.4</span> LV-MaxSonar-EZ</h3>
+<p>A series of ultrasonic distance sensors that can measure distances from 2 cm to 4 m with high accuracy. They are commonly used in robotics and automation applications, but can also be used for environmental monitoring.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="fu">sudo</span> apt install sensor-hrlv</span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a><span class="fu">sudo</span> sr hrlv</span></code></pre></div>
+<!--chapter:end:33-supported-sensors.Rmd-->
+</div>
+</div>
+</div>
+<div id="implementing-new-sensors" class="section level1" number="8">
+<h1><span class="header-section-number">8</span> Implementing new sensors</h1>
+<p>New sensors should be implemented as new Debian packages, and submitted via GitHub. Packages have a standard format, and should be named <code>sensor-&lt;sensor-name&gt;</code> where <code>&lt;sensor-name&gt;</code> is short, descriptive of the sensor (e.g. model number), and unique within the WildlifeSystems ecosystem.</p>
+<p>As many people implement various sensors on the Raspberry Pi, it is likely that some sort of solution is already available, that can be tweaked to output readings in the standard format required. However, you must ensure that any licensing conditions are met. In particular, an open license is required if submitting your sensor package to WildlifeSystems for inclusion in the ecosystem.</p>
+<div id="reading-the-sensor" class="section level2" number="8.1">
+<h2><span class="header-section-number">8.1</span> Reading the sensor</h2>
+<p>File <code>sensor-&lt;sensor-name&gt;</code> provides the functionality to read the protoype JSON, populate the JSON with sensor readings, and print the output.</p>
+<p>The file can be written in any programming or scripting language, but to prevent overhead consideration should be given to minimising the number of new packages installed.</p>
+<div id="in-bash" class="section level3" number="8.1.1">
+<h3><span class="header-section-number">8.1.1</span> In bash</h3>
+<div class="sourceCode" id="cb10"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a><span class="co"># Read the prototype JSON</span></span>
+<span id="cb10-4"><a href="#cb10-4" tabindex="-1"></a><span class="va">JSON</span><span class="op">=</span><span class="va">$(</span><span class="ex">sc-prototype</span><span class="va">)</span></span>
+<span id="cb10-5"><a href="#cb10-5" tabindex="-1"></a></span>
+<span id="cb10-6"><a href="#cb10-6" tabindex="-1"></a><span class="bu">echo</span> <span class="at">-n</span> <span class="st">&quot;[&quot;</span></span>
+<span id="cb10-7"><a href="#cb10-7" tabindex="-1"></a></span>
+<span id="cb10-8"><a href="#cb10-8" tabindex="-1"></a><span class="co"># Code to read the sensor value into GPU_TEMP</span></span>
+<span id="cb10-9"><a href="#cb10-9" tabindex="-1"></a></span>
+<span id="cb10-10"><a href="#cb10-10" tabindex="-1"></a><span class="co"># Use `jq` to modify JSON</span></span>
+<span id="cb10-11"><a href="#cb10-11" tabindex="-1"></a><span class="va">SENSOR</span><span class="op">=</span><span class="va">$(</span><span class="bu">echo</span> <span class="va">$JSON</span> <span class="kw">|</span> <span class="ex">jq</span> <span class="st">&quot;.sensor |= </span><span class="dt">\&quot;</span><span class="st">onboard_gpu</span><span class="dt">\&quot;</span><span class="st"> | .measures |= </span><span class="dt">\&quot;</span><span class="st">temperature</span><span class="dt">\&quot;</span><span class="st"> | .unit |= </span><span class="dt">\&quot;</span><span class="st">Celsius</span><span class="dt">\&quot;</span><span class="st">| .value |= </span><span class="va">${GPU_TEMP}</span><span class="st">&quot;</span><span class="va">)</span></span>
+<span id="cb10-12"><a href="#cb10-12" tabindex="-1"></a><span class="bu">echo</span> <span class="at">-n</span> <span class="va">$SENSOR</span></span>
+<span id="cb10-13"><a href="#cb10-13" tabindex="-1"></a></span>
+<span id="cb10-14"><a href="#cb10-14" tabindex="-1"></a><span class="bu">echo</span> <span class="st">&quot;]&quot;</span></span></code></pre></div>
+</div>
+<div id="in-python" class="section level3" number="8.1.2">
+<h3><span class="header-section-number">8.1.2</span> In Python</h3>
+<div class="sourceCode" id="cb11"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="co">#!/</span></span>
+<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a><span class="im">import</span> json</span>
+<span id="cb11-4"><a href="#cb11-4" tabindex="-1"></a></span>
+<span id="cb11-5"><a href="#cb11-5" tabindex="-1"></a><span class="co"># Read the prototype JSON</span></span>
+<span id="cb11-6"><a href="#cb11-6" tabindex="-1"></a>stream <span class="op">=</span> os.popen(<span class="st">&#39;sc-prototype&#39;</span>)</span>
+<span id="cb11-7"><a href="#cb11-7" tabindex="-1"></a>output <span class="op">=</span> stream.read()</span>
+<span id="cb11-8"><a href="#cb11-8" tabindex="-1"></a></span>
+<span id="cb11-9"><a href="#cb11-9" tabindex="-1"></a><span class="co"># Pre-populate with sensor metadata</span></span>
+<span id="cb11-10"><a href="#cb11-10" tabindex="-1"></a>temperature <span class="op">=</span> json.loads(output)</span>
+<span id="cb11-11"><a href="#cb11-11" tabindex="-1"></a>temperature[<span class="st">&quot;sensor&quot;</span>] <span class="op">=</span> <span class="st">&quot;bme680_temperature&quot;</span></span>
+<span id="cb11-12"><a href="#cb11-12" tabindex="-1"></a>temperature[<span class="st">&quot;measures&quot;</span>] <span class="op">=</span> <span class="st">&quot;temperature&quot;</span></span>
+<span id="cb11-13"><a href="#cb11-13" tabindex="-1"></a>temperature[<span class="st">&quot;unit&quot;</span>] <span class="op">=</span> <span class="st">&quot;Celsius&quot;</span></span>
+<span id="cb11-14"><a href="#cb11-14" tabindex="-1"></a></span>
+<span id="cb11-15"><a href="#cb11-15" tabindex="-1"></a><span class="co"># Code to read sensor and output in variable `sensor_reading`</span></span>
+<span id="cb11-16"><a href="#cb11-16" tabindex="-1"></a>temperature[<span class="st">&quot;value&quot;</span>] <span class="op">=</span> sensor_reading</span>
+<span id="cb11-17"><a href="#cb11-17" tabindex="-1"></a></span>
+<span id="cb11-18"><a href="#cb11-18" tabindex="-1"></a><span class="co"># Output the JSON in an array</span></span>
+<span id="cb11-19"><a href="#cb11-19" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;[&quot;</span>,json.dumps(temperature),<span class="st">&quot;]&quot;</span>)</span></code></pre></div>
+</div>
+</div>
+<div id="submitting-packages-to-wildlifesystems" class="section level2" number="8.2">
+<h2><span class="header-section-number">8.2</span> Submitting packages to WildlifeSystems</h2>
+<p>Submitting packages (where licensing allows) to WildlifeSystems allows the ecosystem to be developed and sustained collaboratively by the user community.</p>
+<p>Packages can be sent to the administrators as a compressed file, or a request can be sent to fork an existing GitHub repository. Contact details can be found at <a href="https://wildlife.systems/contact.html">https://wildlife.systems/contact.html</a>.</p>
+<!--chapter:end:34-new-sensors.Rmd-->
+</div>
+</div>
+<div id="sound-devices" class="section level1" number="9">
+<h1><span class="header-section-number">9</span> Sound Devices</h1>
+<div id="how-sound-devices-work" class="section level2" number="9.1">
+<h2><span class="header-section-number">9.1</span> How sound devices work</h2>
+<!--chapter:end:40-sound-devices.Rmd-->
+</div>
+</div>
+<div id="sound-devices-in-wildlifesystems" class="section level1" number="10">
+<h1><span class="header-section-number">10</span> Sound devices in WildlifeSystems</h1>
+<div id="installing-sound-device-support" class="section level2" number="10.1">
+<h2><span class="header-section-number">10.1</span> Installing sound device support</h2>
+<p>Support for sound devices is installed as part of the node installation process, however it is possible to install the <code>sound-device-control</code> abstraction layer onto any Raspberry Pi system using the command below.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="kw">`</span><span class="fu">wget</span> <span class="at">-O</span> <span class="at">-</span> https://github.com/wildlife-systems/sound-device-control/raw/master/install <span class="kw">|</span> <span class="fu">sudo</span> bash<span class="kw">`</span></span></code></pre></div>
+<p>The installation will install the <code>alsa-utils</code> package on Ubuntu/Debian systems, and add the current user to the <code>audio</code> group.</p>
+</div>
+<div id="supported-sound-devices" class="section level2" number="10.2">
+<h2><span class="header-section-number">10.2</span> Supported sound devices</h2>
+<p>The WildlifeSystems platform supports several popular sound capture and playback devices.</p>
+<div id="raspberry-pi-onboard-audio" class="section level3" number="10.2.1">
+<h3><span class="header-section-number">10.2.1</span> Raspberry Pi onboard audio</h3>
+</div>
+<div id="audioinjector-zero" class="section level3" number="10.2.2">
+<h3><span class="header-section-number">10.2.2</span> AudioInjector Zero</h3>
+</div>
+<div id="audioinjector-octo" class="section level3" number="10.2.3">
+<h3><span class="header-section-number">10.2.3</span> AudioInjector Octo</h3>
+</div>
+<div id="audioinjector-ultra" class="section level3" number="10.2.4">
+<h3><span class="header-section-number">10.2.4</span> AudioInjector Ultra</h3>
+</div>
+<div id="i2c-microphone-e.g.-google-voice-hat" class="section level3" number="10.2.5">
+<h3><span class="header-section-number">10.2.5</span> I2C microphone (e.g. Google Voice Hat)</h3>
+<p>Limited to 48kHz sample rate, no record volume control.</p>
+</div>
+<div id="respeaker-6-mic-array" class="section level3" number="10.2.6">
+<h3><span class="header-section-number">10.2.6</span> Respeaker 6 mic array</h3>
+</div>
+<div id="audio-dac" class="section level3" number="10.2.7">
+<h3><span class="header-section-number">10.2.7</span> Audio+ DAC</h3>
+</div>
+<div id="wolfson-audio-card" class="section level3" number="10.2.8">
+<h3><span class="header-section-number">10.2.8</span> Wolfson Audio Card</h3>
+</div>
+</div>
+<div id="installing-a-sound-device" class="section level2" number="10.3">
+<h2><span class="header-section-number">10.3</span> Installing a sound device</h2>
+<p>To install support for a sound device, run the following command.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="ex">sdc-inst</span> <span class="op">&lt;</span>sound-device-name<span class="op">&gt;</span></span></code></pre></div>
+<p>To get a list of names of supported devices, run the following command.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="ex">sdc-inst</span> list</span></code></pre></div>
+<!--chapter:end:41-sound-in-ws.Rmd-->
+</div>
+</div>
+<div id="imaging-devices" class="section level1" number="11">
+<h1><span class="header-section-number">11</span> Imaging Devices</h1>
+<div id="how-imaging-devices-work" class="section level2" number="11.1">
+<h2><span class="header-section-number">11.1</span> How imaging devices work</h2>
+<!--chapter:end:45-image-devices.Rmd-->
+</div>
+</div>
+<div id="imaging-devices-in-wildlifesystems" class="section level1" number="12">
+<h1><span class="header-section-number">12</span> Imaging devices in WildlifeSystems</h1>
+<!--chapter:end:50-image-in-ws.Rmd-->
+</div>
+<div id="power-management" class="section level1" number="13">
+<h1><span class="header-section-number">13</span> Power Management</h1>
+<p>Power management on the Raspberry Pi is useful when deployments are made that are powered by batteries and/or renewable sources such as solar power that are intermittent.</p>
+<p>In addition, there are small environmental benefits on consuming less power on systems which have continual grid power.</p>
+<p>The <code>pi-pwr</code> script can be used to turn off unused functionality, either always or just when it is not required.</p>
+<div id="installation-of-power-management-tools" class="section level2" number="13.1">
+<h2><span class="header-section-number">13.1</span> Installation of power management tools</h2>
+<p>The power management tools are installed as part of the node installation process, however they can be easily installed independently on any Raspberry Pi system.</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-O</span> <span class="at">-</span> https://github.com/wildlife-systems/pi-pwr/raw/master/install <span class="kw">|</span> <span class="fu">sudo</span> bash</span></code></pre></div>
+</div>
+<div id="turning-funtionality-on-and-off" class="section level2" number="13.2">
+<h2><span class="header-section-number">13.2</span> Turning funtionality on and off</h2>
+</div>
+<div id="considerations" class="section level2" number="13.3">
+<h2><span class="header-section-number">13.3</span> Considerations</h2>
+<p>Disabling all network functionality will prevent the node from communicating until either the functionality is turned back on or the Raspberry Pi is restarted.</p>
+<p>If disabling all connectivity is desired periodically then the functionality to turn these systems back on must be scripted.</p>
+<div id="a-note-on-sudo" class="section level3" number="13.3.1">
+<h3><span class="header-section-number">13.3.1</span> A note on <code>sudo</code></h3>
+<p>Raspberry Pi OS (and previously Raspbian) allows the default user to run sudo without a password. This is not true for other Linux distributions, such as Ubuntu. This could lead to a password prompt when using <code>pi-pwr</code>. As nodes are designed to run autonomously, the installation process for <code>ws-node</code> will configure <code>pi-pwr</code> to not require a <code>sudo</code> password.</p>
+<!--chapter:end:55-power-management.Rmd-->
+</div>
+</div>
+</div>
+<div id="indicators-and-heartbeats" class="section level1" number="14">
+<h1><span class="header-section-number">14</span> Indicators and heartbeats</h1>
+<p>The script <code>ws-indicate</code> is used to indicate the device’s status using the LED(s) on board the Raspberry Pi. The script <code>ws-heartbeat</code> can be used to transmit the device’s status to a user-defined script that could provide logging, or submit the status to an online dashboard.</p>
+<div id="installation-of-ws-indcate-and-ws-heartbeat" class="section level2" number="14.1">
+<h2><span class="header-section-number">14.1</span> Installation of <code>ws-indcate</code> and <code>ws-heartbeat</code></h2>
+<p>These tools are installed as part of the node installation process.</p>
+</div>
+<div id="indicators" class="section level2" number="14.2">
+<h2><span class="header-section-number">14.2</span> Indicators</h2>
+<p>Internally <code>ws-inidicate</code> makes repeated calls to <code>pi-pwr</code> to control the LED(s). There are three indicator routines, heartbeat (quick flash of LEDs in order to show device is functioning), countdown (flashes power LED), and record (power LED on, action LED off).</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a><span class="fu">sudo</span> ws-indicate</span>
+<span id="cb16-2"><a href="#cb16-2" tabindex="-1"></a><span class="fu">sudo</span> ws-indicate countdown 5   <span class="co"># counts down from 5</span></span>
+<span id="cb16-3"><a href="#cb16-3" tabindex="-1"></a><span class="fu">sudo</span> ws-indicate record action <span class="co"># record light is on while action is executed</span></span></code></pre></div>
+</div>
+<div id="heartbeat" class="section level2" number="14.3">
+<h2><span class="header-section-number">14.3</span> Heartbeat</h2>
+<p>The script <code>ws-heartbeat</code> is used to send a heartbeat signal to the devices.wildlife.systems server to indicate that the node is alive and connected, as well as to provide some information to assist problem diagnosis. The data sent comes from the onboard sensor readings (<code>sr onboard</code>) and the server stores the node ID, timestamp, CPU and GPU temperatures, and the amount of memory and storage used. The node must be registered with WildlifeSystems for this data to be stored.</p>
+<p>The script may be run for debugging purposes at any time as follows.</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a><span class="ex">ws-heartbeat</span></span></code></pre></div>
+<p>The script will exit silently on success.</p>
+<!--chapter:end:60-ws-indicate.Rmd-->
+</div>
+</div>
+<div id="integration-with-monitoring-tools" class="section level1" number="15">
+<h1><span class="header-section-number">15</span> Integration with monitoring tools</h1>
+<div id="prtg" class="section level2" number="15.1">
+<h2><span class="header-section-number">15.1</span> PRTG</h2>
+<p>As the devices are Raspberry Pi based, we can use the PRTG monitoring tool to monitor standard aspects of their performance including CPU, memory, disk space, and network traffic.</p>
+<div id="monitoring-custom-sensors" class="section level3" number="15.1.1">
+<h3><span class="header-section-number">15.1.1</span> Monitoring custom sensors</h3>
+<p>Some sensors attached to WildlifeSystems nodes may be used to monitor aspects of the devices themselves, rather than the environment. Using custom PRTG scripts it is possible to include these measurements in PRTG reports and alerts.</p>
+<p>The following example reports the humidity of the device enclosure measured by a DHT11 sensor. It makes use of the WildlifeSystems <code>sr</code> command to read the sensor in a standard JSON format, and converts the reading to a format expected by PRTG.</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
+<span id="cb18-2"><a href="#cb18-2" tabindex="-1"></a></span>
+<span id="cb18-3"><a href="#cb18-3" tabindex="-1"></a><span class="va">HV</span><span class="op">=</span><span class="va">$(</span><span class="fu">sudo</span> sr dht11 <span class="kw">|</span> <span class="ex">jq</span> <span class="st">&#39;map(select(.sensor == &quot;dht11_humidity&quot;)) | .[][&quot;value&quot;]&#39;</span><span class="va">)</span></span>
+<span id="cb18-4"><a href="#cb18-4" tabindex="-1"></a></span>
+<span id="cb18-5"><a href="#cb18-5" tabindex="-1"></a><span class="cf">if</span> <span class="kw">((</span> <span class="va">$HV</span> <span class="op">&lt;</span> <span class="dv">75</span> <span class="kw">));</span> <span class="cf">then</span></span>
+<span id="cb18-6"><a href="#cb18-6" tabindex="-1"></a>  <span class="ex">/bin/echo</span> <span class="st">&quot;0:</span><span class="va">$HV</span><span class="st">:Acceptable humidity&quot;</span></span>
+<span id="cb18-7"><a href="#cb18-7" tabindex="-1"></a><span class="cf">else</span></span>
+<span id="cb18-8"><a href="#cb18-8" tabindex="-1"></a>  <span class="ex">/bin/echo</span> <span class="st">&quot;4:</span><span class="va">$HV</span><span class="st">:Too humid&quot;</span></span>
+<span id="cb18-9"><a href="#cb18-9" tabindex="-1"></a><span class="cf">fi</span></span></code></pre></div>
+<!--chapter:end:65-monitoring-tools.Rmd-->
+</div>
+</div>
+</div>
+<div id="developer-guidelines" class="section level1" number="16">
+<h1><span class="header-section-number">16</span> Developer Guidelines</h1>
+<div id="documentation" class="section level2" number="16.1">
+<h2><span class="header-section-number">16.1</span> Documentation</h2>
+<p>There are three main kinds of documentation in the WildlifeSystems project.</p>
+<ol style="list-style-type: decimal">
+<li><p><strong>Code comments</strong>: Primarily for future you (or someone similar) to get to grips with your code. <em>Why does this code do this?</em>.</p></li>
+<li><p><strong>Package documentation</strong>: Describes what your package does, how it interacts with the larger system. <em>What will this package do for me?</em></p></li>
+<li><p><strong>Overall project documentation</strong>: This manual. <em>How do I use the entire system for my research?</em></p></li>
+</ol>
+</div>
+<div id="file-system-layout" class="section level2" number="16.2">
+<h2><span class="header-section-number">16.2</span> File system layout</h2>
+<pre><code>|- /etc/ws              # Configuration files (editable by end user)
+|- /usr/bin             # Main scripts        (do not edit)
+|- /var/ws              # Data storage        (do not edit)
+   |- audio             # Audio data
+   |- bluetooth         # Bluetooth data</code></pre>
+<!--chapter:end:70-dev-guidelines.Rmd-->
+</div>
+</div>
+<div id="server-tools" class="section level1" number="17">
+<h1><span class="header-section-number">17</span> Server Tools</h1>
+<p>These tools are only needed for running and maintaining the <a href="https://wildlife.systems">wildlife.systems</a> webserver.</p>
+<div id="installation" class="section level2" number="17.1">
+<h2><span class="header-section-number">17.1</span> Installation</h2>
+<div class="sourceCode" id="cb20"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" tabindex="-1"></a><span class="fu">git</span> clone git@github.com:Wildlife-Systems/wildlife.systems-tools.git</span>
+<span id="cb20-2"><a href="#cb20-2" tabindex="-1"></a><span class="bu">cd</span> wildlife.systems-tools</span>
+<span id="cb20-3"><a href="#cb20-3" tabindex="-1"></a><span class="ex">./install</span></span>
+<span id="cb20-4"><a href="#cb20-4" tabindex="-1"></a><span class="fu">cp</span> .ws-db.php ~/</span>
+<span id="cb20-5"><a href="#cb20-5" tabindex="-1"></a></span>
+<span id="cb20-6"><a href="#cb20-6" tabindex="-1"></a><span class="co">#Edit ~/.ws-db.php to connect to the wildlife-systems database</span></span></code></pre></div>
+</div>
+<div id="adding-nodes-and-receieving-a-token" class="section level2" number="17.2">
+<h2><span class="header-section-number">17.2</span> Adding nodes and receieving a token</h2>
+<div class="sourceCode" id="cb21"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" tabindex="-1"></a><span class="ex">ws-node-add</span> <span class="op">&lt;</span>node_id<span class="op">&gt;</span></span></code></pre></div>
+<p>Adding a node by it’s ID (serial number of the Raspberry Pi) will add the device to the wildlife.systems database, generate a token, and display the token (a UUID) in the console. This token is used to authenticate the device when it sends data to wildlife.systems.</p>
+</div>
+<div id="removing-a-node" class="section level2" number="17.3">
+<h2><span class="header-section-number">17.3</span> Removing a node</h2>
+<div class="sourceCode" id="cb22"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" tabindex="-1"></a><span class="ex">ws-node-remove</span> <span class="op">&lt;</span>node_id<span class="op">&gt;</span></span></code></pre></div>
+<!--chapter:end:80-server-tools.Rmd-->
+</div>
+</div>
+<div id="references" class="section level1 unnumbered">
+<h1 class="unnumbered">References</h1>
+<!--chapter:end:90-references.Rmd-->
+</div>
+<div id="appendix-appendix" class="section level1 unnumbered">
+<h1 class="unnumbered">(APPENDIX) Appendix</h1>
+<!--chapter:end:91-Appendicies-header.Rmd-->
+</div>
+<div id="a-note-on-sudo-1" class="section level1" number="18">
+<h1><span class="header-section-number">18</span> A note on <code>sudo</code></h1>
+<p>Raspberry Pi OS (and previously Raspbian) allows the default user to run sudo without a password. This is not true for other Linux distributions, such as Ubuntu. This could lead to a password prompt when using scripts such as <code>sr</code> and <code>ws-indicate</code>.</p>
+<p>When using a standard node configuration this is not an issue as the systemd services that launch these scripts are configured to run as root. However, if you are using these scripts manually you may need to run them with sudo (e.g. <code>sudo sr onboard</code>) to get expected behaviour.</p>
+<!--chapter:end:93-sudo.Rmd-->
+</div>
+<div id="return-codes" class="section level1" number="19">
+<h1><span class="header-section-number">19</span> Return codes</h1>
+<p>The various scripts that form the WildlifeSystems ecosystem use a standard set of return codes.</p>
+<div id="script-functionality" class="section level2" number="19.1">
+<h2><span class="header-section-number">19.1</span> 00-09 Script functionality</h2>
+<table>
+<colgroup>
+<col width="5%" />
+<col width="20%" />
+<col width="74%" />
+</colgroup>
+<thead>
+<tr>
+<th align="left">Code</th>
+<th align="left">Label</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">0</td>
+<td align="left">OK</td>
+<td align="left">Terminated normally. No error.</td>
+</tr>
+<tr>
+<td align="left">1</td>
+<td align="left">Already running</td>
+<td align="left">The script determined it was already running and terminated.</td>
+</tr>
+<tr>
+<td align="left">2</td>
+<td align="left">No arguments</td>
+<td align="left">The script requires arguments but none given. Will give help text.</td>
+</tr>
+<tr>
+<td align="left">3</td>
+<td align="left">Config file error</td>
+<td align="left">The config file is missing or malformed.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="parameter-problems" class="section level2" number="19.2">
+<h2><span class="header-section-number">19.2</span> 10-19 Parameter problems</h2>
+<table>
+<colgroup>
+<col width="4%" />
+<col width="25%" />
+<col width="69%" />
+</colgroup>
+<thead>
+<tr>
+<th align="left">Code</th>
+<th align="left">Label</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">10</td>
+<td align="left">Invalid argument</td>
+<td align="left">One or more of the arguments to the script was invalid.</td>
+</tr>
+<tr>
+<td align="left">11</td>
+<td align="left">Incorrect filename pattern</td>
+<td align="left">A standard filename pattern was expected. Allowed values are ‘timestamp’.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="sensor-problems" class="section level2" number="19.3">
+<h2><span class="header-section-number">19.3</span> 20-29 Sensor problems</h2>
+<table>
+<colgroup>
+<col width="6%" />
+<col width="18%" />
+<col width="75%" />
+</colgroup>
+<thead>
+<tr>
+<th align="left">Code</th>
+<th align="left">Label</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">20</td>
+<td align="left">Unknown device</td>
+<td align="left">This device is not supported, or software is not installed.</td>
+</tr>
+<tr>
+<td align="left">21</td>
+<td align="left">Unknown sensor</td>
+<td align="left">This sensor is not known on this device.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="sound-device-problems" class="section level2" number="19.4">
+<h2><span class="header-section-number">19.4</span> 30-39 Sound device problems</h2>
+<table>
+<colgroup>
+<col width="6%" />
+<col width="27%" />
+<col width="66%" />
+</colgroup>
+<thead>
+<tr>
+<th align="left">Code</th>
+<th align="left">Label</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">30</td>
+<td align="left">Unsupported device</td>
+<td align="left">The specified device is unsupported.</td>
+</tr>
+<tr>
+<td align="left">31</td>
+<td align="left">Unsupported feature</td>
+<td align="left">This feature is not present on the sound device.</td>
+</tr>
+<tr>
+<td align="left">32</td>
+<td align="left">Unknown feature</td>
+<td align="left">The feature requested is unknown.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="image-device-problems" class="section level2" number="19.5">
+<h2><span class="header-section-number">19.5</span> 40-49 Image device problems</h2>
+<table>
+<colgroup>
+<col width="6%" />
+<col width="27%" />
+<col width="66%" />
+</colgroup>
+<thead>
+<tr>
+<th align="left">Code</th>
+<th align="left">Label</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">40</td>
+<td align="left">Unsupported device</td>
+<td align="left">The specified device is unsupported.</td>
+</tr>
+<tr>
+<td align="left">41</td>
+<td align="left">Unsupported feature</td>
+<td align="left">This feature is not present on the sound device.</td>
+</tr>
+<tr>
+<td align="left">42</td>
+<td align="left">Unknown feature</td>
+<td align="left">The feature requested is unknown.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="power-management-problems" class="section level2" number="19.6">
+<h2><span class="header-section-number">19.6</span> 50-59 Power management problems</h2>
+<table>
+<colgroup>
+<col width="4%" />
+<col width="47%" />
+<col width="48%" />
+</colgroup>
+<thead>
+<tr>
+<th align="left">Code</th>
+<th align="left">Label</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">50</td>
+<td align="left">Disallowed value (should be on or off)</td>
+<td align="left">The specified device is unsupported.</td>
+</tr>
+<tr>
+<td align="left">51</td>
+<td align="left">Disallowed value (should be on, off or default)</td>
+<td align="left">This feature is not present on the sound device.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="special-meanings" class="section level2" number="19.7">
+<h2><span class="header-section-number">19.7</span> 60-69 Special meanings</h2>
+<table>
+<colgroup>
+<col width="4%" />
+<col width="30%" />
+<col width="65%" />
+</colgroup>
+<thead>
+<tr>
+<th align="left">Code</th>
+<th align="left">Label</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">60</td>
+<td align="left">Identify as a sensor device script</td>
+<td align="left">Returned by sensor device script in response to first parameter <code>identify</code>.</td>
+</tr>
+</tbody>
+</table>
+<!--chapter:end:95-return-codes.Rmd-->
+</div>
+</div>

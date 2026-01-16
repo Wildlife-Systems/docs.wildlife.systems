@@ -23,7 +23,7 @@
 <meta name="author" content="Ed Baker" />
 
 
-<meta name="date" content="2026-01-13" />
+<meta name="date" content="2026-01-16" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -285,6 +285,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="16" data-path="developer-guidelines.html"><a href="developer-guidelines.html"><i class="fa fa-check"></i><b>16</b> Developer Guidelines</a>
 <ul>
 <li class="chapter" data-level="16.1" data-path="developer-guidelines.html"><a href="developer-guidelines.html#documentation"><i class="fa fa-check"></i><b>16.1</b> Documentation</a></li>
+<li class="chapter" data-level="16.2" data-path="developer-guidelines.html"><a href="developer-guidelines.html#file-system-layout"><i class="fa fa-check"></i><b>16.2</b> File system layout</a></li>
 </ul></li>
 <li class="chapter" data-level="17" data-path="server-tools.html"><a href="server-tools.html"><i class="fa fa-check"></i><b>17</b> Server Tools</a>
 <ul>
@@ -327,8 +328,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="a-note-on-sudo-1" class="section level1 hasAnchor" number="18">
 <h1><span class="header-section-number">A</span> A note on <code>sudo</code><a href="a-note-on-sudo-1.html#a-note-on-sudo-1" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>Raspberry Pi OS (and previously Raspbian) allows the default user to run sudo without a password. This is not true for other Linux distributions, such as Ubuntu. This could lead to a password prompt when using scripts such as <code>sr</code> and <code>ws-indicate</code>. As nodes are designed to run autonomously, the installation process for <code>ws-node</code> will configure these scripts to not require a <code>sudo</code> password.</p>
-<p>In some installations (generally where the devices are managed by organisations) the <code>sudo</code> group will not be present. To allow running without a password the file <code>/etc/sudoers.d/ws</code> can be renamed (to avoid changes being undone if <code>ws-node</code> is re-installed) and the <code>%sudo</code> group modified to an appropriate group present on the system.</p>
+<p>Raspberry Pi OS (and previously Raspbian) allows the default user to run sudo without a password. This is not true for other Linux distributions, such as Ubuntu. This could lead to a password prompt when using scripts such as <code>sr</code> and <code>ws-indicate</code>.</p>
+<p>When using a standard node configuration this is not an issue as the systemd services that launch these scripts are configured to run as root. However, if you are using these scripts manually you may need to run them with sudo (e.g. <code>sudo sr onboard</code>) to get expected behaviour.</p>
 
 </div>
             </section>
