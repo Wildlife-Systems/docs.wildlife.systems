@@ -328,6 +328,16 @@ For a sensor application to be detected by sensor-mon, it must:
 
 `sensor-plot` displays historical sensor data from .out files as graphs. Up to 5 sensors can be displayed simultaneously.
 
+### Screenshots
+
+```{r sensor-plot-day, echo=FALSE, fig.cap="sensor-plot displaying temperature data in day mode, showing 24 hours of readings.", fig.alt="Screenshot of sensor-plot terminal application showing a temperature sensor graph in day mode with data points over a 24-hour period."}
+knitr::include_graphics("images/sensor-plot-day.png")
+```
+
+```{r sensor-plot-week, echo=FALSE, fig.cap="sensor-plot displaying temperature data in week mode, showing 7 days of readings.", fig.alt="Screenshot of sensor-plot terminal application showing a temperature sensor graph in week mode with data points over a 7-day period."}
+knitr::include_graphics("images/sensor-plot-week.png")
+```
+
 ### Usage
 
 ````{bash eval=FALSE}
@@ -359,15 +369,6 @@ If no PATH is specified, defaults to `/var/ws`.
 | `r` | Reload data from disk |
 | `q` | Quit |
 
-### Sensor Colours
-
-Each sensor is displayed in a different colour:
-
-- Sensor 1: Cyan
-- Sensor 2: Yellow
-- Sensor 3: Magenta
-- Sensor 4: Red
-- Sensor 5: Blue
 
 ### Examples
 
