@@ -1,0 +1,360 @@
+# Sensor Data Tools
+
+The `sensor-tools` package provides command-line utilities for processing, analysing, and visualising sensor data collected by WildlifeSystems nodes. The package includes three main binaries: `sensor-data`, `sensor-mon`, and `sensor-plot`.
+
+## Installation
+
+The sensor-tools package can be installed using the apt package manager:
+
+````{bash eval=FALSE}
+sudo apt install sensor-tools
+````
+
+This will install all three tools and their dependencies.
+
+## sensor-data
+
+`sensor-data` is the primary tool for processing and analysing sensor data files. It provides several subcommands for different tasks.
+
+### Basic Usage
+
+````{bash eval=FALSE}
+sensor-data <command> [options] [files...]
+````
+
+If no input files are specified, data is read from stdin. Input files can be JSON (`.out` format with one JSON array per line) or CSV.
+
+### Commands
+
+#### transform
+
+Transform sensor data between JSON and CSV formats, with optional filtering.
+
+````{bash eval=FALSE}
+# Convert JSON to CSV
+sensor-data transform -of csv sensor1.out
+
+# Convert with error filtering
+sensor-data transform --remove-errors -o output.csv sensor1.out
+
+# Process all .out files in a directory recursively
+sensor-data transform -r -e .out -o output.csv /var/ws/
+
+# Filter by sensor type
+cat sensor1.out | sensor-data transform --only-value sensor:ds18b20
+
+# Filter by date range
+sensor-data transform --min-date 2026-01-01 --max-date 2026-01-31 sensor.out
+
+# Apply the --clean shorthand (removes empty values, errors, and duplicates)
+sensor-data transform --clean sensor1.out
+````
+
+#### list-rejects
+
+List readings that would be filtered out by specified filters. This is useful for inspecting data quality issues.
+
+````{bash eval=FALSE}
+# Show readings that would be removed by --clean
+sensor-data list-rejects --clean sensor1.out
+
+# Show error readings
+sensor-data list-rejects --remove-errors sensor1.out
+````
+
+#### count
+
+Count sensor data readings with optional filtering and grouping.
+
+````{bash eval=FALSE}
+# Count all readings
+sensor-data count sensor1.out
+
+# Count excluding errors
+sensor-data count --remove-errors -r -e .out /var/ws/
+
+# Count by sensor type
+sensor-data count --by-column sensor_id sensor1.out
+
+# Count by time period
+sensor-data count --by-day sensor1.out      # YYYY-MM-DD
+sensor-data count --by-week sensor1.out     # YYYY-Www (ISO week)
+sensor-data count --by-month sensor1.out    # YYYY-MM
+sensor-data count --by-year sensor1.out     # YYYY
+
+# Output as CSV or JSON
+sensor-data count -b sensor_id -of csv sensor1.out
+sensor-data count -b sensor_id -of json sensor1.out
+````
+
+#### distinct
+
+List unique values in a specified column.
+
+````{bash eval=FALSE}
+# List unique sensor names
+sensor-data distinct sensor sensor1.out
+
+# List unique sensor IDs with counts (sorted by frequency)
+sensor-data distinct sensor_id -c -r -e out /var/ws/
+
+# Output as CSV or JSON
+sensor-data distinct sensor -of csv sensor1.out
+sensor-data distinct sensor -of json -c sensor1.out
+````
+
+#### list-errors
+
+Find and list error readings in sensor data files. This detects DS18B20 sensors reporting values of 85 or -127, which indicate communication errors or disconnection.
+
+````{bash eval=FALSE}
+sensor-data list-errors -r -e .out /var/ws/
+````
+
+Example output:
+```
+sensor1.out:2 type=ds18b20 sensor_id=sensor002 value=85
+```
+
+#### summarise-errors
+
+Summarise error occurrences by type and sensor.
+
+````{bash eval=FALSE}
+sensor-data summarise-errors -r -e .out /var/ws/
+````
+
+Example output:
+```
+DS18B20 communication error (value=85): 3 occurrences
+DS18B20 disconnected or power-on reset (value=-127): 2 occurrences
+Total errors: 5
+```
+
+#### stats
+
+Calculate statistics for numeric sensor data. Provides comprehensive analysis including basic statistics, quartiles, outlier detection, and time-based metrics.
+
+````{bash eval=FALSE}
+# Statistics for the 'value' column
+sensor-data stats sensor1.out
+
+# Statistics for a specific column
+sensor-data stats -c temperature sensor1.out
+
+# Clean statistics (excluding empty values and errors)
+sensor-data stats --clean sensor1.out
+
+# Follow mode for live updates
+sensor-data stats -f sensor1.out
+````
+
+Example output:
+```
+Statistics:
+
+Time Range:
+  First:     2026-01-14 22:13:20 (1768529600)
+  Last:      2026-01-15 01:13:20 (1768540400)
+  Duration:  3h 0m 0s (10800 seconds)
+  Rate:      1.33 readings/hour, 32.00 readings/day
+
+  Sampling:
+    Typical interval: 3600s
+    Gaps detected:    0
+
+value:
+  Count:    100
+  Min:      18.5
+  Max:      26.3
+  Range:    7.8
+  Mean:     22.1
+  StdDev:   1.8
+
+  Quartiles:
+    Q1 (25%):  20.5
+    Median:    22.0
+    Q3 (75%):  23.5
+    IQR:       3.0
+
+  Outliers (1.5*IQR):
+    Count:     2
+    Percent:   2.0%
+```
+
+#### latest
+
+Show the latest timestamp for each sensor.
+
+````{bash eval=FALSE}
+# Get latest timestamp per sensor
+sensor-data latest sensor1.out
+
+# Limit output to first 5 sensors
+sensor-data latest -n 5 sensor1.out
+
+# Output as CSV or JSON
+sensor-data latest -of csv sensor1.out
+sensor-data latest -of json sensor1.out
+````
+
+### Common Options
+
+Most commands share these options:
+
+| Option | Description |
+|--------|-------------|
+| `-r, --recursive` | Recursively process subdirectories |
+| `-e, --extension <ext>` | Filter files by extension (e.g., `.out`) |
+| `-d, --depth <n>` | Maximum recursion depth |
+| `-if, --input-format <fmt>` | Input format: `json` or `csv` |
+| `-of, --output-format <fmt>` | Output format: `json`, `csv`, or `human` |
+| `-o, --output <file>` | Output file (default: stdout) |
+| `-v` | Verbose output |
+| `-V` | Very verbose output |
+
+### Filtering Options
+
+| Option | Description |
+|--------|-------------|
+| `--min-date <date>` | Include only readings on or after this date |
+| `--max-date <date>` | Include only readings on or before this date |
+| `--remove-errors` | Remove DS18B20 error readings (value=85 or -127) |
+| `--remove-empty-json` | Remove empty JSON input lines |
+| `--not-empty <column>` | Skip rows where column is empty |
+| `--not-null <column>` | Skip rows where column is "null" |
+| `--only-value <col:val>` | Only include rows where column equals value |
+| `--exclude-value <col:val>` | Exclude rows where column equals value |
+| `--allowed-values <col> <vals>` | Only include rows where column is in allowed values |
+| `--unique` | Remove duplicate rows |
+| `--clean` | Shorthand for common cleaning options |
+| `--tail <n>` | Only read last n lines from each file |
+
+### Date Formats
+
+The `--min-date` and `--max-date` options accept:
+
+- ISO 8601: `2026-01-17` or `2026-01-17T14:30:00`
+- UK format: `17/01/2026`
+- Unix timestamp: `1768529600`
+
+## sensor-mon
+
+`sensor-mon` provides an interactive ncurses-based terminal interface for real-time monitoring of sensor data.
+
+### Usage
+
+````{bash eval=FALSE}
+sensor-mon
+````
+
+When started, sensor-mon scans for executable sensor-* programs in the PATH, verifies they respond correctly to the "identify" command, and displays a list of available sensors.
+
+### Controls
+
+| Key | Action |
+|-----|--------|
+| `1-9` | Select sensor to monitor |
+| `b` | Return to sensor list |
+| `[` | Show previous result (multiple readings) |
+| `]` | Show next result (multiple readings) |
+| `q` | Quit |
+
+### Display
+
+The sensor view shows:
+
+- **Top half:** Formatted JSON output from the selected sensor
+- **Bottom half:** Real-time graph of the "value" field, updated every second
+
+Colour is used when available:
+
+- Green: Frame and borders
+- Blue: Graph data points and lines
+- Reversed: Header text background
+
+### Sensor Requirements
+
+For a sensor application to be detected by sensor-mon, it must:
+
+1. Be named with the prefix "sensor-" (e.g., sensor-dht22, sensor-ds18b20)
+2. Be executable and in the system PATH
+3. Exit with status code 60 when called with the "identify" argument
+4. Output JSON data when called with the "all" argument
+
+## sensor-plot
+
+`sensor-plot` displays historical sensor data from .out files as graphs. Up to 5 sensors can be displayed simultaneously.
+
+### Usage
+
+````{bash eval=FALSE}
+sensor-plot --sensor <SENSOR_ID> [--sensor <SENSOR_ID2>] [PATH]
+````
+
+If no PATH is specified, defaults to `/var/ws`.
+
+### Options
+
+| Option | Description |
+|--------|-------------|
+| `--sensor <ID>` | Sensor ID to plot (can be specified up to 5 times) |
+| `-r, --recursive` | Search subdirectories for data files (default) |
+| `-R, --no-recursive` | Do not search subdirectories |
+| `-e, --extension <ext>` | Only read files with the specified extension |
+| `-h, --help` | Display help |
+
+### Controls
+
+| Key | Action |
+|-----|--------|
+| Left/Right Arrow | Scroll the time window |
+| `h` | Hour mode (1 hour view, 1 minute scroll) |
+| `d` | Day mode (24 hour view, 1 hour scroll) |
+| `w` | Week mode (7 day view, 1 day scroll) |
+| `m` | Month mode (30 day view, 1 week scroll) |
+| `y` | Year mode (365 day view, 1 month scroll) |
+| `r` | Reload data from disk |
+| `q` | Quit |
+
+### Sensor Colours
+
+Each sensor is displayed in a different colour:
+
+- Sensor 1: Cyan
+- Sensor 2: Yellow
+- Sensor 3: Magenta
+- Sensor 4: Red
+- Sensor 5: Blue
+
+### Examples
+
+````{bash eval=FALSE}
+# Display a single sensor
+sensor-plot --sensor ds18b20_abc123
+
+# Display three sensors together
+sensor-plot --sensor temp_indoor --sensor temp_outdoor --sensor humidity
+
+# Specify a different data path
+sensor-plot --sensor temp_main /path/to/data/
+````
+
+## Data Formats
+
+### JSON (.out files)
+
+Each line contains a JSON array with one or more sensor readings:
+
+```json
+[ { "sensor": "ds18b20", "sensor_id": "28-0123456789ab", "value": 22.5, "unit": "Celsius", "timestamp": 1768529600 } ]
+```
+
+### CSV
+
+Standard CSV with header row:
+
+```csv
+sensor,sensor_id,value,unit,timestamp
+ds18b20,28-0123456789ab,22.5,Celsius,1768529600
+```

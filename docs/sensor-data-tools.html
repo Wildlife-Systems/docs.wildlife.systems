@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>B Return codes | WildlifeSystems - biodiversity technologies</title>
+  <title>Chapter 9 Sensor Data Tools | WildlifeSystems - biodiversity technologies</title>
   <meta name="description" content="Manual for using WildlifeSystems technologies for monitoring biodiversity." />
   <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="B Return codes | WildlifeSystems - biodiversity technologies" />
+  <meta property="og:title" content="Chapter 9 Sensor Data Tools | WildlifeSystems - biodiversity technologies" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="Manual for using WildlifeSystems technologies for monitoring biodiversity." />
   <meta name="github-repo" content="wildlife-systems/docs.wildlife.systems" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="B Return codes | WildlifeSystems - biodiversity technologies" />
+  <meta name="twitter:title" content="Chapter 9 Sensor Data Tools | WildlifeSystems - biodiversity technologies" />
   
   <meta name="twitter:description" content="Manual for using WildlifeSystems technologies for monitoring biodiversity." />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="a-note-on-sudo-1.html"/>
-
+<link rel="prev" href="implementing-new-sensors.html"/>
+<link rel="next" href="sound-devices.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -358,227 +358,483 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="return-codes" class="section level1 hasAnchor" number="20">
-<h1><span class="header-section-number">B</span> Return codes<a href="return-codes.html#return-codes" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>The various scripts that form the WildlifeSystems ecosystem use a standard set of return codes.</p>
-<div id="script-functionality" class="section level2 hasAnchor" number="20.1">
-<h2><span class="header-section-number">B.1</span> 00-09 Script functionality<a href="return-codes.html#script-functionality" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<table>
-<colgroup>
-<col width="5%" />
-<col width="20%" />
-<col width="74%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th align="left">Code</th>
-<th align="left">Label</th>
-<th align="left">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">0</td>
-<td align="left">OK</td>
-<td align="left">Terminated normally. No error.</td>
-</tr>
-<tr class="even">
-<td align="left">1</td>
-<td align="left">Already running</td>
-<td align="left">The script determined it was already running and terminated.</td>
-</tr>
-<tr class="odd">
-<td align="left">2</td>
-<td align="left">No arguments</td>
-<td align="left">The script requires arguments but none given. Will give help text.</td>
-</tr>
-<tr class="even">
-<td align="left">3</td>
-<td align="left">Config file error</td>
-<td align="left">The config file is missing or malformed.</td>
-</tr>
-</tbody>
-</table>
+<div id="sensor-data-tools" class="section level1 hasAnchor" number="9">
+<h1><span class="header-section-number">Chapter 9</span> Sensor Data Tools<a href="sensor-data-tools.html#sensor-data-tools" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>The <code>sensor-tools</code> package provides command-line utilities for processing, analysing, and visualising sensor data collected by WildlifeSystems nodes. The package includes three main binaries: <code>sensor-data</code>, <code>sensor-mon</code>, and <code>sensor-plot</code>.</p>
+<div id="installation" class="section level2 hasAnchor" number="9.1">
+<h2><span class="header-section-number">9.1</span> Installation<a href="sensor-data-tools.html#installation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The sensor-tools package can be installed using the apt package manager:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb12-1"><a href="sensor-data-tools.html#cb12-1" tabindex="-1"></a><span class="fu">sudo</span> apt install sensor-tools</span></code></pre></div>
+<p>This will install all three tools and their dependencies.</p>
 </div>
-<div id="parameter-problems" class="section level2 hasAnchor" number="20.2">
-<h2><span class="header-section-number">B.2</span> 10-19 Parameter problems<a href="return-codes.html#parameter-problems" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<table>
-<colgroup>
-<col width="4%" />
-<col width="25%" />
-<col width="69%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th align="left">Code</th>
-<th align="left">Label</th>
-<th align="left">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">10</td>
-<td align="left">Invalid argument</td>
-<td align="left">One or more of the arguments to the script was invalid.</td>
-</tr>
-<tr class="even">
-<td align="left">11</td>
-<td align="left">Incorrect filename pattern</td>
-<td align="left">A standard filename pattern was expected. Allowed values are ‘timestamp’.</td>
-</tr>
-</tbody>
-</table>
+<div id="sensor-data" class="section level2 hasAnchor" number="9.2">
+<h2><span class="header-section-number">9.2</span> sensor-data<a href="sensor-data-tools.html#sensor-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><code>sensor-data</code> is the primary tool for processing and analysing sensor data files. It provides several subcommands for different tasks.</p>
+<div id="basic-usage" class="section level3 hasAnchor" number="9.2.1">
+<h3><span class="header-section-number">9.2.1</span> Basic Usage<a href="sensor-data-tools.html#basic-usage" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb13"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb13-1"><a href="sensor-data-tools.html#cb13-1" tabindex="-1"></a><span class="ex">sensor-data</span> <span class="op">&lt;</span>command<span class="op">&gt;</span> <span class="pp">[</span><span class="ss">options</span><span class="pp">]</span> <span class="pp">[</span><span class="ss">files...</span><span class="pp">]</span></span></code></pre></div>
+<p>If no input files are specified, data is read from stdin. Input files can be JSON (<code>.out</code> format with one JSON array per line) or CSV.</p>
 </div>
-<div id="sensor-problems" class="section level2 hasAnchor" number="20.3">
-<h2><span class="header-section-number">B.3</span> 20-29 Sensor problems<a href="return-codes.html#sensor-problems" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<table>
-<colgroup>
-<col width="6%" />
-<col width="18%" />
-<col width="75%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th align="left">Code</th>
-<th align="left">Label</th>
-<th align="left">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">20</td>
-<td align="left">Unknown device</td>
-<td align="left">This device is not supported, or software is not installed.</td>
-</tr>
-<tr class="even">
-<td align="left">21</td>
-<td align="left">Unknown sensor</td>
-<td align="left">This sensor is not known on this device.</td>
-</tr>
-</tbody>
-</table>
+<div id="commands" class="section level3 hasAnchor" number="9.2.2">
+<h3><span class="header-section-number">9.2.2</span> Commands<a href="sensor-data-tools.html#commands" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="transform" class="section level4 hasAnchor" number="9.2.2.1">
+<h4><span class="header-section-number">9.2.2.1</span> transform<a href="sensor-data-tools.html#transform" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Transform sensor data between JSON and CSV formats, with optional filtering.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb14-1"><a href="sensor-data-tools.html#cb14-1" tabindex="-1"></a><span class="co"># Convert JSON to CSV</span></span>
+<span id="cb14-2"><a href="sensor-data-tools.html#cb14-2" tabindex="-1"></a><span class="ex">sensor-data</span> transform <span class="at">-of</span> csv sensor1.out</span>
+<span id="cb14-3"><a href="sensor-data-tools.html#cb14-3" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="sensor-data-tools.html#cb14-4" tabindex="-1"></a><span class="co"># Convert with error filtering</span></span>
+<span id="cb14-5"><a href="sensor-data-tools.html#cb14-5" tabindex="-1"></a><span class="ex">sensor-data</span> transform <span class="at">--remove-errors</span> <span class="at">-o</span> output.csv sensor1.out</span>
+<span id="cb14-6"><a href="sensor-data-tools.html#cb14-6" tabindex="-1"></a></span>
+<span id="cb14-7"><a href="sensor-data-tools.html#cb14-7" tabindex="-1"></a><span class="co"># Process all .out files in a directory recursively</span></span>
+<span id="cb14-8"><a href="sensor-data-tools.html#cb14-8" tabindex="-1"></a><span class="ex">sensor-data</span> transform <span class="at">-r</span> <span class="at">-e</span> .out <span class="at">-o</span> output.csv /var/ws/</span>
+<span id="cb14-9"><a href="sensor-data-tools.html#cb14-9" tabindex="-1"></a></span>
+<span id="cb14-10"><a href="sensor-data-tools.html#cb14-10" tabindex="-1"></a><span class="co"># Filter by sensor type</span></span>
+<span id="cb14-11"><a href="sensor-data-tools.html#cb14-11" tabindex="-1"></a><span class="fu">cat</span> sensor1.out <span class="kw">|</span> <span class="ex">sensor-data</span> transform <span class="at">--only-value</span> sensor:ds18b20</span>
+<span id="cb14-12"><a href="sensor-data-tools.html#cb14-12" tabindex="-1"></a></span>
+<span id="cb14-13"><a href="sensor-data-tools.html#cb14-13" tabindex="-1"></a><span class="co"># Filter by date range</span></span>
+<span id="cb14-14"><a href="sensor-data-tools.html#cb14-14" tabindex="-1"></a><span class="ex">sensor-data</span> transform <span class="at">--min-date</span> 2026-01-01 <span class="at">--max-date</span> 2026-01-31 sensor.out</span>
+<span id="cb14-15"><a href="sensor-data-tools.html#cb14-15" tabindex="-1"></a></span>
+<span id="cb14-16"><a href="sensor-data-tools.html#cb14-16" tabindex="-1"></a><span class="co"># Apply the --clean shorthand (removes empty values, errors, and duplicates)</span></span>
+<span id="cb14-17"><a href="sensor-data-tools.html#cb14-17" tabindex="-1"></a><span class="ex">sensor-data</span> transform <span class="at">--clean</span> sensor1.out</span></code></pre></div>
 </div>
-<div id="sound-device-problems" class="section level2 hasAnchor" number="20.4">
-<h2><span class="header-section-number">B.4</span> 30-39 Sound device problems<a href="return-codes.html#sound-device-problems" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<table>
-<colgroup>
-<col width="6%" />
-<col width="27%" />
-<col width="66%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th align="left">Code</th>
-<th align="left">Label</th>
-<th align="left">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">30</td>
-<td align="left">Unsupported device</td>
-<td align="left">The specified device is unsupported.</td>
-</tr>
-<tr class="even">
-<td align="left">31</td>
-<td align="left">Unsupported feature</td>
-<td align="left">This feature is not present on the sound device.</td>
-</tr>
-<tr class="odd">
-<td align="left">32</td>
-<td align="left">Unknown feature</td>
-<td align="left">The feature requested is unknown.</td>
-</tr>
-</tbody>
-</table>
+<div id="list-rejects" class="section level4 hasAnchor" number="9.2.2.2">
+<h4><span class="header-section-number">9.2.2.2</span> list-rejects<a href="sensor-data-tools.html#list-rejects" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>List readings that would be filtered out by specified filters. This is useful for inspecting data quality issues.</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb15-1"><a href="sensor-data-tools.html#cb15-1" tabindex="-1"></a><span class="co"># Show readings that would be removed by --clean</span></span>
+<span id="cb15-2"><a href="sensor-data-tools.html#cb15-2" tabindex="-1"></a><span class="ex">sensor-data</span> list-rejects <span class="at">--clean</span> sensor1.out</span>
+<span id="cb15-3"><a href="sensor-data-tools.html#cb15-3" tabindex="-1"></a></span>
+<span id="cb15-4"><a href="sensor-data-tools.html#cb15-4" tabindex="-1"></a><span class="co"># Show error readings</span></span>
+<span id="cb15-5"><a href="sensor-data-tools.html#cb15-5" tabindex="-1"></a><span class="ex">sensor-data</span> list-rejects <span class="at">--remove-errors</span> sensor1.out</span></code></pre></div>
 </div>
-<div id="image-device-problems" class="section level2 hasAnchor" number="20.5">
-<h2><span class="header-section-number">B.5</span> 40-49 Image device problems<a href="return-codes.html#image-device-problems" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<table>
-<colgroup>
-<col width="6%" />
-<col width="27%" />
-<col width="66%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th align="left">Code</th>
-<th align="left">Label</th>
-<th align="left">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">40</td>
-<td align="left">Unsupported device</td>
-<td align="left">The specified device is unsupported.</td>
-</tr>
-<tr class="even">
-<td align="left">41</td>
-<td align="left">Unsupported feature</td>
-<td align="left">This feature is not present on the sound device.</td>
-</tr>
-<tr class="odd">
-<td align="left">42</td>
-<td align="left">Unknown feature</td>
-<td align="left">The feature requested is unknown.</td>
-</tr>
-</tbody>
-</table>
+<div id="count" class="section level4 hasAnchor" number="9.2.2.3">
+<h4><span class="header-section-number">9.2.2.3</span> count<a href="sensor-data-tools.html#count" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Count sensor data readings with optional filtering and grouping.</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb16-1"><a href="sensor-data-tools.html#cb16-1" tabindex="-1"></a><span class="co"># Count all readings</span></span>
+<span id="cb16-2"><a href="sensor-data-tools.html#cb16-2" tabindex="-1"></a><span class="ex">sensor-data</span> count sensor1.out</span>
+<span id="cb16-3"><a href="sensor-data-tools.html#cb16-3" tabindex="-1"></a></span>
+<span id="cb16-4"><a href="sensor-data-tools.html#cb16-4" tabindex="-1"></a><span class="co"># Count excluding errors</span></span>
+<span id="cb16-5"><a href="sensor-data-tools.html#cb16-5" tabindex="-1"></a><span class="ex">sensor-data</span> count <span class="at">--remove-errors</span> <span class="at">-r</span> <span class="at">-e</span> .out /var/ws/</span>
+<span id="cb16-6"><a href="sensor-data-tools.html#cb16-6" tabindex="-1"></a></span>
+<span id="cb16-7"><a href="sensor-data-tools.html#cb16-7" tabindex="-1"></a><span class="co"># Count by sensor type</span></span>
+<span id="cb16-8"><a href="sensor-data-tools.html#cb16-8" tabindex="-1"></a><span class="ex">sensor-data</span> count <span class="at">--by-column</span> sensor_id sensor1.out</span>
+<span id="cb16-9"><a href="sensor-data-tools.html#cb16-9" tabindex="-1"></a></span>
+<span id="cb16-10"><a href="sensor-data-tools.html#cb16-10" tabindex="-1"></a><span class="co"># Count by time period</span></span>
+<span id="cb16-11"><a href="sensor-data-tools.html#cb16-11" tabindex="-1"></a><span class="ex">sensor-data</span> count <span class="at">--by-day</span> sensor1.out      <span class="co"># YYYY-MM-DD</span></span>
+<span id="cb16-12"><a href="sensor-data-tools.html#cb16-12" tabindex="-1"></a><span class="ex">sensor-data</span> count <span class="at">--by-week</span> sensor1.out     <span class="co"># YYYY-Www (ISO week)</span></span>
+<span id="cb16-13"><a href="sensor-data-tools.html#cb16-13" tabindex="-1"></a><span class="ex">sensor-data</span> count <span class="at">--by-month</span> sensor1.out    <span class="co"># YYYY-MM</span></span>
+<span id="cb16-14"><a href="sensor-data-tools.html#cb16-14" tabindex="-1"></a><span class="ex">sensor-data</span> count <span class="at">--by-year</span> sensor1.out     <span class="co"># YYYY</span></span>
+<span id="cb16-15"><a href="sensor-data-tools.html#cb16-15" tabindex="-1"></a></span>
+<span id="cb16-16"><a href="sensor-data-tools.html#cb16-16" tabindex="-1"></a><span class="co"># Output as CSV or JSON</span></span>
+<span id="cb16-17"><a href="sensor-data-tools.html#cb16-17" tabindex="-1"></a><span class="ex">sensor-data</span> count <span class="at">-b</span> sensor_id <span class="at">-of</span> csv sensor1.out</span>
+<span id="cb16-18"><a href="sensor-data-tools.html#cb16-18" tabindex="-1"></a><span class="ex">sensor-data</span> count <span class="at">-b</span> sensor_id <span class="at">-of</span> json sensor1.out</span></code></pre></div>
 </div>
-<div id="power-management-problems" class="section level2 hasAnchor" number="20.6">
-<h2><span class="header-section-number">B.6</span> 50-59 Power management problems<a href="return-codes.html#power-management-problems" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<table>
-<colgroup>
-<col width="4%" />
-<col width="47%" />
-<col width="48%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th align="left">Code</th>
-<th align="left">Label</th>
-<th align="left">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">50</td>
-<td align="left">Disallowed value (should be on or off)</td>
-<td align="left">The specified device is unsupported.</td>
-</tr>
-<tr class="even">
-<td align="left">51</td>
-<td align="left">Disallowed value (should be on, off or default)</td>
-<td align="left">This feature is not present on the sound device.</td>
-</tr>
-</tbody>
-</table>
+<div id="distinct" class="section level4 hasAnchor" number="9.2.2.4">
+<h4><span class="header-section-number">9.2.2.4</span> distinct<a href="sensor-data-tools.html#distinct" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>List unique values in a specified column.</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb17-1"><a href="sensor-data-tools.html#cb17-1" tabindex="-1"></a><span class="co"># List unique sensor names</span></span>
+<span id="cb17-2"><a href="sensor-data-tools.html#cb17-2" tabindex="-1"></a><span class="ex">sensor-data</span> distinct sensor sensor1.out</span>
+<span id="cb17-3"><a href="sensor-data-tools.html#cb17-3" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="sensor-data-tools.html#cb17-4" tabindex="-1"></a><span class="co"># List unique sensor IDs with counts (sorted by frequency)</span></span>
+<span id="cb17-5"><a href="sensor-data-tools.html#cb17-5" tabindex="-1"></a><span class="ex">sensor-data</span> distinct sensor_id <span class="at">-c</span> <span class="at">-r</span> <span class="at">-e</span> out /var/ws/</span>
+<span id="cb17-6"><a href="sensor-data-tools.html#cb17-6" tabindex="-1"></a></span>
+<span id="cb17-7"><a href="sensor-data-tools.html#cb17-7" tabindex="-1"></a><span class="co"># Output as CSV or JSON</span></span>
+<span id="cb17-8"><a href="sensor-data-tools.html#cb17-8" tabindex="-1"></a><span class="ex">sensor-data</span> distinct sensor <span class="at">-of</span> csv sensor1.out</span>
+<span id="cb17-9"><a href="sensor-data-tools.html#cb17-9" tabindex="-1"></a><span class="ex">sensor-data</span> distinct sensor <span class="at">-of</span> json <span class="at">-c</span> sensor1.out</span></code></pre></div>
 </div>
-<div id="special-meanings" class="section level2 hasAnchor" number="20.7">
-<h2><span class="header-section-number">B.7</span> 60-69 Special meanings<a href="return-codes.html#special-meanings" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<table>
-<colgroup>
-<col width="4%" />
-<col width="30%" />
-<col width="65%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th align="left">Code</th>
-<th align="left">Label</th>
-<th align="left">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">60</td>
-<td align="left">Identify as a sensor device script</td>
-<td align="left">Returned by sensor device script in response to first parameter <code>identify</code>.</td>
-</tr>
-</tbody>
-</table>
+<div id="list-errors" class="section level4 hasAnchor" number="9.2.2.5">
+<h4><span class="header-section-number">9.2.2.5</span> list-errors<a href="sensor-data-tools.html#list-errors" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Find and list error readings in sensor data files. This detects DS18B20 sensors reporting values of 85 or -127, which indicate communication errors or disconnection.</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb18-1"><a href="sensor-data-tools.html#cb18-1" tabindex="-1"></a><span class="ex">sensor-data</span> list-errors <span class="at">-r</span> <span class="at">-e</span> .out /var/ws/</span></code></pre></div>
+<p>Example output:</p>
+<pre><code>sensor1.out:2 type=ds18b20 sensor_id=sensor002 value=85</code></pre>
+</div>
+<div id="summarise-errors" class="section level4 hasAnchor" number="9.2.2.6">
+<h4><span class="header-section-number">9.2.2.6</span> summarise-errors<a href="sensor-data-tools.html#summarise-errors" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Summarise error occurrences by type and sensor.</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb20-1"><a href="sensor-data-tools.html#cb20-1" tabindex="-1"></a><span class="ex">sensor-data</span> summarise-errors <span class="at">-r</span> <span class="at">-e</span> .out /var/ws/</span></code></pre></div>
+<p>Example output:</p>
+<pre><code>DS18B20 communication error (value=85): 3 occurrences
+DS18B20 disconnected or power-on reset (value=-127): 2 occurrences
+Total errors: 5</code></pre>
+</div>
+<div id="stats" class="section level4 hasAnchor" number="9.2.2.7">
+<h4><span class="header-section-number">9.2.2.7</span> stats<a href="sensor-data-tools.html#stats" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Calculate statistics for numeric sensor data. Provides comprehensive analysis including basic statistics, quartiles, outlier detection, and time-based metrics.</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb22-1"><a href="sensor-data-tools.html#cb22-1" tabindex="-1"></a><span class="co"># Statistics for the &#39;value&#39; column</span></span>
+<span id="cb22-2"><a href="sensor-data-tools.html#cb22-2" tabindex="-1"></a><span class="ex">sensor-data</span> stats sensor1.out</span>
+<span id="cb22-3"><a href="sensor-data-tools.html#cb22-3" tabindex="-1"></a></span>
+<span id="cb22-4"><a href="sensor-data-tools.html#cb22-4" tabindex="-1"></a><span class="co"># Statistics for a specific column</span></span>
+<span id="cb22-5"><a href="sensor-data-tools.html#cb22-5" tabindex="-1"></a><span class="ex">sensor-data</span> stats <span class="at">-c</span> temperature sensor1.out</span>
+<span id="cb22-6"><a href="sensor-data-tools.html#cb22-6" tabindex="-1"></a></span>
+<span id="cb22-7"><a href="sensor-data-tools.html#cb22-7" tabindex="-1"></a><span class="co"># Clean statistics (excluding empty values and errors)</span></span>
+<span id="cb22-8"><a href="sensor-data-tools.html#cb22-8" tabindex="-1"></a><span class="ex">sensor-data</span> stats <span class="at">--clean</span> sensor1.out</span>
+<span id="cb22-9"><a href="sensor-data-tools.html#cb22-9" tabindex="-1"></a></span>
+<span id="cb22-10"><a href="sensor-data-tools.html#cb22-10" tabindex="-1"></a><span class="co"># Follow mode for live updates</span></span>
+<span id="cb22-11"><a href="sensor-data-tools.html#cb22-11" tabindex="-1"></a><span class="ex">sensor-data</span> stats <span class="at">-f</span> sensor1.out</span></code></pre></div>
+<p>Example output:</p>
+<pre><code>Statistics:
 
+Time Range:
+  First:     2026-01-14 22:13:20 (1768529600)
+  Last:      2026-01-15 01:13:20 (1768540400)
+  Duration:  3h 0m 0s (10800 seconds)
+  Rate:      1.33 readings/hour, 32.00 readings/day
+
+  Sampling:
+    Typical interval: 3600s
+    Gaps detected:    0
+
+value:
+  Count:    100
+  Min:      18.5
+  Max:      26.3
+  Range:    7.8
+  Mean:     22.1
+  StdDev:   1.8
+
+  Quartiles:
+    Q1 (25%):  20.5
+    Median:    22.0
+    Q3 (75%):  23.5
+    IQR:       3.0
+
+  Outliers (1.5*IQR):
+    Count:     2
+    Percent:   2.0%</code></pre>
+</div>
+<div id="latest" class="section level4 hasAnchor" number="9.2.2.8">
+<h4><span class="header-section-number">9.2.2.8</span> latest<a href="sensor-data-tools.html#latest" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Show the latest timestamp for each sensor.</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb24-1"><a href="sensor-data-tools.html#cb24-1" tabindex="-1"></a><span class="co"># Get latest timestamp per sensor</span></span>
+<span id="cb24-2"><a href="sensor-data-tools.html#cb24-2" tabindex="-1"></a><span class="ex">sensor-data</span> latest sensor1.out</span>
+<span id="cb24-3"><a href="sensor-data-tools.html#cb24-3" tabindex="-1"></a></span>
+<span id="cb24-4"><a href="sensor-data-tools.html#cb24-4" tabindex="-1"></a><span class="co"># Limit output to first 5 sensors</span></span>
+<span id="cb24-5"><a href="sensor-data-tools.html#cb24-5" tabindex="-1"></a><span class="ex">sensor-data</span> latest <span class="at">-n</span> 5 sensor1.out</span>
+<span id="cb24-6"><a href="sensor-data-tools.html#cb24-6" tabindex="-1"></a></span>
+<span id="cb24-7"><a href="sensor-data-tools.html#cb24-7" tabindex="-1"></a><span class="co"># Output as CSV or JSON</span></span>
+<span id="cb24-8"><a href="sensor-data-tools.html#cb24-8" tabindex="-1"></a><span class="ex">sensor-data</span> latest <span class="at">-of</span> csv sensor1.out</span>
+<span id="cb24-9"><a href="sensor-data-tools.html#cb24-9" tabindex="-1"></a><span class="ex">sensor-data</span> latest <span class="at">-of</span> json sensor1.out</span></code></pre></div>
+</div>
+</div>
+<div id="common-options" class="section level3 hasAnchor" number="9.2.3">
+<h3><span class="header-section-number">9.2.3</span> Common Options<a href="sensor-data-tools.html#common-options" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Most commands share these options:</p>
+<table>
+<colgroup>
+<col width="38%" />
+<col width="61%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Option</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>-r, --recursive</code></td>
+<td>Recursively process subdirectories</td>
+</tr>
+<tr class="even">
+<td><code>-e, --extension &lt;ext&gt;</code></td>
+<td>Filter files by extension (e.g., <code>.out</code>)</td>
+</tr>
+<tr class="odd">
+<td><code>-d, --depth &lt;n&gt;</code></td>
+<td>Maximum recursion depth</td>
+</tr>
+<tr class="even">
+<td><code>-if, --input-format &lt;fmt&gt;</code></td>
+<td>Input format: <code>json</code> or <code>csv</code></td>
+</tr>
+<tr class="odd">
+<td><code>-of, --output-format &lt;fmt&gt;</code></td>
+<td>Output format: <code>json</code>, <code>csv</code>, or <code>human</code></td>
+</tr>
+<tr class="even">
+<td><code>-o, --output &lt;file&gt;</code></td>
+<td>Output file (default: stdout)</td>
+</tr>
+<tr class="odd">
+<td><code>-v</code></td>
+<td>Verbose output</td>
+</tr>
+<tr class="even">
+<td><code>-V</code></td>
+<td>Very verbose output</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="filtering-options" class="section level3 hasAnchor" number="9.2.4">
+<h3><span class="header-section-number">9.2.4</span> Filtering Options<a href="sensor-data-tools.html#filtering-options" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<table>
+<colgroup>
+<col width="38%" />
+<col width="61%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Option</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>--min-date &lt;date&gt;</code></td>
+<td>Include only readings on or after this date</td>
+</tr>
+<tr class="even">
+<td><code>--max-date &lt;date&gt;</code></td>
+<td>Include only readings on or before this date</td>
+</tr>
+<tr class="odd">
+<td><code>--remove-errors</code></td>
+<td>Remove DS18B20 error readings (value=85 or -127)</td>
+</tr>
+<tr class="even">
+<td><code>--remove-empty-json</code></td>
+<td>Remove empty JSON input lines</td>
+</tr>
+<tr class="odd">
+<td><code>--not-empty &lt;column&gt;</code></td>
+<td>Skip rows where column is empty</td>
+</tr>
+<tr class="even">
+<td><code>--not-null &lt;column&gt;</code></td>
+<td>Skip rows where column is “null”</td>
+</tr>
+<tr class="odd">
+<td><code>--only-value &lt;col:val&gt;</code></td>
+<td>Only include rows where column equals value</td>
+</tr>
+<tr class="even">
+<td><code>--exclude-value &lt;col:val&gt;</code></td>
+<td>Exclude rows where column equals value</td>
+</tr>
+<tr class="odd">
+<td><code>--allowed-values &lt;col&gt; &lt;vals&gt;</code></td>
+<td>Only include rows where column is in allowed values</td>
+</tr>
+<tr class="even">
+<td><code>--unique</code></td>
+<td>Remove duplicate rows</td>
+</tr>
+<tr class="odd">
+<td><code>--clean</code></td>
+<td>Shorthand for common cleaning options</td>
+</tr>
+<tr class="even">
+<td><code>--tail &lt;n&gt;</code></td>
+<td>Only read last n lines from each file</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="date-formats" class="section level3 hasAnchor" number="9.2.5">
+<h3><span class="header-section-number">9.2.5</span> Date Formats<a href="sensor-data-tools.html#date-formats" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The <code>--min-date</code> and <code>--max-date</code> options accept:</p>
+<ul>
+<li>ISO 8601: <code>2026-01-17</code> or <code>2026-01-17T14:30:00</code></li>
+<li>UK format: <code>17/01/2026</code></li>
+<li>Unix timestamp: <code>1768529600</code></li>
+</ul>
+</div>
+</div>
+<div id="sensor-mon" class="section level2 hasAnchor" number="9.3">
+<h2><span class="header-section-number">9.3</span> sensor-mon<a href="sensor-data-tools.html#sensor-mon" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><code>sensor-mon</code> provides an interactive ncurses-based terminal interface for real-time monitoring of sensor data.</p>
+<div id="usage" class="section level3 hasAnchor" number="9.3.1">
+<h3><span class="header-section-number">9.3.1</span> Usage<a href="sensor-data-tools.html#usage" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb25"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb25-1"><a href="sensor-data-tools.html#cb25-1" tabindex="-1"></a><span class="ex">sensor-mon</span></span></code></pre></div>
+<p>When started, sensor-mon scans for executable sensor-* programs in the PATH, verifies they respond correctly to the “identify” command, and displays a list of available sensors.</p>
+</div>
+<div id="controls" class="section level3 hasAnchor" number="9.3.2">
+<h3><span class="header-section-number">9.3.2</span> Controls<a href="sensor-data-tools.html#controls" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<table>
+<thead>
+<tr class="header">
+<th>Key</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>1-9</code></td>
+<td>Select sensor to monitor</td>
+</tr>
+<tr class="even">
+<td><code>b</code></td>
+<td>Return to sensor list</td>
+</tr>
+<tr class="odd">
+<td><code>[</code></td>
+<td>Show previous result (multiple readings)</td>
+</tr>
+<tr class="even">
+<td><code>]</code></td>
+<td>Show next result (multiple readings)</td>
+</tr>
+<tr class="odd">
+<td><code>q</code></td>
+<td>Quit</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="display" class="section level3 hasAnchor" number="9.3.3">
+<h3><span class="header-section-number">9.3.3</span> Display<a href="sensor-data-tools.html#display" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The sensor view shows:</p>
+<ul>
+<li><strong>Top half:</strong> Formatted JSON output from the selected sensor</li>
+<li><strong>Bottom half:</strong> Real-time graph of the “value” field, updated every second</li>
+</ul>
+<p>Colour is used when available:</p>
+<ul>
+<li>Green: Frame and borders</li>
+<li>Blue: Graph data points and lines</li>
+<li>Reversed: Header text background</li>
+</ul>
+</div>
+<div id="sensor-requirements" class="section level3 hasAnchor" number="9.3.4">
+<h3><span class="header-section-number">9.3.4</span> Sensor Requirements<a href="sensor-data-tools.html#sensor-requirements" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>For a sensor application to be detected by sensor-mon, it must:</p>
+<ol style="list-style-type: decimal">
+<li>Be named with the prefix “sensor-” (e.g., sensor-dht22, sensor-ds18b20)</li>
+<li>Be executable and in the system PATH</li>
+<li>Exit with status code 60 when called with the “identify” argument</li>
+<li>Output JSON data when called with the “all” argument</li>
+</ol>
+</div>
+</div>
+<div id="sensor-plot" class="section level2 hasAnchor" number="9.4">
+<h2><span class="header-section-number">9.4</span> sensor-plot<a href="sensor-data-tools.html#sensor-plot" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><code>sensor-plot</code> displays historical sensor data from .out files as graphs. Up to 5 sensors can be displayed simultaneously.</p>
+<div id="usage-1" class="section level3 hasAnchor" number="9.4.1">
+<h3><span class="header-section-number">9.4.1</span> Usage<a href="sensor-data-tools.html#usage-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb26"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb26-1"><a href="sensor-data-tools.html#cb26-1" tabindex="-1"></a><span class="ex">sensor-plot</span> <span class="at">--sensor</span> <span class="op">&lt;</span>SENSOR_ID<span class="op">&gt;</span> [--sensor <span class="op">&lt;</span>SENSOR_ID2<span class="op">&gt;</span>] <span class="pp">[</span><span class="ss">PATH</span><span class="pp">]</span></span></code></pre></div>
+<p>If no PATH is specified, defaults to <code>/var/ws</code>.</p>
+</div>
+<div id="options" class="section level3 hasAnchor" number="9.4.2">
+<h3><span class="header-section-number">9.4.2</span> Options<a href="sensor-data-tools.html#options" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<table>
+<colgroup>
+<col width="38%" />
+<col width="61%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Option</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>--sensor &lt;ID&gt;</code></td>
+<td>Sensor ID to plot (can be specified up to 5 times)</td>
+</tr>
+<tr class="even">
+<td><code>-r, --recursive</code></td>
+<td>Search subdirectories for data files (default)</td>
+</tr>
+<tr class="odd">
+<td><code>-R, --no-recursive</code></td>
+<td>Do not search subdirectories</td>
+</tr>
+<tr class="even">
+<td><code>-e, --extension &lt;ext&gt;</code></td>
+<td>Only read files with the specified extension</td>
+</tr>
+<tr class="odd">
+<td><code>-h, --help</code></td>
+<td>Display help</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="controls-1" class="section level3 hasAnchor" number="9.4.3">
+<h3><span class="header-section-number">9.4.3</span> Controls<a href="sensor-data-tools.html#controls-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<table>
+<thead>
+<tr class="header">
+<th>Key</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Left/Right Arrow</td>
+<td>Scroll the time window</td>
+</tr>
+<tr class="even">
+<td><code>h</code></td>
+<td>Hour mode (1 hour view, 1 minute scroll)</td>
+</tr>
+<tr class="odd">
+<td><code>d</code></td>
+<td>Day mode (24 hour view, 1 hour scroll)</td>
+</tr>
+<tr class="even">
+<td><code>w</code></td>
+<td>Week mode (7 day view, 1 day scroll)</td>
+</tr>
+<tr class="odd">
+<td><code>m</code></td>
+<td>Month mode (30 day view, 1 week scroll)</td>
+</tr>
+<tr class="even">
+<td><code>y</code></td>
+<td>Year mode (365 day view, 1 month scroll)</td>
+</tr>
+<tr class="odd">
+<td><code>r</code></td>
+<td>Reload data from disk</td>
+</tr>
+<tr class="even">
+<td><code>q</code></td>
+<td>Quit</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="sensor-colours" class="section level3 hasAnchor" number="9.4.4">
+<h3><span class="header-section-number">9.4.4</span> Sensor Colours<a href="sensor-data-tools.html#sensor-colours" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Each sensor is displayed in a different colour:</p>
+<ul>
+<li>Sensor 1: Cyan</li>
+<li>Sensor 2: Yellow</li>
+<li>Sensor 3: Magenta</li>
+<li>Sensor 4: Red</li>
+<li>Sensor 5: Blue</li>
+</ul>
+</div>
+<div id="examples" class="section level3 hasAnchor" number="9.4.5">
+<h3><span class="header-section-number">9.4.5</span> Examples<a href="sensor-data-tools.html#examples" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb27"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb27-1"><a href="sensor-data-tools.html#cb27-1" tabindex="-1"></a><span class="co"># Display a single sensor</span></span>
+<span id="cb27-2"><a href="sensor-data-tools.html#cb27-2" tabindex="-1"></a><span class="ex">sensor-plot</span> <span class="at">--sensor</span> ds18b20_abc123</span>
+<span id="cb27-3"><a href="sensor-data-tools.html#cb27-3" tabindex="-1"></a></span>
+<span id="cb27-4"><a href="sensor-data-tools.html#cb27-4" tabindex="-1"></a><span class="co"># Display three sensors together</span></span>
+<span id="cb27-5"><a href="sensor-data-tools.html#cb27-5" tabindex="-1"></a><span class="ex">sensor-plot</span> <span class="at">--sensor</span> temp_indoor <span class="at">--sensor</span> temp_outdoor <span class="at">--sensor</span> humidity</span>
+<span id="cb27-6"><a href="sensor-data-tools.html#cb27-6" tabindex="-1"></a></span>
+<span id="cb27-7"><a href="sensor-data-tools.html#cb27-7" tabindex="-1"></a><span class="co"># Specify a different data path</span></span>
+<span id="cb27-8"><a href="sensor-data-tools.html#cb27-8" tabindex="-1"></a><span class="ex">sensor-plot</span> <span class="at">--sensor</span> temp_main /path/to/data/</span></code></pre></div>
+</div>
+</div>
+<div id="data-formats" class="section level2 hasAnchor" number="9.5">
+<h2><span class="header-section-number">9.5</span> Data Formats<a href="sensor-data-tools.html#data-formats" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="json-.out-files" class="section level3 hasAnchor" number="9.5.1">
+<h3><span class="header-section-number">9.5.1</span> JSON (.out files)<a href="sensor-data-tools.html#json-.out-files" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Each line contains a JSON array with one or more sensor readings:</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb28-1"><a href="sensor-data-tools.html#cb28-1" tabindex="-1"></a><span class="ot">[</span> <span class="fu">{</span> <span class="dt">&quot;sensor&quot;</span><span class="fu">:</span> <span class="st">&quot;ds18b20&quot;</span><span class="fu">,</span> <span class="dt">&quot;sensor_id&quot;</span><span class="fu">:</span> <span class="st">&quot;28-0123456789ab&quot;</span><span class="fu">,</span> <span class="dt">&quot;value&quot;</span><span class="fu">:</span> <span class="fl">22.5</span><span class="fu">,</span> <span class="dt">&quot;unit&quot;</span><span class="fu">:</span> <span class="st">&quot;Celsius&quot;</span><span class="fu">,</span> <span class="dt">&quot;timestamp&quot;</span><span class="fu">:</span> <span class="dv">1768529600</span> <span class="fu">}</span> <span class="ot">]</span></span></code></pre></div>
+</div>
+<div id="csv" class="section level3 hasAnchor" number="9.5.2">
+<h3><span class="header-section-number">9.5.2</span> CSV<a href="sensor-data-tools.html#csv" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Standard CSV with header row:</p>
+<pre class="csv"><code>sensor,sensor_id,value,unit,timestamp
+ds18b20,28-0123456789ab,22.5,Celsius,1768529600</code></pre>
+
+</div>
 </div>
 </div>
             </section>
@@ -586,8 +842,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="a-note-on-sudo-1.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="implementing-new-sensors.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="sound-devices.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -618,7 +874,7 @@ gitbook.start({
     "size": 2
   },
   "edit": {
-    "link": "https://github.com/Wildlife-Systems/docs.wildlife.systems/edit/master/95-return-codes.Rmd",
+    "link": "https://github.com/Wildlife-Systems/docs.wildlife.systems/edit/master/36-sensor-data.Rmd",
     "text": "Edit"
   },
   "history": {
