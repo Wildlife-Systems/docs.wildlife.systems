@@ -2,7 +2,6 @@
 # Need help debugging build failures? Start at https://github.com/r-lib/actions#where-to-find-help
 on:
   push:
-    branches: [main, master]
   pull_request:
   workflow_dispatch:
 
@@ -31,6 +30,19 @@ jobs:
         with:
           use-public-rspm: true
 
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential g++ libncurses-dev zlib1g-dev
+
+      - name: Build sensor-tools from source
+        run: |
+          git clone --depth 1 https://github.com/Wildlife-Systems/sensor-tools.git /tmp/sensor-tools
+          cd /tmp/sensor-tools
+          make sensor-data
+          sudo cp sensor-data /usr/local/bin/
+          sensor-data --version
+
       - name: Install R dependencies
         run: |
           install.packages(c("bookdown", "remotes", "reticulate"))
@@ -45,18 +57,21 @@ jobs:
           key: bookdown-${{ hashFiles('**/*Rmd') }}
           restore-keys: bookdown-
 
+      - name: Ensure cache directory exists
+        run: mkdir -p _bookdown_files
+
       - name: Build site
         run: bookdown::render_book("index.Rmd", quiet = TRUE)
         shell: Rscript {0}
 
       - name: Upload Pages artifact
-        if: github.event_name != 'pull_request'
+        if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
         uses: actions/upload-pages-artifact@v3
         with:
           path: docs
 
   deploy:
-    if: github.event_name != 'pull_request'
+    if: (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master') && github.event_name != 'pull_request'
     needs: bookdown
     runs-on: ubuntu-latest
     environment:
