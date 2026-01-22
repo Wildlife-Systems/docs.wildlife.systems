@@ -65,13 +65,13 @@ jobs:
         shell: Rscript {0}
 
       - name: Upload Pages artifact
-        if: github.event_name != 'pull_request'
+        if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
         uses: actions/upload-pages-artifact@v3
         with:
           path: docs
 
   deploy:
-    if: github.event_name != 'pull_request'
+    if: (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master') && github.event_name != 'pull_request'
     needs: bookdown
     runs-on: ubuntu-latest
     environment:
