@@ -36,9 +36,9 @@ sensor-data <command> [options] [files...]
 
 If no input files are specified, data is read from stdin. Input files can be JSON (`.out` format with one JSON array per line) or CSV.
 
-## Live Examples
+## Examples
 
-The following examples demonstrate `sensor-data` commands using sample sensor data. These examples are executed when the documentation is built, showing real output from the tool.
+The following examples demonstrate `sensor-data` commands using sample sensor data.
 
 ```{r setup-sensor-data, include=FALSE}
 # Check if sensor-data is available (only in CI on Linux)
