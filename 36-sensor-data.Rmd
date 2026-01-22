@@ -338,6 +338,10 @@ knitr::include_graphics("images/sensor-plot-day.png")
 knitr::include_graphics("images/sensor-plot-week.png")
 ```
 
+```{r sensor-plot-multiple, echo=FALSE, fig.cap="sensor-plot displaying multiple sensors simultaneously, allowing comparison of different data streams.", fig.alt="Screenshot of sensor-plot terminal application showing multiple sensors plotted together for comparison."}
+knitr::include_graphics("images/sensor-plot-multiple.png")
+```
+
 ### Usage
 
 ````{bash eval=FALSE}
