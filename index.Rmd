@@ -13,6 +13,11 @@ link-citations: yes
 github-repo: wildlife-systems/docs.wildlife.systems
 ---
 
+```{r setup, include=FALSE}
+# Check if sensor-data and sc-prototype are available in the system
+sensor_data_available <- Sys.which("sensor-data") != "" && Sys.which("sc-prototype") != ""
+```
+
 # About {-}
 
 This book explains the technologies developed as part of [WildlifeSystems](https://wildlife.systems) and how they can be implemented in real-world scenarios.
