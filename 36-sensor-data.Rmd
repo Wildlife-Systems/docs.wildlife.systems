@@ -2,6 +2,18 @@
 
 The `sensor-tools` package provides command-line utilities for processing, analysing, and visualising sensor data collected by WildlifeSystems nodes. The package includes three main binaries: `sensor-data`, `sensor-mon`, and `sensor-plot`.
 
+### `sensor-data`
+
+The `sensor-data` tool is a Swiss army knife for processing sensor data files. It supports various commands for transforming data formats, filtering readings, counting entries, listing unique values, identifying errors, summarising error statistics, calculating detailed statistics, and finding the latest readings. While `sr` is minimal and focused on real-time sensor reading, `sensor-data` is designed for in-depth analysis of historical data stored in files.
+
+### `sensor-mon`
+
+`sensor-mon` is an interactive terminal application that allows real-time monitoring of sensor data. It provides a user-friendly ncurses interface to view live readings from available sensors, complete with formatted JSON output and real-time graphs.
+
+### `sensor-plot`
+
+`sensor-plot` is a terminal-based graphing tool that visualises historical sensor data from `.out` files. It can display up to five sensors simultaneously, allowing users to compare trends over time using an intuitive interface.
+
 ## Installation
 
 The sensor-tools package can be installed using the apt package manager:
