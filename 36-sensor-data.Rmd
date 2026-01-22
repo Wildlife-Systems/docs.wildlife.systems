@@ -217,39 +217,6 @@ sensor-data stats -f sensor1.out
 sensor-data stats --clean data/sample-sensors.out
 ````
 
-Example output:
-```
-Statistics:
-
-Time Range:
-  First:     2026-01-14 22:13:20 (1768529600)
-  Last:      2026-01-15 01:13:20 (1768540400)
-  Duration:  3h 0m 0s (10800 seconds)
-  Rate:      1.33 readings/hour, 32.00 readings/day
-
-  Sampling:
-    Typical interval: 3600s
-    Gaps detected:    0
-
-value:
-  Count:    100
-  Min:      18.5
-  Max:      26.3
-  Range:    7.8
-  Mean:     22.1
-  StdDev:   1.8
-
-  Quartiles:
-    Q1 (25%):  20.5
-    Median:    22.0
-    Q3 (75%):  23.5
-    IQR:       3.0
-
-  Outliers (1.5*IQR):
-    Count:     2
-    Percent:   2.0%
-```
-
 #### latest
 
 Show the latest timestamp for each sensor.
