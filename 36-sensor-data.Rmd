@@ -38,7 +38,7 @@ If no input files are specified, data is read from stdin. Input files can be JSO
 
 ## Examples
 
-The following examples demonstrate `sensor-data` commands using sample sensor data.
+The following examples demonstrate `sensor-data` commands.
 
 ```{r setup-sensor-data, include=FALSE}
 # Check if sensor-data is available (only in CI on Linux)
@@ -106,6 +106,14 @@ Filter by sensor type and output as JSON:
 
 ```{bash, eval=sensor_data_available}
 sensor-data transform --only-value sensor:dht22 data/sample-sensors.out
+```
+
+### Using sc-prototype
+
+The `--use-prototype` option uses the `sc-prototype` command to define the column structure for output. This ensures consistent column ordering based on the WildlifeSystems sensor data schema:
+
+```{bash, eval=sensor_data_available}
+sensor-data transform --use-prototype -of csv data/sample-sensors.out | head -5
 ```
 
 ### Statistics

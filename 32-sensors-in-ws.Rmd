@@ -43,6 +43,14 @@ This will give a JSON string listing information about each sensor (or just the 
 sr onboard | jq
 ````
 
+## `sc-prototype`
+
+The bash function `sc-prototype` is used by sensor scripts to obtain a template JSON string that can be populated with sensor readings.
+
+`````{bash, eval=sensor_data_available}
+sc-prototype
+`````
+
 ## The sensor reading process
 
 The sensor reading process in WildlifeSystems has five steps.
