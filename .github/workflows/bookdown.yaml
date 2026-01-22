@@ -31,6 +31,7 @@ jobs:
       - name: Install R dependencies
         run: |
           install.packages(c("bookdown", "remotes"))
+          remotes::install_github("edwbaker/figuREd")
           remotes::install_deps(dependencies = TRUE)
         shell: Rscript {0}
 
