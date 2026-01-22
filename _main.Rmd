@@ -1,0 +1,1186 @@
+--- 
+title: "WildlifeSystems - biodiversity technologies"
+author: "[Ed Baker](https://ebaker.me.uk)"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+documentclass: book
+bibliography: [book.bib, packages.bib]
+url: https://docs.wildlife.systems
+# cover-image: path to the social sharing image like images/cover.jpg
+description: |
+  Manual for using WildlifeSystems technologies for monitoring biodiversity.
+link-citations: yes
+github-repo: wildlife-systems/docs.wildlife.systems
+---
+
+# About {-}
+
+This book explains the technologies developed as part of [WildlifeSystems](https://wildlife.systems) and how they can be implemented in real-world scenarios.
+
+## Support {-}
+
+WildlifeSystems nodes were originally developed and used as part of the Leverhulme Trust funded [Automated Acoustic Observatories](https://ebaker.me.uk/aao) project at the University of York. Additional development is undertaken as part of the [Urban Nature Project](https://www.nhm.ac.uk/about-us/urban-nature-project.html) at the Natural History Museum, London.
+
+<!--chapter:end:index.Rmd-->
+
+# Biodiversity Technologies 
+
+## What are Biodiversity Technologies?
+
+Biodiversity technologies are tools that allow researchers and others to study, monitor and
+conserve biodiversity. These tools can be used to monitor a wide range of species, habitats, and ecosystems, potentially in (near) real-time and/or from a great distance away.
+
+### What has enabled Biodiversity Technologies?
+
+The development of biodiversity technologies has been enabled by the rapid advances in sensor technology, data processing, and communication networks. These technologies have made it possible to collect, store, and analyse large amounts of data from a wide range of sources, including remote sensors, cameras, and acoustic recorders.
+
+This has been accompanied by a decline in the cost of these technologies (e.g. Figure  \@ref(fig:storage-costs)), making them more accessible to researchers, conservationists, and others interested in monitoring biodiversity.
+
+```{r, storage-costs, echo=FALSE, fig.cap="The decline in storage costs per megabyte in consumer hard drives."}
+library(figuREd)
+storageCosts()
+``` 
+
+These technologies can potentially create vast datasets, and in order to adhere to the FAIR principles (Findable, Accessible, Interoperable, Reusable), it is important for the data to be accompanied by an appropriate suite of data standards, such as those developed by TDWG.
+
+## Overall Philosophy
+
+### Leverage what already exists
+
+Many of the tools that are needed to monitor biodiversity already exist, and the goal of WildlifeSystems is to bring these tools together in a coherent and integrated way. This will allow researchers and others to build on existing technologies to develop new tools and applications that can be used to monitor biodiversity in a wide range of environments.These tools are designed to be flexible, scalable, and easy to use, and to provide a platform for the development of new technologies and applications.
+
+### Innovate where necessary
+
+“Technology is stuff that doesn’t work yet.”
+`r tufte::quote_footer('--- Bran Ferren')`  
+
+<br>
+
+Where suitable technological solutions already exist, use them. Limit technological research to what needs to be new. Most of the time it's OK to use existing technology, and focus development on the biodiversity related problem you're trying to solve. Older technologies are often better understood and more stable. Some of the technologies WildlifeSystems leverages to innovate in the biodiversity sphere are given in Table \@ref(tab:tech-age).
+
+```{r tech-age, echo=FALSE, tab.cap="Age of technologies underpinning WildlifeSystems."}
+tech <- c(
+  "Ethernet",
+  "BASH",
+  "Linux"
+)
+years <- c(
+  1973,
+  1989,
+  1991
+)
+years_ago <- as.integer(format(Sys.Date(), "%Y")) - years
+
+data <- cbind(tech,years, years_ago)
+colnames(data) <- c("Technology", "Year Introduced", paste("Age in ", format(Sys.Date(), "%Y")))
+
+knitr::kable(data)
+```
+
+### Plan for heterogeneity
+
+[Any network of devices will become heterogeneous given sufficient time](https://medium.ebaker.me.uk/sensor-networks1-abstracting-heterogeneity-319c0c41c9fa). The primary driver of this shift to heterogeneity is continuous technological innovation combined with obsolescence of technical components. 
+
+Secondary drivers are changes in the purpose, capabilities, and/or scale of the network over time. 
+
+The WildlifeSystems ecosystem is designed to be able to handle this heterogeneity, and to allow for the easy integration of new technologies as they become available.
+
+### Modularise
+
+The WildlifeSystems ecosystem is designed to be modular, with each component able to be used independently or in combination with other components. This allows users to build custom solutions that meet their specific needs, and to easily add or remove components as required.
+
+Defined interfaces between components allow for easy integration of new technologies, and for components to be replaced or upgraded without affecting the rest of the system. This also lets contributors to focus on what they are best at.
+
+### Open Source
+
+## Structure of Wildlife Systems
+
+### Packages
+
+<!--chapter:end:01-intro.Rmd-->
+
+# Nodes
+
+The fundamental unit of the WildlifeSystems platform is the node. A node is a physical device that can be used to collect data from sensors, control devices, and communicate with other nodes. Nodes are (typically) Raspberry Pi computers, packaged with an array of environmental sensors, microphone(s), and/or camera(s).
+
+The WildlifeSystems software is used to configure a node to collect data from the sensors and what to do with the data collected. Typically this will be to send the data for external storage and analysis, but it is also possible to store the data locally on the node. Data can also be processed locally on the node, for example to detect a specific event (e.g. a sound or image) and then send a notification to the user. The WildlifeSystems software is designed to be modular, so that new sensors and devices can be added easily, and the data processing can be configured to suit the user's needs.
+
+## Standard node
+
+There is no such thing as a 'standard node', apart from the core software interfaces. In some deployments, however, there will be a great deal of standardisation.  The Urban Research Station deployment at the Natural History Museum, London, for example, has a number of nodes that are identically configured. Although even here, there are differences in the sensors used, and the data processing that is done. The nodes are all configured to send data to the same server (the Data Ecosystem) but the exact configuration of each node is driven by current research needs. In this way a network of WildlifeSystems nodes can be seen as a platform for facilitating research, rather than as a single-purpose device.
+
+To make it easier to deploy and work with individual nodes, it is recommended that some commonly used sensors are deployed in the standard fashion described below.
+
+### Self-monitoring
+
+Electricity and water should not mix. While suitable enclosures go a long way to preventing an unfortunate meeting, many nodes are deployed outside in the elements. The addition of a cheap DHT11 sensor internally to monitor the humidity and temperature of the enclosure may help identify a potentially damaging situation before it becomes problematic. [TODO: See PRTG integration].
+
+This sensor is recommended to be attached to GPIO pin 4.
+
+### i2s microphones
+
+TODO
+
+### 1-Wire bus
+
+GPIO 17
+
+## Enclosures
+
+### Fixing inside enclosures
+
+### Attaching sensors 
+
+TODO: to sockets, not directly
+
+TODO: breakout boards
+
+TODO: custom boards
+
+### Power solutions
+
+TODO: PoE
+
+<!--chapter:end:05-nodes.Rmd-->
+
+# How nodes work
+
+After instllation configuration files are placed in `/etc/ws` that define the operation of the node.
+
+On startup, WildelifeSystems nodes run three systemd services that are responsible for processing audio, images, and environmental sensors. These sensors read the appropriate configuration files, and start collecting and recording data.
+
+## Audio
+
+The service `ws-run-audio` is configured by `/etc/ws/audio.conf` and is responsible for running the audio processing pipeline. The blocks in the pipeline are `record`, `sleep`, `upload-delete`, and `clearup`.
+
+### `init`
+
+### `run`
+
+#### `record`
+
+#### `sleep`
+
+#### `upload-delete`
+
+#### `clearup`
+
+In situations where network connection is temporarily unavailable it is possible that audio files will collect on the advice. These are not automatically processed during `upload-delete` and their processing must be handled manually, or by creating a processing scipt in `clearup`.
+
+<!--chapter:end:06-how-nodes-work.Rmd-->
+
+# Sensor Networks
+
+<!--chapter:end:30-sensor-networks.Rmd-->
+
+# Environmental Sensors
+
+## How sensors work
+
+### Temperature
+
+#### Thermistors
+
+A thermistor is a type of resistor whose resistance changes significantly with temperature. The word is a portmanteau of thermal and resistor.
+
+### Humidity
+
+#### Capacitive Humidity Sensors
+
+A capacitative humidity sensor  consists of a small capacitor with a hygroscopic dielectric material between two electrodes. The dielectric material, usually a plastic or polymer, has a low dielectric constant when dry. In the presence of moisture, the dielectric constant increases due to water vapor, which has a much higher dielectric constant. As moisture is absorbed, the sensor's capacitance increases. The amount of moisture absorbed depends on the surrounding temperature and water vapour pressure, which also affects the hygroscopic dielectric material used in the sensor.
+
+### Air Pressure
+
+### Gases
+
+#### Heated Gas Resistance
+
+Heated gas sensors are used to detect gases in the air. The sensor consists of a metal oxide semiconductor that is heated to a high temperature. Volatile organic compounds (VOCs) in the air change the resistance of the sensor.
+
+These sensors are typically used indoors and have a short lifespan (perhaps two years). As such they are rarely used in environmental sensing applications, but are included on some common sensors such as the BME680.
+
+<!--chapter:end:31-environmental-sensors.Rmd-->
+
+# Sensors in WildlifeSystems
+
+The WildlifeSystems platform comes with support for some popular existing environmental sensors, although there are many on the market and the range available is subject to constant change. The modular nature of WildlifeSystems allows for new sensors to be easily integrated if the need arises.
+
+WildlifeSystems takes an abstracted approach to sensors. Interface modules are provided for each sensor, which can be used to read the sensor data into a standard format.
+
+As many physical packages contain multiple sensors (e.g. the supported BME680 can monitor temperature, humidity, air pressure and air quality) there is a conceptual difference between a "device" and the one or more sensors on a device.
+
+
+## Devices included in the base system
+
+The Raspberry Pi does not come with environmental sensors, however there are several onboard sensors that are used to monitor the operation of the hardware, to prevent crucial components from overheating, including the temperature of the CPU and GPU chips. WildlifeSystems provides access to these sensors through the `sensor-onboard` package, as well as providing some _software sensors_ that report the free memory and free SD storage available. These can be useful for detecting and resolving possible issues on a sensor node before a serious problem arises.
+
+## Installing sensor support
+
+Support for sensors is installed as part of the node installation process, however it is possible to install the `sensor-control` abstraction layer onto any Raspberry Pi system using the command below.
+
+````{bash eval=FALSE}
+sudo apt install sensor-control
+````
+
+This will install the `sensor-control` and `sensor-onboard` scripts into the system, as well as installing a small of number of supporting packages if they are not already installed.
+
+## Reading data from a device
+
+The sensor read command, `sr`, can be used to list the available devices on a given sensor.
+
+````{bash eval=FALSE}
+sr onboard list
+````
+
+The sensor read command, `sr`, can also be used to read data from a named sensor. Not specifying a sensor is equivalent to reading all sensors on that device (i.e. using the wildcard"*").
+
+````{bash eval=FALSE}
+sr onboard
+sr onboard *
+sr onboard onboard_gpu
+````
+
+This will give a JSON string listing information about each sensor (or just the specified sensor), and the current reading. This information can be presented in a more human readable form by piping the output to the program `jq`, a command line JSON processor.
+
+````{bash eval=FALSE}
+sr onboard | jq
+````
+
+## The sensor reading process
+
+The sensor reading process in WildlifeSystems has five steps.
+
+1. The `sr` command identifies which device script to route the request to.
+
+2. The sensor script calls the `sc-prototype` script to obtain a template ("prototype") of the JSON request.
+
+3. The sensor script accesses the relevant sensor(s) and populates the values in a template for each sensor reading, before returning a JSON array of populated readings to `sr`.
+
+4. The `sr` script populates additional information for each reading, providing the `node_id` and a `timestamp` for each.
+
+5. `sr` returns the finalised JSON array to the user.
+
+## Installing new sensors
+
+New sensors can be installed using the apt package manager once the Wildlife Systems APT repository has been added to the system. Instructions can be found on the webpage [Configuring APT for Wildlife Systems.](https://wildlife.systems/apt-configuration.html).
+
+````{bash eval=FALSE}
+sudo apt install sensor-<sensor-name>
+````
+
+
+<!--chapter:end:32-sensors-in-ws.Rmd-->
+
+# Supported sensors
+
+## List of supported sensors
+
+### BME680
+
+4-in-1 sensor that provides humidity, temperature, pressure, and gas readings.
+
+### DS18B20
+
+The DS18B20 is a digital thermometer that provides Celsius measurements over a 1-Wire interface. It is a low-cost, low-power device that can be used for a variety of environmental monitoring applications. Waterproof versions are available, making it suitable for use in water and soils.
+
+````{bash eval=FALSE}
+sudo apt install sensor-ds18b20
+
+sudo sr ds18b20
+````
+
+### DHT11
+
+The DHT11 is a low-cost  temperature and humidity sensor. It uses a capacitive humidity sensor and a thermistor to measure the surrounding air, and sends the data by digital signals on the data pin.
+
+The low-cost nature of the sensor makes it useful desp ite several shortcomings, e.g. for monitoring the temperature and humidity inside electronics enclosures where accuracy is not critical but the sensor can provide critical early warning of overheating or condensation.
+
+````{bash eval=FALSE}
+sudo apt install sensor-dht11
+
+sudo sr dht11
+````
+
+### LV-MaxSonar-EZ
+
+A series of ultrasonic distance sensors that can measure distances from 2 cm to 4 m with high accuracy. They are commonly used in robotics and automation applications, but can also be used for environmental monitoring.
+
+````{bash eval=FALSE}
+sudo apt install sensor-hrlv
+
+sudo sr hrlv
+````
+
+<!--chapter:end:33-supported-sensors.Rmd-->
+
+# Implementing new sensors
+
+New sensors should be implemented as new Debian packages, and submitted via GitHub. Packages have a standard format, and should be named `sensor-<sensor-name>` where `<sensor-name>` is short, descriptive of the sensor (e.g. model number), and unique within the WildlifeSystems ecosystem.
+
+As many people implement various sensors on the Raspberry Pi, it is likely that some sort of solution is already available, that can be tweaked to output readings in the standard format required. However, you must ensure that any licensing conditions are met. In particular, an open license is required if submitting your sensor package to WildlifeSystems for inclusion in the ecosystem.
+
+## Reading the sensor
+
+File `sensor-<sensor-name>` provides the functionality to read the protoype JSON, populate the JSON with sensor readings, and print the output.
+
+The file can be written in any programming or scripting language, but to prevent overhead consideration should be given to minimising the number of new packages installed.
+
+### In bash
+
+````{bash eval=FALSE}
+#!/bin/bash
+
+# Read the prototype JSON
+JSON=$(sc-prototype)
+
+echo -n "["
+
+# Code to read the sensor value into GPU_TEMP
+
+# Use `jq` to modify JSON
+SENSOR=$(echo $JSON | jq ".sensor |= \"onboard_gpu\" | .measures |= \"temperature\" | .unit |= \"Celsius\"| .value |= ${GPU_TEMP}")
+echo -n $SENSOR
+
+echo "]"
+````
+
+### In Python
+
+````{python eval=FALSE}
+#!/
+import os
+import json
+
+# Read the prototype JSON
+stream = os.popen('sc-prototype')
+output = stream.read()
+
+# Pre-populate with sensor metadata
+temperature = json.loads(output)
+temperature["sensor"] = "bme680_temperature"
+temperature["measures"] = "temperature"
+temperature["unit"] = "Celsius"
+
+# Code to read sensor and output in variable `sensor_reading`
+temperature["value"] = sensor_reading
+
+# Output the JSON in an array
+print("[",json.dumps(temperature),"]")
+````
+
+
+## Submitting packages to WildlifeSystems
+
+Submitting packages (where licensing allows) to WildlifeSystems allows the ecosystem to be developed and sustained collaboratively by the user community.
+
+Packages can be sent to the administrators as a compressed file, or a request can be sent to fork an existing GitHub repository. Contact details can be found at [https://wildlife.systems/contact.html](https://wildlife.systems/contact.html). 
+
+<!--chapter:end:34-new-sensors.Rmd-->
+
+# Sensor Data Tools
+
+The `sensor-tools` package provides command-line utilities for processing, analysing, and visualising sensor data collected by WildlifeSystems nodes. The package includes three main binaries: `sensor-data`, `sensor-mon`, and `sensor-plot`. `sensor-mon` must be run on a WildlifeSystems node, while `sensor-data` and `sensor-plot` can be run on any system with access to the sensor data files. Both `sensor-data` and `sensor-plot` can process files from multiple nodes.
+
+### `sensor-data`
+
+The `sensor-data` tool is a Swiss army knife for processing sensor data files. It supports various commands for transforming data formats, filtering readings, counting entries, listing unique values, identifying errors, summarising error statistics, calculating detailed statistics, and finding the latest readings. While `sr` is minimal and focused on real-time sensor reading, `sensor-data` is designed for in-depth analysis of historical data stored in files.
+
+### `sensor-mon`
+
+`sensor-mon` is an interactive terminal application that allows real-time monitoring of sensor data. It provides a user-friendly ncurses interface to view live readings from available sensors, complete with formatted JSON output and real-time graphs.
+
+### `sensor-plot`
+
+`sensor-plot` is a terminal-based graphing tool that visualises historical sensor data from files. It can display up to five sensors simultaneously, allowing users to compare trends over time using an intuitive interface.
+
+## Installation
+
+The sensor-tools package can be installed using the apt package manager:
+
+````{bash eval=FALSE}
+sudo apt install sensor-tools
+````
+
+This will install all three tools and their dependencies.
+
+## sensor-data
+
+`sensor-data` is the primary tool for processing and analysing sensor data files. It provides several subcommands for different tasks.
+
+### Basic Usage
+
+````{bash eval=FALSE}
+sensor-data <command> [options] [files...]
+````
+
+If no input files are specified, data is read from stdin. Input files can be JSON (`.out` format with one JSON array per line) or CSV.
+
+## Live Examples
+
+The following examples demonstrate `sensor-data` commands using sample sensor data. These examples are executed when the documentation is built, showing real output from the tool.
+
+### Counting Readings
+
+Count all readings in the sample data file:
+
+```{bash}
+sensor-data count data/sample-sensors.out
+```
+
+Count readings by sensor type:
+
+```{bash}
+sensor-data count --by-column sensor data/sample-sensors.out
+```
+
+Count readings excluding errors:
+
+```{bash}
+sensor-data count --remove-errors data/sample-sensors.out
+```
+
+### Listing Distinct Values
+
+List unique sensor types in the data:
+
+```{bash}
+sensor-data distinct sensor data/sample-sensors.out
+```
+
+List unique sensor IDs with counts:
+
+```{bash}
+sensor-data distinct sensor_id -c data/sample-sensors.out
+```
+
+### Detecting Errors
+
+List error readings (DS18B20 values of 85 or -127):
+
+```{bash}
+sensor-data list-errors data/sample-sensors.out
+```
+
+Summarise errors by type:
+
+```{bash}
+sensor-data summarise-errors data/sample-sensors.out
+```
+
+### Transforming Data
+
+Convert JSON to CSV format:
+
+```{bash}
+sensor-data transform -of csv --remove-errors data/sample-sensors.out | head -10
+```
+
+Filter by sensor type and output as JSON:
+
+```{bash}
+sensor-data transform --only-value sensor:dht22 data/sample-sensors.out
+```
+
+### Statistics
+
+Calculate statistics for the sensor values (excluding errors):
+
+```{bash}
+sensor-data stats --remove-errors data/sample-sensors.out
+```
+
+### Finding Latest Readings
+
+Show the most recent reading for each sensor:
+
+```{bash}
+sensor-data latest data/sample-sensors.out
+```
+
+## Command Reference
+
+#### transform
+
+Transform sensor data between JSON and CSV formats, with optional filtering.
+
+````{bash eval=FALSE}
+# Convert JSON to CSV
+sensor-data transform -of csv sensor1.out
+
+# Convert with error filtering
+sensor-data transform --remove-errors -o output.csv sensor1.out
+
+# Process all .out files in a directory recursively
+sensor-data transform -r -e .out -o output.csv /var/ws/
+
+# Filter by sensor type
+cat sensor1.out | sensor-data transform --only-value sensor:ds18b20
+
+# Filter by date range
+sensor-data transform --min-date 2026-01-01 --max-date 2026-01-31 sensor.out
+
+# Apply the --clean shorthand (removes empty values, errors, and duplicates)
+sensor-data transform --clean sensor1.out
+````
+
+#### list-rejects
+
+List readings that would be filtered out by specified filters. This is useful for inspecting data quality issues.
+
+````{bash eval=FALSE}
+# Show readings that would be removed by --clean
+sensor-data list-rejects --clean sensor1.out
+
+# Show error readings
+sensor-data list-rejects --remove-errors sensor1.out
+````
+
+#### count
+
+Count sensor data readings with optional filtering and grouping.
+
+````{bash eval=FALSE}
+# Count all readings
+sensor-data count sensor1.out
+
+# Count excluding errors
+sensor-data count --remove-errors -r -e .out /var/ws/
+
+# Count by sensor type
+sensor-data count --by-column sensor_id sensor1.out
+
+# Count by time period
+sensor-data count --by-day sensor1.out      # YYYY-MM-DD
+sensor-data count --by-week sensor1.out     # YYYY-Www (ISO week)
+sensor-data count --by-month sensor1.out    # YYYY-MM
+sensor-data count --by-year sensor1.out     # YYYY
+
+# Output as CSV or JSON
+sensor-data count -b sensor_id -of csv sensor1.out
+sensor-data count -b sensor_id -of json sensor1.out
+````
+
+#### distinct
+
+List unique values in a specified column.
+
+````{bash eval=FALSE}
+# List unique sensor names
+sensor-data distinct sensor sensor1.out
+
+# List unique sensor IDs with counts (sorted by frequency)
+sensor-data distinct sensor_id -c -r -e out /var/ws/
+
+# Output as CSV or JSON
+sensor-data distinct sensor -of csv sensor1.out
+sensor-data distinct sensor -of json -c sensor1.out
+````
+
+#### list-errors
+
+Find and list error readings in sensor data files. This detects DS18B20 sensors reporting values of 85 or -127, which indicate communication errors or disconnection.
+
+````{bash eval=FALSE}
+sensor-data list-errors -r -e .out /var/ws/
+````
+
+Example output:
+```
+sensor1.out:2 type=ds18b20 sensor_id=sensor002 value=85
+```
+
+#### summarise-errors
+
+Summarise error occurrences by type and sensor.
+
+````{bash eval=FALSE}
+sensor-data summarise-errors -r -e .out /var/ws/
+````
+
+Example output:
+```
+DS18B20 communication error (value=85): 3 occurrences
+DS18B20 disconnected or power-on reset (value=-127): 2 occurrences
+Total errors: 5
+```
+
+#### stats
+
+Calculate statistics for numeric sensor data. Provides comprehensive analysis including basic statistics, quartiles, outlier detection, and time-based metrics.
+
+````{bash eval=FALSE}
+# Statistics for the 'value' column
+sensor-data stats sensor1.out
+
+# Statistics for a specific column
+sensor-data stats -c temperature sensor1.out
+
+# Clean statistics (excluding empty values and errors)
+sensor-data stats --clean sensor1.out
+
+# Follow mode for live updates
+sensor-data stats -f sensor1.out
+````
+
+Example output:
+```
+Statistics:
+
+Time Range:
+  First:     2026-01-14 22:13:20 (1768529600)
+  Last:      2026-01-15 01:13:20 (1768540400)
+  Duration:  3h 0m 0s (10800 seconds)
+  Rate:      1.33 readings/hour, 32.00 readings/day
+
+  Sampling:
+    Typical interval: 3600s
+    Gaps detected:    0
+
+value:
+  Count:    100
+  Min:      18.5
+  Max:      26.3
+  Range:    7.8
+  Mean:     22.1
+  StdDev:   1.8
+
+  Quartiles:
+    Q1 (25%):  20.5
+    Median:    22.0
+    Q3 (75%):  23.5
+    IQR:       3.0
+
+  Outliers (1.5*IQR):
+    Count:     2
+    Percent:   2.0%
+```
+
+#### latest
+
+Show the latest timestamp for each sensor.
+
+````{bash eval=FALSE}
+# Get latest timestamp per sensor
+sensor-data latest sensor1.out
+
+# Limit output to first 5 sensors
+sensor-data latest -n 5 sensor1.out
+
+# Output as CSV or JSON
+sensor-data latest -of csv sensor1.out
+sensor-data latest -of json sensor1.out
+````
+
+### Common Options
+
+Most commands share these options:
+
+| Option | Description |
+|--------|-------------|
+| `-r, --recursive` | Recursively process subdirectories |
+| `-e, --extension <ext>` | Filter files by extension (e.g., `.out`) |
+| `-d, --depth <n>` | Maximum recursion depth |
+| `-if, --input-format <fmt>` | Input format: `json` or `csv` |
+| `-of, --output-format <fmt>` | Output format: `json`, `csv`, or `human` |
+| `-o, --output <file>` | Output file (default: stdout) |
+| `-v` | Verbose output |
+| `-V` | Very verbose output |
+
+### Filtering Options
+
+| Option | Description |
+|--------|-------------|
+| `--min-date <date>` | Include only readings on or after this date |
+| `--max-date <date>` | Include only readings on or before this date |
+| `--remove-errors` | Remove DS18B20 error readings (value=85 or -127) |
+| `--remove-empty-json` | Remove empty JSON input lines |
+| `--not-empty <column>` | Skip rows where column is empty |
+| `--not-null <column>` | Skip rows where column is "null" |
+| `--only-value <col:val>` | Only include rows where column equals value |
+| `--exclude-value <col:val>` | Exclude rows where column equals value |
+| `--allowed-values <col> <vals>` | Only include rows where column is in allowed values |
+| `--unique` | Remove duplicate rows |
+| `--clean` | Shorthand for common cleaning options |
+| `--tail <n>` | Only read last n lines from each file |
+
+### Date Formats
+
+The `--min-date` and `--max-date` options accept:
+
+- ISO 8601: `2026-01-17` or `2026-01-17T14:30:00`
+- UK format: `17/01/2026`
+- Unix timestamp: `1768529600`
+
+## sensor-mon
+
+`sensor-mon` provides an interactive ncurses-based terminal interface for real-time monitoring of sensor data.
+
+### Usage
+
+````{bash eval=FALSE}
+sensor-mon
+````
+
+When started, sensor-mon scans for executable sensor-* programs in the PATH, verifies they respond correctly to the "identify" command, and displays a list of available sensors.
+
+### Controls
+
+| Key | Action |
+|-----|--------|
+| `1-9` | Select sensor to monitor |
+| `b` | Return to sensor list |
+| `[` | Show previous result (multiple readings) |
+| `]` | Show next result (multiple readings) |
+| `q` | Quit |
+
+### Display
+
+The sensor view shows:
+
+- **Top half:** Formatted JSON output from the selected sensor
+- **Bottom half:** Real-time graph of the "value" field, updated every second
+
+Colour is used when available:
+
+- Green: Frame and borders
+- Blue: Graph data points and lines
+- Reversed: Header text background
+
+### Sensor Requirements
+
+For a sensor application to be detected by sensor-mon, it must:
+
+1. Be named with the prefix "sensor-" (e.g., sensor-dht22, sensor-ds18b20)
+2. Be executable and in the system PATH
+3. Exit with status code 60 when called with the "identify" argument
+4. Output JSON data when called with the "all" argument
+
+## sensor-plot
+
+`sensor-plot` displays historical sensor data from .out files as graphs. Up to 5 sensors can be displayed simultaneously.
+
+### Usage
+
+````{bash eval=FALSE}
+sensor-plot --sensor <SENSOR_ID> [--sensor <SENSOR_ID2>] [PATH]
+````
+
+If no PATH is specified, defaults to `/var/ws`.
+
+### Options
+
+| Option | Description |
+|--------|-------------|
+| `--sensor <ID>` | Sensor ID to plot (can be specified up to 5 times) |
+| `-r, --recursive` | Search subdirectories for data files (default) |
+| `-R, --no-recursive` | Do not search subdirectories |
+| `-e, --extension <ext>` | Only read files with the specified extension |
+| `-h, --help` | Display help |
+
+### Controls
+
+| Key | Action |
+|-----|--------|
+| Left/Right Arrow | Scroll the time window |
+| `h` | Hour mode (1 hour view, 1 minute scroll) |
+| `d` | Day mode (24 hour view, 1 hour scroll) |
+| `w` | Week mode (7 day view, 1 day scroll) |
+| `m` | Month mode (30 day view, 1 week scroll) |
+| `y` | Year mode (365 day view, 1 month scroll) |
+| `r` | Reload data from disk |
+| `q` | Quit |
+
+### Sensor Colours
+
+Each sensor is displayed in a different colour:
+
+- Sensor 1: Cyan
+- Sensor 2: Yellow
+- Sensor 3: Magenta
+- Sensor 4: Red
+- Sensor 5: Blue
+
+### Examples
+
+````{bash eval=FALSE}
+# Display a single sensor
+sensor-plot --sensor ds18b20_abc123
+
+# Display three sensors together
+sensor-plot --sensor temp_indoor --sensor temp_outdoor --sensor humidity
+
+# Specify a different data path
+sensor-plot --sensor temp_main /path/to/data/
+````
+
+## Data Formats
+
+### JSON (.out files)
+
+Each line contains a JSON array with one or more sensor readings:
+
+```json
+[ { "sensor": "ds18b20", "sensor_id": "28-0123456789ab", "value": 22.5, "unit": "Celsius", "timestamp": 1768529600 } ]
+```
+
+### CSV
+
+Standard CSV with header row:
+
+```csv
+sensor,sensor_id,value,unit,timestamp
+ds18b20,28-0123456789ab,22.5,Celsius,1768529600
+```
+
+<!--chapter:end:36-sensor-data.Rmd-->
+
+# Sound Devices
+
+## How sound devices work
+
+<!--chapter:end:40-sound-devices.Rmd-->
+
+# Sound devices in WildlifeSystems
+
+## Installing sound device support
+
+Support for sound devices is installed as part of the node installation process, however it is possible to install the `sound-device-control` abstraction layer onto any Raspberry Pi system using the command below.
+
+```{bash eval=FALSE}
+`wget -O - https://github.com/wildlife-systems/sound-device-control/raw/master/install | sudo bash`
+```
+
+The installation will install the `alsa-utils` package on Ubuntu/Debian systems, and add the current user to the `audio` group.
+
+## Supported sound devices
+
+The WildlifeSystems platform supports several popular sound capture and playback devices. 
+
+### Raspberry Pi onboard audio
+
+### AudioInjector Zero
+
+### AudioInjector Octo
+
+### AudioInjector Ultra
+
+### I2C microphone (e.g. Google Voice Hat)
+
+Limited to 48kHz sample rate, no record volume control.
+
+### Respeaker 6 mic array
+
+### Audio+ DAC
+
+### Wolfson Audio Card
+
+## Installing a sound device
+
+To install support for a sound device, run the following command.
+
+```{bash eval=FALSE}
+sdc-inst <sound-device-name>
+```
+
+To get a list of names of supported devices, run the following command.
+
+```{bash eval=FALSE}
+sdc-inst list
+```
+
+<!--chapter:end:41-sound-in-ws.Rmd-->
+
+# Imaging Devices
+
+## How imaging devices work
+
+<!--chapter:end:45-image-devices.Rmd-->
+
+# Imaging devices in WildlifeSystems
+
+<!--chapter:end:50-image-in-ws.Rmd-->
+
+# Power Management
+
+Power management on the Raspberry Pi is useful when deployments are made that are powered by batteries and/or renewable sources such as solar power that are intermittent. 
+
+In addition, there are small environmental benefits on consuming less power on systems which have continual grid power.
+
+The `pi-pwr` script can be used to turn off unused functionality, either always or just when it is not required.
+
+## Installation of power management tools
+
+The power management tools are installed as part of the node installation process, however they can be easily installed independently on any Raspberry Pi system.
+
+````{bash eval=FALSE}
+wget -O - https://github.com/wildlife-systems/pi-pwr/raw/master/install | sudo bash
+````
+
+## Turning funtionality on and off
+
+## Considerations
+
+Disabling all network functionality will prevent the node from communicating until either the functionality is turned back on or the Raspberry Pi is restarted.
+
+If disabling all connectivity is desired periodically then the functionality to turn these systems back on must be scripted.
+
+### A note on `sudo`
+
+Raspberry Pi OS (and previously Raspbian) allows the default user to run sudo without a password. This is not true for other Linux distributions, such as Ubuntu. This could lead to a password prompt when using `pi-pwr`. As nodes are designed to run autonomously, the installation process for `ws-node` will configure `pi-pwr` to not require a `sudo` password.
+
+<!--chapter:end:55-power-management.Rmd-->
+
+# Indicators and heartbeats
+
+The script `ws-indicate` is used to indicate the device's status using the LED(s) on board the Raspberry Pi. The script `ws-heartbeat` can be used to transmit the device's status to a user-defined script that could provide logging, or submit the status to an online dashboard.
+
+## Installation of `ws-indcate` and `ws-heartbeat`
+
+These tools are installed as part of the node installation process.
+
+## Indicators
+
+Internally `ws-inidicate` makes repeated calls to `pi-pwr` to control the LED(s). There are three indicator routines, heartbeat (quick flash of LEDs in order to show device is functioning), countdown (flashes power LED), and record (power LED on, action LED off).
+
+````{bash eval=FALSE}
+sudo ws-indicate
+sudo ws-indicate countdown 5   # counts down from 5
+sudo ws-indicate record action # record light is on while action is executed
+````
+
+## Heartbeat
+The script `ws-heartbeat` is used to send a heartbeat signal to the devices.wildlife.systems server to indicate that the node is alive and connected, as well as to provide some information to assist problem diagnosis. The data sent comes from the onboard sensor readings (`sr onboard`) and the server stores the node ID, timestamp, CPU and GPU temperatures, and the amount of memory and storage used. The node must be registered with WildlifeSystems for this data to be stored.
+
+The script may be run for debugging purposes at any time as follows.
+
+````{bash, eval=FALSE}
+ws-heartbeat
+````
+
+The script will exit silently on success.
+
+<!--chapter:end:60-ws-indicate.Rmd-->
+
+# Integration with monitoring tools
+
+## PRTG
+
+As the devices are Raspberry Pi based, we can use the PRTG monitoring tool to monitor standard aspects of their performance including CPU, memory, disk space, and network traffic.
+
+### Monitoring custom sensors
+
+Some sensors attached to WildlifeSystems nodes may be used to monitor aspects of the devices themselves, rather than the environment. Using custom PRTG scripts it is possible to include these measurements in PRTG reports and alerts.
+
+The following example reports the humidity of the device enclosure measured by a DHT11 sensor. It makes use of the WildlifeSystems `sr` command to read the sensor in a standard JSON format, and converts the reading to a format expected by PRTG.
+
+```bash
+#!/bin/bash
+
+HV=$(sudo sr dht11 | jq 'map(select(.sensor == "dht11_humidity")) | .[]["value"]')
+
+if (( $HV < 75 )); then
+  /bin/echo "0:$HV:Acceptable humidity"
+else
+  /bin/echo "4:$HV:Too humid"
+fi
+
+```
+
+<!--chapter:end:65-monitoring-tools.Rmd-->
+
+# Developer Guidelines
+
+## Documentation
+
+There are three main kinds of documentation in the WildlifeSystems project.
+
+1. __Code comments__: Primarily for future you (or someone similar) to get to grips with your code. _Why does this code do this?_.
+
+2. __Package documentation__: Describes what your package does, how it interacts with the larger system. _What will this package do for me?_
+
+3. __Overall project documentation__: This manual. _How do I use the entire system for my research?_
+
+## File system layout
+
+````{}
+|- /etc/ws              # Configuration files (editable by end user)
+|- /usr/bin             # Main scripts        (do not edit)
+|- /var/ws              # Data storage        (do not edit)
+   |- audio             # Audio data
+   |- bluetooth         # Bluetooth data
+````
+
+<!--chapter:end:70-dev-guidelines.Rmd-->
+
+# Server Tools
+These tools are only needed for running and maintaining the [wildlife.systems](https://wildlife.systems) webserver. 
+
+## Installation
+
+````{bash eval=FALSE}
+git clone git@github.com:Wildlife-Systems/wildlife.systems-tools.git
+cd wildlife.systems-tools
+./install
+cp .ws-db.php ~/
+
+#Edit ~/.ws-db.php to connect to the wildlife-systems database
+````
+
+## Adding nodes and receieving a token
+
+````{bash eval=FALSE}
+ws-node-add <node_id>
+````
+
+Adding a node by it's ID (serial number of the Raspberry Pi) will add the device to the wildlife.systems database, generate a token, and display the token (a UUID) in the console. This token is used to authenticate the device when it sends data to wildlife.systems.
+
+## Removing a node
+
+````{bash eval=FALSE}
+ws-node-remove <node_id>
+````
+
+<!--chapter:end:80-server-tools.Rmd-->
+
+`r if (knitr::is_html_output()) '
+# References {-}
+'`
+
+<!--chapter:end:90-references.Rmd-->
+
+# (APPENDIX) Appendix {-}
+
+<!--chapter:end:91-Appendicies-header.Rmd-->
+
+# A note on `sudo`
+
+Raspberry Pi OS (and previously Raspbian) allows the default user to run sudo without a password. This is not true for other Linux distributions, such as Ubuntu. This could lead to a password prompt when using scripts such as `sr` and `ws-indicate`.
+
+When using a standard node configuration this is not an issue as the systemd services that launch these scripts are configured to run as root. However, if you are using these scripts manually you may need to run them with sudo (e.g. `sudo sr onboard`) to get expected behaviour.
+
+<!--chapter:end:93-sudo.Rmd-->
+
+# Return codes
+
+The various scripts that form the WildlifeSystems ecosystem use a standard set of return codes.
+
+## 00-09 Script functionality
+
+````{r, echo=FALSE}
+Code <- seq(from=0, to=3)
+Label <- c(
+  "OK",
+  "Already running",
+  "No arguments",
+  "Config file error"
+)
+Description <- c(
+  "Terminated normally. No error.",
+  "The script determined it was already running and terminated.",
+  "The script requires arguments but none given. Will give help text.",
+  "The config file is missing or malformed."
+)
+t <- cbind(Code, Label, Description)
+knitr::kable(t)
+````
+
+## 10-19 Parameter problems
+
+````{r, echo=FALSE}
+Code <- seq(from=10, to=11)
+Label <- c(
+  "Invalid argument",
+  "Incorrect filename pattern"
+)
+Description <- c(
+  "One or more of the arguments to the script was invalid.",
+  "A standard filename pattern was expected. Allowed values are 'timestamp'."
+)
+t <- cbind(Code, Label, Description)
+knitr::kable(t)
+````
+
+## 20-29 Sensor problems
+
+````{r, echo=FALSE}
+Code <- seq(from=20, to=21)
+Label <- c(
+  "Unknown device",
+  "Unknown sensor"
+)
+Description <- c(
+  "This device is not supported, or software is not installed.",
+  "This sensor is not known on this device."
+)
+t <- cbind(Code, Label, Description)
+knitr::kable(t)
+````
+
+## 30-39 Sound device problems
+
+````{r, echo=FALSE}
+Code <- seq(from=30, to=32)
+Label <- c(
+  "Unsupported device",
+  "Unsupported feature",
+  "Unknown feature"
+)
+Description <- c(
+  "The specified device is unsupported.",
+  "This feature is not present on the sound device.",
+  "The feature requested is unknown."
+)
+t <- cbind(Code, Label, Description)
+knitr::kable(t)
+````
+
+## 40-49 Image device problems
+
+````{r, echo=FALSE}
+Code <- seq(from=40, to=42)
+Label <- c(
+  "Unsupported device",
+  "Unsupported feature",
+  "Unknown feature"
+)
+Description <- c(
+  "The specified device is unsupported.",
+  "This feature is not present on the sound device.",
+  "The feature requested is unknown."
+)
+t <- cbind(Code, Label, Description)
+knitr::kable(t)
+````
+
+## 50-59 Power management problems
+
+````{r, echo=FALSE}
+Code <- seq(from=50, to=51)
+Label <- c(
+  "Disallowed value (should be on or off)",
+  "Disallowed value (should be on, off or default)"
+)
+Description <- c(
+  "The specified device is unsupported.",
+  "This feature is not present on the sound device."
+)
+t <- cbind(Code, Label, Description)
+knitr::kable(t)
+````
+
+## 60-69 Special meanings
+
+````{r, echo=FALSE}
+Code <- seq(from=60, to=60)
+Label <- c(
+  "Identify as a sensor device script"
+)
+Description <- c(
+  "Returned by sensor device script in response to first parameter `identify`."
+)
+t <- cbind(Code, Label, Description)
+knitr::kable(t)
+````
+
+<!--chapter:end:95-return-codes.Rmd-->
+

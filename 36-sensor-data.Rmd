@@ -40,23 +40,29 @@ If no input files are specified, data is read from stdin. Input files can be JSO
 
 The following examples demonstrate `sensor-data` commands using sample sensor data. These examples are executed when the documentation is built, showing real output from the tool.
 
+```{r setup-sensor-data, include=FALSE}
+# Check if sensor-data is available (only in CI on Linux)
+sensor_data_available <- Sys.which("sensor-data") != ""
+knitr::opts_chunk$set(eval = sensor_data_available, engine.opts = list(bash = "-c"))
+```
+
 ### Counting Readings
 
 Count all readings in the sample data file:
 
-```{bash}
+```{bash, eval=sensor_data_available}
 sensor-data count data/sample-sensors.out
 ```
 
 Count readings by sensor type:
 
-```{bash}
+```{bash, eval=sensor_data_available}
 sensor-data count --by-column sensor data/sample-sensors.out
 ```
 
 Count readings excluding errors:
 
-```{bash}
+```{bash, eval=sensor_data_available}
 sensor-data count --remove-errors data/sample-sensors.out
 ```
 
@@ -64,13 +70,13 @@ sensor-data count --remove-errors data/sample-sensors.out
 
 List unique sensor types in the data:
 
-```{bash}
+```{bash, eval=sensor_data_available}
 sensor-data distinct sensor data/sample-sensors.out
 ```
 
 List unique sensor IDs with counts:
 
-```{bash}
+```{bash, eval=sensor_data_available}
 sensor-data distinct sensor_id -c data/sample-sensors.out
 ```
 
@@ -78,13 +84,13 @@ sensor-data distinct sensor_id -c data/sample-sensors.out
 
 List error readings (DS18B20 values of 85 or -127):
 
-```{bash}
+```{bash, eval=sensor_data_available}
 sensor-data list-errors data/sample-sensors.out
 ```
 
 Summarise errors by type:
 
-```{bash}
+```{bash, eval=sensor_data_available}
 sensor-data summarise-errors data/sample-sensors.out
 ```
 
@@ -92,13 +98,13 @@ sensor-data summarise-errors data/sample-sensors.out
 
 Convert JSON to CSV format:
 
-```{bash}
+```{bash, eval=sensor_data_available}
 sensor-data transform -of csv --remove-errors data/sample-sensors.out | head -10
 ```
 
 Filter by sensor type and output as JSON:
 
-```{bash}
+```{bash, eval=sensor_data_available}
 sensor-data transform --only-value sensor:dht22 data/sample-sensors.out
 ```
 
@@ -106,7 +112,7 @@ sensor-data transform --only-value sensor:dht22 data/sample-sensors.out
 
 Calculate statistics for the sensor values (excluding errors):
 
-```{bash}
+```{bash, eval=sensor_data_available}
 sensor-data stats --remove-errors data/sample-sensors.out
 ```
 
@@ -114,7 +120,7 @@ sensor-data stats --remove-errors data/sample-sensors.out
 
 Show the most recent reading for each sensor:
 
-```{bash}
+```{bash, eval=sensor_data_available}
 sensor-data latest data/sample-sensors.out
 ```
 
