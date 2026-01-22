@@ -50,9 +50,15 @@ jobs:
 
       - name: Install R dependencies
         run: |
-          install.packages(c("bookdown", "remotes", "reticulate"))
+          install.packages(c("bookdown", "remotes", "reticulate", "tinytex"))
           remotes::install_github("edwbaker/figuREd")
           remotes::install_deps(dependencies = TRUE)
+          tinytex::install_tinytex()
+        shell: Rscript {0}
+
+      - name: Install additional LaTeX packages
+        run: |
+          tinytex::tlmgr_install(c("fancyhdr", "booktabs", "longtable", "array", "multirow", "wrapfig", "colortbl", "tabu", "varwidth", "threeparttable", "threeparttablex", "environ", "trimspaces", "ulem", "makecell", "natbib"))
         shell: Rscript {0}
 
       - name: Cache bookdown results
