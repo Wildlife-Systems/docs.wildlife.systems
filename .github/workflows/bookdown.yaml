@@ -31,6 +31,19 @@ jobs:
         with:
           use-public-rspm: true
 
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential g++ libncurses-dev zlib1g-dev
+
+      - name: Build sensor-tools from source
+        run: |
+          git clone --depth 1 https://github.com/Wildlife-Systems/sensor-tools.git /tmp/sensor-tools
+          cd /tmp/sensor-tools
+          make sensor-data
+          sudo cp sensor-data /usr/local/bin/
+          sensor-data --version
+
       - name: Install R dependencies
         run: |
           install.packages(c("bookdown", "remotes", "reticulate"))
