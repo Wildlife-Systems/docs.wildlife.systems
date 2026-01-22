@@ -11,7 +11,7 @@ The development of biodiversity technologies has been enabled by the rapid advan
 
 This has been accompanied by a decline in the cost of these technologies (e.g. Figure  \@ref(fig:storage-costs)), making them more accessible to researchers, conservationists, and others interested in monitoring biodiversity.
 
-```{r, storage-costs, echo=FALSE, fig.cap="The decline in storage costs per megabyte in consumer hard drives."}
+```{r, storage-costs, echo=FALSE, cache=TRUE, fig.cap="The decline in storage costs per megabyte in consumer hard drives.", fig.alt="Line chart showing the exponential decline in hard drive storage costs from 1980 to present, demonstrating how data storage has become increasingly affordable over time."}
 library(figuREd)
 storageCosts()
 ``` 

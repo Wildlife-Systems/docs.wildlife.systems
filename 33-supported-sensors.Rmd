@@ -1,4 +1,6 @@
-# Supported sensors
+# Supported sensors {#supported-sensors}
+
+This chapter lists the sensors currently supported by WildlifeSystems. For information on how to read data from these sensors, see Chapter \@ref(sensors-in-wildlifesystems). For tools to process and analyse historical sensor data, see Chapter \@ref(sensor-data-tools).
 
 ## List of supported sensors
 

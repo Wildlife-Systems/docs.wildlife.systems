@@ -1,6 +1,8 @@
-# Sensor Data Tools
+# Sensor Data Tools {#sensor-data-tools}
 
-The `sensor-tools` package provides command-line utilities for processing, analysing, and visualising sensor data collected by WildlifeSystems nodes. The package includes three main binaries: `sensor-data`, `sensor-mon`, and `sensor-plot`. `sensor-mon` must be run on a WildlifeSystems node, while `sensor-data` and `sensor-plot` can be run on any system with access to the sensor data files. Both `sensor-data` and `sensor-plot` can process files from multiple nodes.
+The `sensor-tools` package provides command-line utilities for processing, analysing, and visualising sensor data collected by WildlifeSystems nodes (see Chapter \@ref(nodes)). The package includes three main binaries: `sensor-data`, `sensor-mon`, and `sensor-plot`. `sensor-mon` must be run on a WildlifeSystems node, while `sensor-data` and `sensor-plot` can be run on any system with access to the sensor data files. Both `sensor-data` and `sensor-plot` can process files from multiple nodes.
+
+For information on reading sensor data in real-time using `sr`, see Chapter \@ref(sensors-in-wildlifesystems). For a list of supported sensors, see Chapter \@ref(supported-sensors).
 
 ### `sensor-data`
 

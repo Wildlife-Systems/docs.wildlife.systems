@@ -65,9 +65,25 @@ jobs:
       - name: Ensure cache directory exists
         run: mkdir -p _bookdown_files
 
-      - name: Build site
+      - name: Build HTML site
         run: bookdown::render_book("index.Rmd", quiet = TRUE)
         shell: Rscript {0}
+
+      - name: Build PDF book
+        run: bookdown::render_book("index.Rmd", "bookdown::pdf_book", quiet = TRUE)
+        shell: Rscript {0}
+        continue-on-error: true
+
+      - name: Build EPUB book
+        run: bookdown::render_book("index.Rmd", "bookdown::epub_book", quiet = TRUE)
+        shell: Rscript {0}
+        continue-on-error: true
+
+      - name: Check for broken links
+        uses: lycheeverse/lychee-action@v2
+        with:
+          args: --verbose --no-progress './docs/**/*.html' --exclude 'localhost|127.0.0.1|wildlife.systems|github.com/rstudio'
+          fail: false
 
       - name: Upload Pages artifact
         if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'

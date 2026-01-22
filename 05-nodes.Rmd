@@ -1,4 +1,4 @@
-# Nodes
+# Nodes {#nodes}
 
 The fundamental unit of the WildlifeSystems platform is the node. A node is a physical device that can be used to collect data from sensors, control devices, and communicate with other nodes. Nodes are (typically) Raspberry Pi computers, packaged with an array of environmental sensors, microphone(s), and/or camera(s).
 

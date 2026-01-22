@@ -1,4 +1,4 @@
-# Sensors in WildlifeSystems
+# Sensors in WildlifeSystems {#sensors-in-wildlifesystems}
 
 The WildlifeSystems platform comes with support for some popular existing environmental sensors, although there are many on the market and the range available is subject to constant change. The modular nature of WildlifeSystems allows for new sensors to be easily integrated if the need arises.
 

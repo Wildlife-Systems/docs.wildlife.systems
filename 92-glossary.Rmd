@@ -1,0 +1,78 @@
+# Glossary {#glossary}
+
+This glossary provides definitions for key terms used throughout the WildlifeSystems documentation.
+
+## A
+
+**APT (Advanced Package Tool)**
+:   The package management system used by Debian-based Linux distributions including Raspberry Pi OS. WildlifeSystems packages are distributed via the Wildlife Systems APT repository.
+
+## B
+
+**BME680**
+:   A 4-in-1 environmental sensor from Bosch that measures temperature, humidity, air pressure, and gas resistance (air quality). See Chapter \@ref(supported-sensors).
+
+## D
+
+**Device**
+:   A physical hardware package that may contain one or more sensors. For example, a BME680 device contains temperature, humidity, pressure, and gas sensors.
+
+**DHT11/DHT22**
+:   Low-cost digital temperature and humidity sensors. The DHT22 offers higher accuracy than the DHT11.
+
+**DS18B20**
+:   A digital temperature sensor that communicates over the 1-Wire protocol. Reports errors as values of 85°C (communication error) or -127°C (disconnected/power-on reset).
+
+## J
+
+**JSON (JavaScript Object Notation)**
+:   The primary data format used by WildlifeSystems for sensor readings. Each reading is stored as a JSON object containing sensor type, ID, value, unit, timestamp, and node ID.
+
+## N
+
+**Node**
+:   The fundamental unit of the WildlifeSystems platform. A node is typically a Raspberry Pi computer configured with sensors, microphones, and/or cameras to collect environmental data. See Chapter \@ref(nodes).
+
+**node_id**
+:   A unique identifier assigned to each WildlifeSystems node, used to track which device collected a particular sensor reading.
+
+## O
+
+**.out file**
+:   The standard file format for storing sensor data in WildlifeSystems. Each line contains a JSON array with one or more sensor readings.
+
+## S
+
+**sc-prototype**
+:   A bash function used by sensor scripts to obtain a template JSON string for sensor readings. See Chapter \@ref(sensors-in-wildlifesystems).
+    
+**sensor**
+:   A component within a device that measures a single physical quantity (e.g., temperature, humidity). A single device may contain multiple sensors.
+
+**sensor-control**
+:   The abstraction layer package that provides a unified interface for reading sensor data across different sensor types.
+
+**sensor-data**
+:   A command-line tool for processing and analysing sensor data files. Supports transforming formats, filtering readings, calculating statistics, and more. See Chapter \@ref(sensor-data-tools).
+
+**sensor-mon**
+:   An interactive ncurses-based terminal application for real-time monitoring of sensor readings. See Chapter \@ref(sensor-data-tools).
+
+**sensor-plot**
+:   A terminal-based graphing tool for visualising historical sensor data. See Chapter \@ref(sensor-data-tools).
+
+**sensor_id**
+:   A unique identifier for a specific sensor instance (e.g., `28-0123456789ab` for a DS18B20 sensor).
+
+**sr (sensor read)**
+:   The primary command for reading sensor data in real-time from connected devices. Usage: `sr <device> [sensor]`.
+
+## T
+
+**timestamp**
+:   A Unix timestamp (seconds since 1 January 1970) recording when a sensor reading was taken.
+
+## 1
+
+**1-Wire**
+:   A communication protocol that allows multiple devices to share a single data wire. Used by DS18B20 temperature sensors. Typically connected to GPIO 17 on WildlifeSystems nodes.

@@ -14,6 +14,15 @@ github-repo: wildlife-systems/docs.wildlife.systems
 ---
 
 ```{r setup, include=FALSE}
+# Set global chunk options
+knitr::opts_chunk$set(
+  echo = TRUE,
+  message = FALSE,
+  warning = FALSE,
+  cache = TRUE,
+  cache.path = "_bookdown_files/cache/"
+)
+
 # Check if sensor-data and sc-prototype are available in the system
 sensor_data_available <- Sys.which("sensor-data") != "" && Sys.which("sc-prototype") != ""
 ```
